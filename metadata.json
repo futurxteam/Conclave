@@ -1,0 +1,6 @@
+{
+  "name": "Kerala Psychology Conclave",
+  "description": "Kerala's Premier Annual Psychology & Mental Health Conclave",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
