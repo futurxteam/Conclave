@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowUpRight, CheckCircle2, ShieldCheck, Ticket as TicketIcon,
-  MapPin, Calendar, Users, Mic, Presentation, Plus, Minus
+  MapPin, Calendar, Users, Mic, Presentation, Plus, Minus, BedDouble
 } from 'lucide-react';
 
 type TicketType = 'student' | 'professional' | 'vip' | null;
@@ -40,10 +40,94 @@ const TICKETS = {
   }
 };
 
+// --- Accommodation Add-on Card ---
+interface AccommodationAddonProps {
+  selected: boolean;
+  onToggle: (e: React.MouseEvent) => void;
+}
+
+function AccommodationAddon({ selected, onToggle }: AccommodationAddonProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -10, scale: 0.97 }}
+      transition={{ duration: 0.3, type: 'spring', bounce: 0.3 }}
+    >
+      <button
+        type="button"
+        onClick={onToggle}
+        className={`w-full text-left transition-all duration-300 rounded-2xl border-2 p-4 backdrop-blur-xl group
+          ${selected
+            ? 'bg-emerald-50/80 border-emerald-400 shadow-[0_6px_24px_-8px_rgba(20,146,87,0.28)] ring-4 ring-emerald-400/10'
+            : 'bg-white/70 border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/40 hover:shadow-md'
+          }`}
+      >
+        {/* Header row */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-3 flex-1 min-w-0">
+            {/* Bed icon circle */}
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300
+              ${selected ? 'bg-emerald-500 text-white shadow-md' : 'bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-600'}`}>
+              <BedDouble size={17} />
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Need Accommodation?</p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className={`font-bold text-sm transition-colors duration-200 ${selected ? 'text-emerald-700' : 'text-slate-700'}`}>
+                  🏨 Hostel &amp; Accommodation
+                </span>
+                <span className={`font-black text-sm ${selected ? 'text-emerald-600' : 'text-slate-500'}`}>+₹250</span>
+              </div>
+              <p className="text-xs text-slate-400 font-medium mt-0.5 leading-snug">
+                Add hostel / guest-house for the duration of the conclave.
+              </p>
+            </div>
+          </div>
+
+          {/* Toggle */}
+          <div className={`w-11 h-6 rounded-full flex items-center shrink-0 mt-1 transition-all duration-300 relative
+            ${selected ? 'bg-emerald-500 shadow-md' : 'bg-slate-200'}`}>
+            <motion.div
+              animate={{ x: selected ? 20 : 2 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              className="w-5 h-5 rounded-full bg-white shadow-sm absolute"
+            />
+          </div>
+        </div>
+
+        {/* Per-participant label */}
+        <div className="mt-2.5 ml-12 flex items-center gap-2">
+          <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full transition-all duration-300
+            ${selected
+              ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+              : 'bg-slate-100 text-slate-500 border border-slate-200 group-hover:bg-emerald-50 group-hover:text-emerald-600 group-hover:border-emerald-200'
+            }`}>
+            ₹250 per participant
+          </span>
+          {selected && (
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-[11px] font-bold text-emerald-600 flex items-center gap-1"
+            >
+              ✓ Added
+            </motion.span>
+          )}
+        </div>
+      </button>
+    </motion.div>
+  );
+}
+
 export function TicketBooking() {
   const [selectedTicket, setSelectedTicket] = useState<TicketType>(null);
   const [quantity, setQuantity] = useState(1);
   const [step, setStep] = useState(1);
+  const [addAccommodation, setAddAccommodation] = useState(false);
+
+  const ACCOMMODATION_PRICE = 250;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,12 +140,19 @@ export function TicketBooking() {
     } else {
       setSelectedTicket(id);
       setQuantity(1);
+      setAddAccommodation(false);
     }
   };
+
 
   const getSubtotal = () => {
     if (!selectedTicket) return 0;
     return TICKETS[selectedTicket as keyof typeof TICKETS].price * quantity;
+  };
+
+  const getAccommodationTotal = () => {
+    if (!addAccommodation) return 0;
+    return ACCOMMODATION_PRICE * quantity;
   };
 
   const getGST = () => {
@@ -69,7 +160,7 @@ export function TicketBooking() {
   };
 
   const getTotal = () => {
-    return getSubtotal() + getGST();
+    return getSubtotal() + getGST() + getAccommodationTotal();
   };
 
   return (
@@ -143,56 +234,76 @@ export function TicketBooking() {
               <div className="grid sm:grid-cols-2 gap-6">
 
                 {/* Early Bird Offer */}
-                <div
-                  onClick={() => handleTicketSelect('student')}
-                  className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl ${selectedTicket === 'student' ? 'border-[#2551A4] shadow-[0_15px_40px_-15px_rgba(37,81,164,0.3)] ring-4 ring-[#2551A4]/10' : 'border-slate-200 shadow-sm'}`}
-                >
-                  <h3 className="font-display font-black text-xl text-slate-800 mb-1">Early Bird Offer</h3>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Psychology Students</p>
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-black text-[#2551A4]">₹1500</span>
-                  </div>
-                  <div className="space-y-3 mb-8 flex-1">
-                    {TICKETS.student.features.map((feature) => (
-                      <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
-                        <CheckCircle2 size={16} className="text-[#149257] shrink-0 mt-0.5" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                  <button
-                    className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'student' ? 'bg-[#2551A4] text-white shadow-md' : 'bg-slate-100 text-slate-700 group-hover:bg-[#2551A4] group-hover:text-white'}`}
+                <div className="flex flex-col gap-3">
+                  <div
+                    onClick={() => handleTicketSelect('student')}
+                    className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl ${selectedTicket === 'student' ? 'border-[#2551A4] shadow-[0_15px_40px_-15px_rgba(37,81,164,0.3)] ring-4 ring-[#2551A4]/10' : 'border-slate-200 shadow-sm'}`}
                   >
-                    {selectedTicket === 'student' ? 'Selected' : 'Select Pass'}
-                  </button>
+                    <h3 className="font-display font-black text-xl text-slate-800 mb-1">Early Bird Offer</h3>
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Psychology Students</p>
+                    <div className="flex items-baseline gap-1 mb-6">
+                      <span className="text-4xl font-black text-[#2551A4]">₹1500</span>
+                    </div>
+                    <div className="space-y-3 mb-8 flex-1">
+                      {TICKETS.student.features.filter(f => !f.toLowerCase().includes('hostel') && !f.toLowerCase().includes('accommodation')).map((feature) => (
+                        <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
+                          <CheckCircle2 size={16} className="text-[#149257] shrink-0 mt-0.5" />
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'student' ? 'bg-[#2551A4] text-white shadow-md' : 'bg-slate-100 text-slate-700 group-hover:bg-[#2551A4] group-hover:text-white'}`}
+                    >
+                      {selectedTicket === 'student' ? 'Selected' : 'Select Pass'}
+                    </button>
+                  </div>
+
+                  {/* Accommodation Add-on for Early Bird */}
+                  {selectedTicket === 'student' && (
+                    <AccommodationAddon
+                      selected={addAccommodation}
+                      onToggle={(e) => { e.stopPropagation(); setAddAccommodation(prev => !prev); }}
+                    />
+                  )}
                 </div>
 
                 {/* Normal Pass */}
-                <div
-                  onClick={() => handleTicketSelect('professional')}
-                  className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden ${selectedTicket === 'professional' ? 'border-[#149257] shadow-[0_15px_40px_-15px_rgba(20,146,87,0.3)] ring-4 ring-[#149257]/10' : 'border-slate-200 shadow-sm'}`}
-                >
-                  <div className="absolute top-0 right-0 bg-gradient-to-l from-[#2551A4] to-[#D7AEC8] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
-                    Most Popular
-                  </div>
-                  <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">Normal Pass</h3>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Educators & Professionals</p>
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-black text-[#149257]">₹2000</span>
-                  </div>
-                  <div className="space-y-3 mb-8 flex-1">
-                    {TICKETS.professional.features.map((feature) => (
-                      <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
-                        <CheckCircle2 size={16} className="text-[#149257] shrink-0 mt-0.5" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                  <button
-                    className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'professional' ? 'bg-[#149257] text-white shadow-md' : 'bg-[#149257] text-white hover:bg-slate-900 shadow-sm'}`}
+                <div className="flex flex-col gap-3">
+                  <div
+                    onClick={() => handleTicketSelect('professional')}
+                    className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden ${selectedTicket === 'professional' ? 'border-[#149257] shadow-[0_15px_40px_-15px_rgba(20,146,87,0.3)] ring-4 ring-[#149257]/10' : 'border-slate-200 shadow-sm'}`}
                   >
-                    {selectedTicket === 'professional' ? 'Selected' : 'Choose Professional'}
-                  </button>
+                    <div className="absolute top-0 right-0 bg-gradient-to-l from-[#2551A4] to-[#D7AEC8] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
+                      Most Popular
+                    </div>
+                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">Normal Pass</h3>
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Educators & Professionals</p>
+                    <div className="flex items-baseline gap-1 mb-6">
+                      <span className="text-4xl font-black text-[#149257]">₹2000</span>
+                    </div>
+                    <div className="space-y-3 mb-8 flex-1">
+                      {TICKETS.professional.features.filter(f => !f.toLowerCase().includes('hostel') && !f.toLowerCase().includes('accommodation') && !f.toLowerCase().includes('guest')).map((feature) => (
+                        <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
+                          <CheckCircle2 size={16} className="text-[#149257] shrink-0 mt-0.5" />
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'professional' ? 'bg-[#149257] text-white shadow-md' : 'bg-[#149257] text-white hover:bg-slate-900 shadow-sm'}`}
+                    >
+                      {selectedTicket === 'professional' ? 'Selected' : 'Choose Professional'}
+                    </button>
+                  </div>
+
+                  {/* Accommodation Add-on for Normal Pass */}
+                  {selectedTicket === 'professional' && (
+                    <AccommodationAddon
+                      selected={addAccommodation}
+                      onToggle={(e) => { e.stopPropagation(); setAddAccommodation(prev => !prev); }}
+                    />
+                  )}
                 </div>
 
               </div>
@@ -314,7 +425,7 @@ export function TicketBooking() {
                           </div>
 
                           <button className="w-full sm:w-auto py-4 px-8 rounded-full font-bold text-white bg-[#2551A4] hover:bg-[#149257] transition-all duration-300 shadow-[0_10px_20px_rgba(37,81,164,0.2)] flex items-center justify-center gap-2 text-lg">
-                            Pay ₹{getTotal()} Now <ArrowUpRight size={20} />
+                            Pay ₹{getTotal().toLocaleString('en-IN')} Now <ArrowUpRight size={20} />
                           </button>
                         </div>
                       </div>
@@ -369,9 +480,30 @@ export function TicketBooking() {
 
                       <div className="space-y-3 text-sm font-medium text-slate-600">
                         <div className="flex justify-between items-center">
-                          <span>Subtotal</span>
+                          <span>{TICKETS[selectedTicket as keyof typeof TICKETS].title}</span>
                           <span className="font-bold text-slate-800">₹{getSubtotal()}</span>
                         </div>
+
+                        <AnimatePresence>
+                        {addAccommodation && (
+                          <motion.div
+                            key="accommodation-row"
+                            initial={{ opacity: 0, y: -6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex justify-between items-center"
+                          >
+                            <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                              <BedDouble size={13} className="shrink-0" />
+                              Accommodation
+                              {quantity > 1 && <span className="text-slate-400 font-medium">×{quantity}</span>}
+                            </span>
+                            <span className="font-bold text-emerald-700">₹{getAccommodationTotal()}</span>
+                          </motion.div>
+                        )}
+                        </AnimatePresence>
+
                         <div className="flex justify-between items-center">
                           <span>Taxes (18% GST)</span>
                           <span className="font-bold text-slate-800">₹{getGST()}</span>

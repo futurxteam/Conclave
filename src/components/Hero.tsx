@@ -164,9 +164,9 @@ export function Hero() {
                 <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-[#F1D10A]/10 rounded-full blur-[50px]" />
 
                 {/* Card content */}
-                <div className="relative z-10 p-10">
-                  {/* Top row */}
-                  <div className="flex items-start justify-between mb-8">
+                <div className="relative z-10 p-12 flex flex-col justify-center min-h-[340px]">
+                  {/* Top row — icons + edition */}
+                  <div className="flex items-start justify-between mb-14">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center">
                         <BrainCircuit size={28} className="text-[#D7AEC8]" strokeWidth={1.5} />
@@ -182,45 +182,14 @@ export function Hero() {
                   </div>
 
                   {/* Title block */}
-                  <div className="mb-6">
-                    <p className="text-[#D7AEC8] font-bold tracking-[0.3em] text-xs uppercase mb-2">Kerala Psychology Conclave</p>
-                    <h2 className="font-display font-black text-[3.2rem] leading-[1] tracking-tight drop-shadow-md">
+                  <div className="pb-10">
+                    <p className="text-[#D7AEC8] font-bold tracking-[0.3em] text-xs uppercase mb-3">Kerala Psychology Conclave</p>
+                    <h2 className="font-display font-black text-[3.6rem] leading-[1] tracking-tight drop-shadow-md mb-4">
                       MANO
                     </h2>
-                    <p className="text-white/70 font-medium text-sm mt-2 leading-relaxed">
+                    <p className="text-white/70 font-medium text-base leading-relaxed">
                       Exploring the Diverse<br />World of Psychology
                     </p>
-                  </div>
-
-                  {/* Separator */}
-                  <div className="border-t border-white/15 my-6" />
-
-                  {/* Bottom info grid */}
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="flex flex-col gap-1">
-                      <p className="text-white/45 text-[10px] font-bold uppercase tracking-widest">Date</p>
-                      <p className="text-white font-bold text-sm leading-tight">Jul 4 & 5<br /><span className="text-white/60 font-medium text-xs">2026</span></p>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <p className="text-white/45 text-[10px] font-bold uppercase tracking-widest">Format</p>
-                      <p className="text-white font-bold text-sm leading-tight">2-Day<br /><span className="text-white/60 font-medium text-xs">Residential</span></p>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <p className="text-white/45 text-[10px] font-bold uppercase tracking-widest">Students</p>
-                      <p className="text-white font-bold text-sm leading-tight">200+<br /><span className="text-white/60 font-medium text-xs">Across Kerala</span></p>
-                    </div>
-                  </div>
-
-                  {/* Domain tags */}
-                  <div className="flex flex-wrap gap-2 mt-6">
-                    {['Clinical', 'Counselling', 'Forensic', 'Research', 'Digital MH'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/80 text-[10px] font-bold tracking-wide uppercase"
-                      >
-                        {tag}
-                      </span>
-                    ))}
                   </div>
                 </div>
 

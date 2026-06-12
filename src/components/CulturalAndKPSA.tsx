@@ -11,12 +11,13 @@ const featureCards = [
     glow: 'rgba(215, 174, 200, 0.2)'
   },
   {
-    title: 'Talent Showcase',
-    desc: 'A platform for psychology students to showcase their artistic talents, creativity, and passion beyond academics.',
+    title: 'PsychTalks',
+    desc: 'A dedicated stage for psychology students, researchers, educators, and professionals to share ideas, experiences, research insights, and perspectives that inspire the future of mental health.',
     emoji: '🎤',
     color: '#F1D10A',
     bg: 'rgba(241, 209, 10, 0.05)',
-    glow: 'rgba(241, 209, 10, 0.18)'
+    glow: 'rgba(241, 209, 10, 0.18)',
+    formUrl: 'https://forms.google.com/'
   },
   {
     title: 'KPSA Launch',
@@ -56,56 +57,75 @@ export function CulturalAndKPSA() {
 
         {/* 3 Premium Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {featureCards.map((card, idx) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.12, type: "spring", stiffness: 60 }}
-              whileHover={{
-                y: -8,
-                boxShadow: `0 24px 48px -12px ${card.glow}`,
-                transition: { duration: 0.2 }
-              }}
-              className="group glass-panel p-8 sm:p-10 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(37,81,164,0.03)] hover:bg-white/90 transition-all flex flex-col justify-between min-h-[320px]"
-            >
-              <div>
-                {/* Icon + Index */}
-                <div className="flex justify-between items-center mb-7">
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shadow-sm border border-slate-200/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
-                    style={{ backgroundColor: card.bg }}
-                  >
-                    <span className="transition-transform duration-500 group-hover:rotate-[12deg]">
-                      {card.emoji}
+          {featureCards.map((card, idx) => {
+            const isPsychTalks = card.title === 'PsychTalks';
+            const isKPSA = card.title === 'KPSA Launch';
+
+            const bottomLabel = isKPSA
+              ? 'Special Ceremony'
+              : isPsychTalks
+              ? 'Open Speaker Session'
+              : 'Evening Program';
+
+            const CardWrapper = isPsychTalks ? 'a' : 'div';
+            const cardProps = isPsychTalks
+              ? { href: (card as any).formUrl || 'https://forms.google.com/', target: '_blank', rel: 'noopener noreferrer' }
+              : {};
+
+            return (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.12, type: 'spring', stiffness: 60 }}
+                whileHover={{
+                  y: -8,
+                  boxShadow: `0 24px 48px -12px ${card.glow}`,
+                  transition: { duration: 0.2 }
+                }}
+                className="group glass-panel p-8 sm:p-10 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(37,81,164,0.03)] hover:bg-white/90 transition-all flex flex-col justify-between min-h-[320px]"
+              >
+                <CardWrapper {...(cardProps as any)} className="flex flex-col flex-1 h-full">
+                  <div>
+                    {/* Icon + Index */}
+                    <div className="flex justify-between items-center mb-7">
+                      <div
+                        className="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shadow-sm border border-slate-200/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
+                        style={{ backgroundColor: card.bg }}
+                      >
+                        <span className="transition-transform duration-500 group-hover:rotate-[12deg]">
+                          {card.emoji}
+                        </span>
+                      </div>
+                      <span className="text-slate-300 group-hover:text-slate-400 font-display text-sm font-bold tracking-wider transition-colors">
+                        0{idx + 1}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4 leading-snug group-hover:text-[#2551A4] transition-colors duration-300">
+                      {card.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="font-sans text-sm sm:text-base text-slate-600 leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
+
+                  {/* Bottom Accent */}
+                  <div className="border-t border-slate-100 mt-7 pt-4 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-slate-700 transition-colors duration-300">
+                    <span>{bottomLabel}</span>
+                    <span className="flex items-center gap-1 transition-colors" style={{ color: card.color }}>
+                      {isPsychTalks ? 'Apply to Speak' : 'Details'}
+                      <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                     </span>
                   </div>
-                  <span className="text-slate-300 group-hover:text-slate-400 font-display text-sm font-bold tracking-wider transition-colors">
-                    0{idx + 1}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4 leading-snug group-hover:text-[#2551A4] transition-colors duration-300">
-                  {card.title}
-                </h3>
-
-                {/* Description */}
-                <p className="font-sans text-sm sm:text-base text-slate-600 leading-relaxed">
-                  {card.desc}
-                </p>
-              </div>
-
-              {/* Bottom Accent */}
-              <div className="border-t border-slate-100 mt-7 pt-4 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-slate-700 transition-colors duration-300">
-                <span>{card.title === 'KPSA Launch' ? 'Special Ceremony' : 'Evening Program'}</span>
-                <span className="flex items-center gap-1 transition-colors" style={{ color: card.color }}>
-                  Details <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </div>
-            </motion.div>
-          ))}
+                </CardWrapper>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* KPSA Featured Banner — "A Historic Moment for Psychology Students" */}
