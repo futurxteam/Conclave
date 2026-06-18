@@ -1,48 +1,50 @@
 import { motion } from 'motion/react';
-import { Calendar, Users, Languages, MapPin, Sparkles, Building, Coffee, Globe } from 'lucide-react';
+import { HiSparkles } from 'react-icons/hi2';
+import { MdOutlineCalendarMonth, MdTranslate } from 'react-icons/md';
+import { FaUsers, FaGlobe, FaBuilding, FaMugHot } from 'react-icons/fa6';
 
 const cards = [
   {
-    icon: Calendar,
+    icon: MdOutlineCalendarMonth,
     title: '2-Day Residential Conclave',
     desc: 'An immersive residential structure designed to keep students engaged in learning, activities, and networking over two full days.',
-    color: 'text-[#2551A4]',
-    bg: 'bg-[#2551A4]/10'
+    color: 'text-[#2451A6]',
+    bg: 'bg-[#2451A6]/10'
   },
   {
-    icon: Users,
+    icon: FaUsers,
     title: '200+ Psychology Students',
     desc: 'Connecting ambitious minds from colleges across Kerala, fostering peer learning and lifelong professional collaborations.',
-    color: 'text-[#149257]',
-    bg: 'bg-[#149257]/10'
+    color: 'text-[#169857]',
+    bg: 'bg-[#169857]/10'
   },
   {
-    icon: Languages,
+    icon: MdTranslate,
     title: 'Bilingual Sessions',
     desc: 'Delivered in English & Malayalam to ensure deep understanding of core psychological concepts and practical applications.',
-    color: 'text-[#F74A1C]',
-    bg: 'bg-[#F74A1C]/10'
+    color: 'text-[#F74A1D]',
+    bg: 'bg-[#F74A1D]/10'
   },
   {
-    icon: Globe,
+    icon: FaGlobe,
     title: '9 Specialization Domains',
     desc: 'Comprehensive coverage from Clinical and Forensic to Digital Mental Health and Industrial Psychology.',
-    color: 'text-[#F1D10A]',
-    bg: 'bg-[#F1D10A]/20'
+    color: 'text-[#F4D313]',
+    bg: 'bg-[#F4D313]/20'
   }
 ];
 
 export function EventOverview() {
   return (
     <section id="overview" className="py-24 md:py-32 bg-slate-50/40 relative overflow-hidden border-t border-slate-200/50">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#149257]/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#169857]/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#149257]/5 border border-[#149257]/10 text-[#149257] font-display font-bold text-xs uppercase tracking-widest mb-6">
-            <Sparkles size={14} />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#169857]/5 border border-[#169857]/10 text-[#169857] font-display font-bold text-xs uppercase tracking-widest mb-6">
+            <HiSparkles size={14} />
             Key Information
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight mb-6">
@@ -64,7 +66,7 @@ export function EventOverview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-panel p-8 rounded-[2rem] border border-white/80 shadow-[0_15px_40px_rgba(37,81,164,0.04)] flex flex-col justify-between hover:shadow-xl transition-all"
+                className="glass-panel p-8 rounded-[2rem] border border-white/80 shadow-[0_15px_40px_rgba(36,81,166,0.04)] flex flex-col justify-between hover:shadow-xl transition-all"
               >
                 <div>
                   <div className={`w-12 h-12 rounded-2xl ${card.bg} ${card.color} flex items-center justify-center mb-6 shadow-sm`}>
@@ -79,7 +81,7 @@ export function EventOverview() {
         </div>
 
         {/* Highlight Feature Row */}
-        <div className="glass-panel p-8 sm:p-12 rounded-[2.5rem] border border-white/60 shadow-[0_20px_50px_rgba(37,81,164,0.06)] flex flex-col lg:flex-row items-center gap-12">
+        <div className="glass-panel p-8 sm:p-12 rounded-[2.5rem] border border-white/60 shadow-[0_20px_50px_rgba(36,81,166,0.06)] flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/2">
             <h3 className="font-display font-black text-3xl text-slate-900 mb-4 leading-tight">
               A True Residential Learning Atmosphere
@@ -90,14 +92,14 @@ export function EventOverview() {
             
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#2551A4]/10 text-[#2551A4] flex items-center justify-center shrink-0">
-                  <Building size={16} />
+                <div className="w-8 h-8 rounded-lg bg-[#2451A6]/10 text-[#2451A6] flex items-center justify-center shrink-0">
+                  <FaBuilding size={16} />
                 </div>
                 <span className="text-sm font-bold text-slate-800">Accommodation Support</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#149257]/10 text-[#149257] flex items-center justify-center shrink-0">
-                  <Coffee size={16} />
+                <div className="w-8 h-8 rounded-lg bg-[#169857]/10 text-[#169857] flex items-center justify-center shrink-0">
+                  <FaMugHot size={16} />
                 </div>
                 <span className="text-sm font-bold text-slate-800">Premium Food & Drinks</span>
               </div>

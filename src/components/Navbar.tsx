@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
 import type React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { FaHouse, FaFlask } from 'react-icons/fa6';
+import { HiMiniUsers, HiSparkles } from 'react-icons/hi2';
+import { MdOutlineEventNote } from 'react-icons/md';
+import { PiTicketFill } from 'react-icons/pi';
+import { IoArrowForward } from 'react-icons/io5';
 import { Link, useLocation } from 'react-router-dom';
 
 const NAV_LINKS = [
-  { name: 'Home', href: '#home', emoji: '🏠' },
-  { name: 'About', href: '#about', emoji: 'ℹ️' },
-  { name: 'Domains', href: '#domains', emoji: '🔬' },
-  { name: 'Speakers', href: '#speakers', emoji: '🧠' },
-  { name: 'Schedule', href: '#agenda', emoji: '📅' },
-  { name: 'Ticket', href: '#register', emoji: '🎟' },
+  { name: 'Home', href: '#home', Icon: FaHouse },
+  { name: 'About', href: '#about', Icon: HiSparkles },
+  { name: 'Domains', href: '#domains', Icon: FaFlask },
+  { name: 'Speakers', href: '#speakers', Icon: HiMiniUsers },
+  { name: 'Schedule', href: '#agenda', Icon: MdOutlineEventNote },
+  { name: 'Ticket', href: '#register', Icon: PiTicketFill },
 ];
 
 export function Navbar() {
@@ -96,8 +100,8 @@ export function Navbar() {
         transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
         className={`pointer-events-auto flex items-center justify-between w-full max-w-[1100px] transition-all duration-500 rounded-full ${
           isScrolled 
-            ? 'bg-white/80 backdrop-blur-2xl border border-slate-200/50 shadow-[0_20px_40px_-10px_rgba(37,81,164,0.15)] py-2 px-3' 
-            : 'bg-white/50 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_-10px_rgba(37,81,164,0.05)] py-3 px-4'
+            ? 'bg-white/80 backdrop-blur-2xl border border-slate-200/50 shadow-[0_20px_40px_-10px_rgba(36,81,166,0.15)] py-2 px-3' 
+            : 'bg-white/50 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_-10px_rgba(36,81,166,0.05)] py-3 px-4'
         } relative overflow-hidden`}
       >
         {/* Animated Neural Node Effect */}
@@ -105,13 +109,13 @@ export function Navbar() {
           <motion.div 
              animate={{ x: ["-100%", "200%", "-100%"] }} 
              transition={{ duration: 15, ease: "linear", repeat: Infinity }}
-             className="absolute top-1/2 -translate-y-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-[#2551A4]/20 to-transparent blur-md mix-blend-multiply"
+             className="absolute top-1/2 -translate-y-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-[#2451A6]/20 to-transparent blur-md mix-blend-multiply"
           />
         </div>
 
         {/* Logo / Brand Name */}
         <div className="hidden lg:flex items-center gap-2 pl-4 relative z-10">
-          <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2551A4] to-[#D7AEC8] flex items-center justify-center text-[11px] text-white font-black">MANO</span>
+          <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2451A6] to-[#E0B6CF] flex items-center justify-center text-[11px] text-white font-black">MANO</span>
         </div>
 
         {/* Links */}
@@ -127,20 +131,20 @@ export function Navbar() {
                 className={`relative flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all duration-300 group overflow-hidden ${
                   isActive 
                     ? 'text-white shadow-sm' 
-                    : 'text-slate-600 hover:text-[#2551A4]'
+                    : 'text-slate-600 hover:text-[#2451A6]'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="navbar-active"
-                    className="absolute inset-0 bg-gradient-to-r from-[#2551A4] to-[#D7AEC8] rounded-full -z-10"
+                    className="absolute inset-0 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] rounded-full -z-10"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
                 {!isActive && (
-                  <div className="absolute inset-x-4 bottom-1 h-px bg-[#2551A4] scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-300 -z-10" />
+                  <div className="absolute inset-x-4 bottom-1 h-px bg-[#2451A6] scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-300 -z-10" />
                 )}
-                <span className="text-sm leading-none">{link.emoji}</span>
+                <span className="text-sm leading-none flex items-center justify-center w-5 h-5"><link.Icon size={18} /></span>
                 <span className="hidden sm:block">{link.name}</span>
               </a>
             );
@@ -149,8 +153,8 @@ export function Navbar() {
 
         {/* CTA Button */}
         <div className="hidden lg:block relative z-10 pr-2">
-          <Link to="/ticket-booking" className="flex items-center gap-2 bg-[#2551A4] hover:bg-[#149257] text-white px-5 py-2.5 rounded-full font-sans text-xs font-bold shadow-[0_5px_15px_rgba(37,81,164,0.2)] transition-all duration-300">
-            Book Pass <ArrowUpRight size={14} />
+          <Link to="/ticket-booking" className="flex items-center gap-2 bg-[#2451A6] hover:bg-[#169857] text-white px-5 py-2.5 rounded-full font-sans text-xs font-bold shadow-[0_5px_15px_rgba(36,81,166,0.2)] transition-all duration-300">
+            Book Pass <IoArrowForward size={14} />
           </Link>
         </div>
       </motion.div>

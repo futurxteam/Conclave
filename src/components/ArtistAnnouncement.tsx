@@ -23,7 +23,7 @@ export function ArtistAnnouncement() {
             animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
             exit={{ y: 0, opacity: 0, filter: 'blur(8px)' }}
             transition={{ duration: 0.8, ease: 'easeInOut' }}
-            className="absolute font-display font-medium text-[24px] md:text-[32px] tracking-wide bg-gradient-to-r from-[#2551A4] to-[#D7AEC8] bg-clip-text text-transparent leading-none"
+            className="absolute font-display font-medium text-[24px] md:text-[32px] tracking-wide bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] bg-clip-text text-transparent leading-none"
           >
             {names[index]}
           </motion.span>

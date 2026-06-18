@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { Mail, ArrowRight } from 'lucide-react';
+import { MdOutlineEmail } from 'react-icons/md';
+import { IoArrowForward } from 'react-icons/io5';
 
 export function Newsletter() {
   return (
@@ -15,7 +16,7 @@ export function Newsletter() {
           {/* Glowing Backgrounds */}
           <div className="absolute inset-0 bg-gradient-to-r from-royal/20 via-lavender/20 to-vibrant/10 rounded-[3rem] blur-3xl transform -translate-y-4" />
           
-          <div className="relative bg-white/80 backdrop-blur-3xl border border-slate-200/80 rounded-[3rem] p-10 md:p-16 shadow-[0_25px_50px_-12px_rgba(37,81,164,0.1)] flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden">
+          <div className="relative bg-white/80 backdrop-blur-3xl border border-slate-200/80 rounded-[3rem] p-10 md:p-16 shadow-[0_25px_50px_-12px_rgba(36,81,166,0.1)] flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden">
             
             {/* Decorative Elements */}
             <div className="absolute -top-12 -left-12 w-32 h-32 bg-royal/10 rounded-full blur-2xl pointer-events-none" />
@@ -24,7 +25,7 @@ export function Newsletter() {
             {/* Left Content */}
             <div className="flex-1 text-center md:text-left relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-slate-800 font-display font-bold text-xs mb-6 shadow-sm uppercase tracking-widest">
-                <Mail size={14} className="text-royal" /> Updates
+                <MdOutlineEmail size={14} className="text-royal" /> Updates
               </div>
               <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 leading-tight mb-4">
                 Stay in the <span className="bg-gradient-to-r from-royal to-vibrant bg-clip-text text-transparent">Loop</span>
@@ -39,7 +40,7 @@ export function Newsletter() {
               <form className="relative flex flex-col sm:flex-row items-center gap-3" onSubmit={(e) => e.preventDefault()}>
                 <div className="relative w-full">
                   <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
-                    <Mail size={18} className="text-slate-400" />
+                    <MdOutlineEmail size={18} className="text-slate-400" />
                   </div>
                   <input 
                     type="email" 
@@ -48,8 +49,8 @@ export function Newsletter() {
                     required
                   />
                 </div>
-                <button className="w-full sm:w-auto shrink-0 bg-[#2551A4] hover:bg-[#149257] text-white font-bold py-4 px-8 rounded-full shadow-md transition-colors duration-300 flex items-center justify-center gap-2 group">
-                  Join <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                <button className="w-full sm:w-auto shrink-0 bg-[#2451A6] hover:bg-[#169857] text-white font-bold py-4 px-8 rounded-full shadow-md transition-colors duration-300 flex items-center justify-center gap-2 group">
+                  Join <IoArrowForward size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
               <div className="w-full text-center md:text-left mt-4 px-2">

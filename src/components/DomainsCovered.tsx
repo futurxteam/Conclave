@@ -1,78 +1,80 @@
 import { motion } from 'motion/react';
-import { Sparkles } from 'lucide-react';
+import { FaStethoscope, FaFlask, FaSun, FaBuilding, FaGears, FaScaleBalanced } from 'react-icons/fa6';
+import { HiOutlineHeart, HiOutlineDevicePhoneMobile, HiSparkles } from 'react-icons/hi2';
+import { MdGavel } from 'react-icons/md';
 
 const domains = [
   {
     title: 'Clinical Psychology',
     desc: 'Understanding assessment, diagnosis, treatment strategies, and clinical intervention pathways.',
-    emoji: '🧠',
-    color: '#2551A4',
-    bg: 'rgba(37, 81, 164, 0.05)',
-    glow: 'rgba(37, 81, 164, 0.15)'
+    Icon: FaStethoscope,
+    color: '#2451A6',
+    bg: 'rgba(36, 81, 166, 0.05)',
+    glow: 'rgba(36, 81, 166, 0.15)'
   },
   {
     title: 'Counselling Psychology',
     desc: 'Focusing on personal and interpersonal dynamics, therapeutic techniques, and emotional wellness.',
-    emoji: '💬',
-    color: '#D7AEC8',
-    bg: 'rgba(215, 174, 200, 0.08)',
-    glow: 'rgba(215, 174, 200, 0.15)'
+    Icon: HiOutlineHeart,
+    color: '#E0B6CF',
+    bg: 'rgba(224, 182, 207, 0.08)',
+    glow: 'rgba(224, 182, 207, 0.15)'
   },
   {
     title: 'Organisational Psychology',
     desc: 'Analyzing organizational structure, group culture, employee wellbeing, and management strategies.',
-    emoji: '🏢',
-    color: '#149257',
-    bg: 'rgba(20, 146, 87, 0.05)',
-    glow: 'rgba(20, 146, 87, 0.15)'
+    Icon: FaBuilding,
+    color: '#169857',
+    bg: 'rgba(22, 152, 87, 0.05)',
+    glow: 'rgba(22, 152, 87, 0.15)'
   },
   {
     title: 'Industrial Psychology',
     desc: 'Applying behavioral sciences to workflow systems, productivity, and ergonomic design.',
-    emoji: '⚙️',
-    color: '#F1D10A',
-    bg: 'rgba(241, 209, 10, 0.05)',
-    glow: 'rgba(241, 209, 10, 0.15)'
+    Icon: FaGears,
+    color: '#F4D313',
+    bg: 'rgba(244, 211, 19, 0.05)',
+    glow: 'rgba(244, 211, 19, 0.15)'
   },
   {
     title: 'Research & Academia',
     desc: 'Advancing human understanding through academic inquiry, methodology, and teaching.',
-    emoji: '📚',
-    color: '#F74A1C',
-    bg: 'rgba(247, 74, 28, 0.05)',
-    glow: 'rgba(247, 74, 28, 0.15)'
+    Icon: FaFlask,
+    color: '#F74A1D',
+    bg: 'rgba(247, 74, 29, 0.05)',
+    glow: 'rgba(247, 74, 29, 0.15)'
   },
   {
     title: 'Forensic Psychology',
     desc: 'Applying psychology to criminal investigation, offender profiling, and judicial support systems.',
-    emoji: '⚖️',
-    color: '#2551A4',
-    bg: 'rgba(37, 81, 164, 0.05)',
-    glow: 'rgba(37, 81, 164, 0.15)'
+    Icon: MdGavel,
+    color: '#2451A6',
+    bg: 'rgba(36, 81, 166, 0.05)',
+    glow: 'rgba(36, 81, 166, 0.15)'
   },
   {
     title: 'Legal Psychology',
     desc: 'Exploring witness reliability, cognitive biases in courtroom trials, and legal systems.',
-    emoji: '🏛️',
-    color: '#149257',
-    bg: 'rgba(20, 146, 87, 0.05)',
-    glow: 'rgba(20, 146, 87, 0.15)'
+    Icon: FaScaleBalanced,
+    color: '#169857',
+    bg: 'rgba(22, 152, 87, 0.05)',
+    glow: 'rgba(22, 152, 87, 0.15)'
   },
   {
     title: 'Digital Mental Health',
     desc: 'Investigating online therapeutic applications, teletherapy, and modern digital ecosystems.',
-    emoji: '📱',
-    color: '#F74A1C',
-    bg: 'rgba(247, 74, 28, 0.05)',
-    glow: 'rgba(247, 74, 28, 0.15)'
+    Icon: HiOutlineDevicePhoneMobile,
+    color: '#F74A1D',
+    bg: 'rgba(247, 74, 29, 0.05)',
+    glow: 'rgba(247, 74, 29, 0.15)'
   },
   {
     title: 'Positive Psychology',
     desc: 'Studying strengths, traits, and factors that enable individuals and communities to thrive.',
-    emoji: '✨',
-    color: '#D7AEC8',
-    bg: 'rgba(215, 174, 200, 0.08)',
-    glow: 'rgba(215, 174, 200, 0.15)'
+    Icon: FaSun,
+    color: '#E0B6CF',
+    bg: 'rgba(224, 182, 207, 0.08)',
+    glow: 'rgba(224, 182, 207, 0.15)'
   }
 ];
 
@@ -80,15 +82,15 @@ export function DomainsCovered() {
   return (
     <section id="domains" className="py-24 sm:py-32 bg-white relative overflow-hidden border-t border-slate-200/50">
       {/* Dynamic Background Blurs */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#D7AEC8]/10 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />
-      <div className="absolute bottom-1/4 left-0 w-[550px] h-[550px] bg-[#2551A4]/5 rounded-full blur-[130px] pointer-events-none -translate-x-1/2" />
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#E0B6CF]/10 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />
+      <div className="absolute bottom-1/4 left-0 w-[550px] h-[550px] bg-[#2451A6]/5 rounded-full blur-[130px] pointer-events-none -translate-x-1/2" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 border border-slate-200/80 text-[#2551A4] font-display font-bold text-xs uppercase tracking-widest mb-6 shadow-[0_4px_12px_rgba(37,81,164,0.03)]">
-            <Sparkles size={14} className="text-[#F1D10A]" />
+          <div className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 border border-slate-200/80 text-[#2451A6] font-display font-bold text-xs uppercase tracking-widest mb-6 shadow-[0_4px_12px_rgba(36,81,166,0.03)]">
+            <HiSparkles size={14} className="text-[#F4D313]" />
             CONCLAVE TRACKS
           </div>
           
@@ -120,7 +122,7 @@ export function DomainsCovered() {
                 borderColor: `${dom.color}25`,
                 transition: { duration: 0.2 } 
               }}
-              className="group glass-panel p-8 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(37,81,164,0.03)] hover:bg-white/80 transition-all flex flex-col justify-between"
+              className="group glass-panel p-8 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.03)] hover:bg-white/80 transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex justify-between items-center mb-6">
@@ -128,7 +130,9 @@ export function DomainsCovered() {
                     className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-slate-200/50 transition-all duration-300 group-hover:scale-110"
                     style={{ backgroundColor: dom.bg }}
                   >
-                    <span className="transition-transform duration-500 group-hover:rotate-[12deg]">{dom.emoji}</span>
+                    <div className="transition-transform duration-500 group-hover:rotate-[12deg]" style={{ color: dom.color }}>
+                      <dom.Icon size={24} />
+                    </div>
                   </div>
                   <span className="text-slate-300 group-hover:text-slate-400 font-display text-sm font-bold tracking-wider transition-colors">
                     0{idx + 1}

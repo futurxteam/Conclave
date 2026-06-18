@@ -37,7 +37,7 @@ export function CursorGlow() {
       <div 
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[100px] opacity-60 mix-blend-multiply"
         style={{
-          background: 'radial-gradient(circle, rgba(37, 81, 164, 0.15) 0%, rgba(215, 174, 200, 0.05) 50%, transparent 70%)'
+          background: 'radial-gradient(circle, rgba(36, 81, 166, 0.15) 0%, rgba(224, 182, 207, 0.05) 50%, transparent 70%)'
         }}
       />
     </div>

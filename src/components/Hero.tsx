@@ -1,5 +1,9 @@
 import { motion } from 'motion/react';
-import { Calendar, MapPin, Users, ArrowRight, ChevronDown, BrainCircuit, Sparkles } from 'lucide-react';
+import { HiSparkles } from 'react-icons/hi2';
+import { MdOutlineCalendarMonth } from 'react-icons/md';
+import { IoLocationOutline, IoArrowForward } from 'react-icons/io5';
+import { FaUsers, FaChevronDown, FaBrain, FaUserTie } from 'react-icons/fa6';
+import { HiOutlineMicrophone } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import { CountdownTimer } from './CountdownTimer';
 import { ArtistAnnouncement } from './ArtistAnnouncement';
@@ -26,13 +30,20 @@ const cardVariants = {
 };
 
 const eventDetails = [
-  { icon: Calendar, label: 'July 4 & 5, 2026', sub: '2-Day Residential Conclave', color: 'text-[#2551A4]', bg: 'bg-[#2551A4]/10' },
-  { icon: Users, label: '200+ Students', sub: 'Psychology Students Across Kerala', color: 'text-[#149257]', bg: 'bg-[#149257]/10' },
-  { icon: MapPin, label: 'KMM College', sub: 'of Arts and Science', color: 'text-[#F74A1C]', bg: 'bg-[#F74A1C]/10' },
+  { icon: MdOutlineCalendarMonth, label: 'July 18 & 19, 2026', sub: '2-Day Residential Conclave', color: 'text-[#2451A6]', bg: 'bg-[#2451A6]/10' },
+  { icon: FaUsers, label: '250+ Participants', sub: 'Psychology Students Across Kerala', color: 'text-[#169857]', bg: 'bg-[#169857]/10' },
+  { icon: IoLocationOutline, label: 'KMM Edu Hub', sub: 'Thrikkakara, Kochi', color: 'text-[#F74A1D]', bg: 'bg-[#F74A1D]/10' },
+];
+
+const heroStats = [
+  { value: '250+', label: 'Participants', icon: FaUsers, color: '#2451A6' },
+  { value: '10+', label: 'Expert Speakers', icon: HiOutlineMicrophone, color: '#169857' },
+  { value: '25+', label: 'Panelists', icon: FaUserTie, color: '#E0B6CF' },
+  { value: '2 Days', label: 'Residential', icon: MdOutlineCalendarMonth, color: '#F74A1D' },
 ];
 
 export function Hero() {
-  const scrollToSchedule = () => {
+  const scrollToAgenda = () => {
     const el = document.getElementById('agenda');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
@@ -41,9 +52,9 @@ export function Hero() {
     <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
       {/* Ambient background orbs */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-[#2551A4]/10 rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#D7AEC8]/20 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/2" />
-        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-[#F1D10A]/8 rounded-full blur-[100px]" />
+        <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-[#2451A6]/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#E0B6CF]/20 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-[#169857]/6 rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-12 relative z-10">
@@ -63,10 +74,10 @@ export function Hero() {
 
             {/* Organiser badge */}
             <motion.div variants={itemVariants} className="mb-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur border border-[#2551A4]/20 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#F74A1C] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur border border-[#2451A6]/20 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#F74A1D] animate-pulse" />
                 <span className="text-xs font-bold tracking-widest uppercase text-slate-600">
-                  Sereniche Academy
+                  Sereniche Academy × KMM College
                 </span>
               </div>
             </motion.div>
@@ -77,7 +88,7 @@ export function Hero() {
               className="font-display font-black text-[3.6rem] sm:text-[5rem] lg:text-[5.5rem] leading-[1.02] tracking-tight text-[#0d1421] mb-4"
             >
               Kerala<br />
-              <span className="bg-gradient-to-r from-[#2551A4] via-[#D7AEC8] to-[#2551A4] bg-clip-text text-transparent italic pr-2">
+              <span className="bg-gradient-to-r from-[#2451A6] via-[#E0B6CF] to-[#2451A6] bg-clip-text text-transparent italic pr-2">
                 Psychology
               </span><br />
               Conclave
@@ -94,7 +105,7 @@ export function Hero() {
             {/* Tagline */}
             <motion.p
               variants={itemVariants}
-              className="font-display font-bold text-base tracking-[0.25em] uppercase text-[#2551A4] mb-10"
+              className="font-display font-bold text-base tracking-[0.25em] uppercase text-[#2451A6] mb-10"
             >
               Explore. Connect. Lead.
             </motion.p>
@@ -107,7 +118,7 @@ export function Hero() {
                   className={`flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/80 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow group`}
                 >
                   <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${bg} ${color}`}>
-                    <Icon size={18} strokeWidth={1.8} />
+                    <Icon size={18} />
                   </div>
                   <div>
                     <p className="font-display font-bold text-sm text-slate-900 leading-tight">{label}</p>
@@ -121,17 +132,17 @@ export function Hero() {
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link
                 to="/ticket-booking"
-                className="group flex items-center justify-center gap-3 bg-[#2551A4] hover:bg-[#1d428a] text-white font-bold text-sm px-8 py-4 rounded-full shadow-[0_8px_30px_rgba(37,81,164,0.35)] hover:shadow-[0_12px_40px_rgba(37,81,164,0.45)] transition-all duration-300 hover:-translate-y-0.5"
+                className="group flex items-center justify-center gap-3 bg-[#2451A6] hover:bg-[#1c3f85] text-white font-bold text-sm px-8 py-4 rounded-full shadow-[0_8px_30px_rgba(36,81,166,0.35)] hover:shadow-[0_12px_40px_rgba(36,81,166,0.45)] transition-all duration-300 hover:-translate-y-0.5"
               >
                 Reserve Your Seat
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                <IoArrowForward size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <button
-                onClick={scrollToSchedule}
+                onClick={scrollToAgenda}
                 className="group flex items-center justify-center gap-3 bg-white/80 backdrop-blur hover:bg-white border border-slate-200 text-slate-800 font-bold text-sm px-8 py-4 rounded-full shadow-sm hover:shadow-md transition-all duration-300"
               >
-                Explore Schedule
-                <ChevronDown size={18} className="group-hover:translate-y-0.5 transition-transform" />
+                Explore Agenda
+                <FaChevronDown size={18} className="group-hover:translate-y-0.5 transition-transform" />
               </button>
             </motion.div>
 
@@ -148,7 +159,7 @@ export function Hero() {
               className="relative w-full max-w-[560px] mx-auto z-10"
             >
               {/* Main card */}
-              <div className="relative bg-gradient-to-br from-[#2551A4] to-[#1a3a80] rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(37,81,164,0.4)] text-white">
+              <div className="relative bg-gradient-to-br from-[#2451A6] to-[#1b3d82] rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(36,81,166,0.4)] text-white">
 
                 {/* Inner pattern overlay */}
                 <div
@@ -160,8 +171,8 @@ export function Hero() {
                 />
 
                 {/* Glow orbs inside card */}
-                <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#D7AEC8]/20 rounded-full blur-[60px]" />
-                <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-[#F1D10A]/10 rounded-full blur-[50px]" />
+                <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#E0B6CF]/20 rounded-full blur-[60px]" />
+                <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-[#169857]/10 rounded-full blur-[50px]" />
 
                 {/* Card content */}
                 <div className="relative z-10 p-12 flex flex-col justify-center min-h-[340px]">
@@ -169,10 +180,10 @@ export function Hero() {
                   <div className="flex items-start justify-between mb-14">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center">
-                        <BrainCircuit size={28} className="text-[#D7AEC8]" strokeWidth={1.5} />
+                        <FaBrain size={28} className="text-[#E0B6CF]" />
                       </div>
                       <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center rotate-45">
-                        <Sparkles size={18} className="text-[#F1D10A] -rotate-45" />
+                        <HiSparkles size={18} className="text-[#169857] -rotate-45" />
                       </div>
                     </div>
                     <div className="text-right">
@@ -183,7 +194,7 @@ export function Hero() {
 
                   {/* Title block */}
                   <div className="pb-10">
-                    <p className="text-[#D7AEC8] font-bold tracking-[0.3em] text-xs uppercase mb-3">Kerala Psychology Conclave</p>
+                    <p className="text-[#E0B6CF] font-bold tracking-[0.3em] text-xs uppercase mb-3">Kerala Psychology Conclave</p>
                     <h2 className="font-display font-black text-[3.6rem] leading-[1] tracking-tight drop-shadow-md mb-4">
                       MANO
                     </h2>
@@ -191,10 +202,20 @@ export function Hero() {
                       Exploring the Diverse<br />World of Psychology
                     </p>
                   </div>
+
+                  {/* Stats row inside card */}
+                  <div className="grid grid-cols-4 gap-3">
+                    {heroStats.map((stat) => (
+                      <div key={stat.label} className="text-center">
+                        <p className="font-display font-black text-lg text-white">{stat.value}</p>
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-white/50">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Bottom accent bar */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#F74A1C] via-[#F1D10A] to-[#149257]" />
+                <div className="h-1.5 w-full bg-gradient-to-r from-[#F74A1D] via-[#E0B6CF] to-[#169857]" />
               </div>
             </motion.div>
           </div>
@@ -213,7 +234,7 @@ export function Hero() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <ChevronDown size={18} />
+          <FaChevronDown size={18} />
         </motion.div>
       </motion.div>
     </section>

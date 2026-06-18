@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-royal: #2551A4;
-  --color-lavender: #D7AEC8;
-  --color-sun: #F1D10A;
-  --color-emerald: #149257;
-  --color-vibrant: #F74A1C;
+  --color-royal: #2451A6;
+  --color-pink: #E0B6CF;
+  --color-golden: #F4D313;
+  --color-green: #169857;
+  --color-orange: #F74A1D;
   --color-dark: #0A0F1C;
   
   --font-display: "Space Grotesk", sans-serif;
@@ -24,7 +24,7 @@ html {
 
 .bg-pattern {
   background-color: #fbfbfb;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L35 25L60 30L35 35L30 60L25 35L0 30L25 25Z' fill='%232551A4' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L35 25L60 30L35 35L30 60L25 35L0 30L25 25Z' fill='%232451A6' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 .glass-panel {
@@ -32,7 +32,7 @@ html {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(37, 81, 164, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(36, 81, 166, 0.05);
 }
 
 .glass-panel-dark {

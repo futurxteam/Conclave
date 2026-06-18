@@ -5,8 +5,8 @@ export function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft());
 
   function calculateTimeLeft() {
-    // Target date: July 4, 2026 (MANO: Kerala Psychology Conclave)
-    const targetDate = new Date('2026-07-04T09:00:00').getTime();
+    // Target date: July 18, 2026 (MANO: Kerala Psychology Conclave)
+    const targetDate = new Date('2026-07-18T09:00:00').getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
 
@@ -32,7 +32,7 @@ export function CountdownTimer() {
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
-    }, 1000); // Update every second
+    }, 1000);
 
     return () => clearInterval(timer);
   }, []);
@@ -49,9 +49,9 @@ export function CountdownTimer() {
         { label: 'Hours', value: timeLeft.hours },
         { label: 'Minutes', value: timeLeft.minutes },
         { label: 'Seconds', value: timeLeft.seconds }
-      ].map((item, index) => (
+      ].map((item) => (
         <div key={item.label} className="flex flex-col items-center">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_32px_rgba(37,81,164,0.1)] rounded-2xl flex items-center justify-center relative overflow-hidden group">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_32px_rgba(36,81,166,0.1)] rounded-2xl flex items-center justify-center relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-royal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="font-display font-black text-2xl sm:text-3xl text-royal relative z-10">
               {item.value.toString().padStart(2, '0')}

@@ -1,42 +1,40 @@
 import { motion } from 'motion/react';
-import { Calendar, Users, Mic, Landmark, Sparkles, Compass, Target } from 'lucide-react';
+import { MdOutlineCalendarMonth } from 'react-icons/md';
+import { FaUsers, FaCompass, FaBullseye, FaUserTie, FaPeopleGroup } from 'react-icons/fa6';
+import { HiOutlineMicrophone, HiSparkles } from 'react-icons/hi2';
 
 const stats = [
   { 
     label: 'Residential Experience', 
     value: '2 Days', 
-    icon: Calendar, 
-    color: 'text-[#2551A4]', 
-    bg: 'bg-[#2551A4]/8', 
-    borderColor: 'group-hover:border-[#2551A4]/30', 
-    glow: 'rgba(37, 81, 164, 0.15)' 
+    icon: MdOutlineCalendarMonth, 
+    color: 'text-[#2451A6]', 
+    bg: 'bg-[#2451A6]/8', 
+    glow: 'rgba(36, 81, 166, 0.15)' 
   },
   { 
     label: 'Expected Participants', 
-    value: '200+', 
-    icon: Users, 
-    color: 'text-[#149257]', 
-    bg: 'bg-[#149257]/8', 
-    borderColor: 'group-hover:border-[#149257]/30', 
-    glow: 'rgba(20, 146, 87, 0.15)' 
+    value: '250+', 
+    icon: FaUsers, 
+    color: 'text-[#169857]', 
+    bg: 'bg-[#169857]/8', 
+    glow: 'rgba(22, 152, 87, 0.15)' 
   },
   { 
     label: 'Expert Speakers', 
     value: '10+', 
-    icon: Mic, 
-    color: 'text-[#F74A1C]', 
-    bg: 'bg-[#F74A1C]/8', 
-    borderColor: 'group-hover:border-[#F74A1C]/30', 
-    glow: 'rgba(247, 74, 28, 0.15)' 
+    icon: HiOutlineMicrophone, 
+    color: 'text-[#F74A1D]', 
+    bg: 'bg-[#F74A1D]/8', 
+    glow: 'rgba(247, 74, 29, 0.15)' 
   },
   { 
     label: 'Panelists', 
-    value: '20+', 
-    icon: Landmark, 
-    color: 'text-[#D7AEC8]', 
-    bg: 'bg-[#D7AEC8]/12', 
-    borderColor: 'group-hover:border-[#D7AEC8]/30', 
-    glow: 'rgba(215, 174, 200, 0.15)' 
+    value: '25+', 
+    icon: FaUserTie, 
+    color: 'text-[#E0B6CF]', 
+    bg: 'bg-[#E0B6CF]/12', 
+    glow: 'rgba(224, 182, 207, 0.15)' 
   },
 ];
 
@@ -44,9 +42,9 @@ export function About() {
   return (
     <section id="about" className="py-24 sm:py-32 lg:py-36 bg-gradient-to-b from-white via-slate-50/20 to-white relative overflow-hidden">
       {/* Curved abstract background accents */}
-      <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#2551A4]/5 rounded-full blur-[130px] pointer-events-none -translate-x-1/2" />
-      <div className="absolute bottom-1/4 right-0 w-[550px] h-[550px] bg-[#D7AEC8]/10 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />
-      <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-[#F1D10A]/3 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#2451A6]/5 rounded-full blur-[130px] pointer-events-none -translate-x-1/2" />
+      <div className="absolute bottom-1/4 right-0 w-[550px] h-[550px] bg-[#E0B6CF]/10 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />
+      <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-[#169857]/4 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
@@ -60,49 +58,69 @@ export function About() {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {/* Premium Sub-tag */}
-              <div className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 border border-slate-200/80 text-[#2551A4] font-display font-bold text-xs uppercase tracking-widest mb-6 shadow-[0_4px_12px_rgba(37,81,164,0.03)]">
-                <Sparkles size={14} className="text-[#F1D10A] animate-pulse" />
-                CONCLAVE INTRODUCTION
+              <div className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 border border-slate-200/80 text-[#2451A6] font-display font-bold text-xs uppercase tracking-widest mb-6 shadow-[0_4px_12px_rgba(36,81,166,0.03)]">
+                <HiSparkles size={14} className="text-[#169857] animate-pulse" />
+                ABOUT MANO
               </div>
               
               {/* Heading */}
               <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-[3.25rem] text-[#0A0F1C] mb-6 leading-[1.1] tracking-tight">
-                What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2551A4] via-[#D7AEC8] to-[#149257]">MANO?</span>
+                What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2451A6] via-[#E0B6CF] to-[#169857]">MANO?</span>
               </h2>
               
               {/* Subheading */}
-              <h3 className="font-sans font-bold text-lg sm:text-xl text-slate-800 mb-8 leading-relaxed border-l-4 border-[#2551A4] pl-5">
-                A transformative psychology conclave designed to connect, inspire, and empower the next generation of mental health professionals.
+              <h3 className="font-sans font-bold text-lg sm:text-xl text-slate-800 mb-8 leading-relaxed border-l-4 border-[#2451A6] pl-5">
+                Kerala&#39;s first large-scale gathering designed exclusively for psychology students — rooted in the word <em className="text-[#2451A6] not-italic font-black">&quot;Manas&quot;</em>, meaning mind.
               </h3>
               
               {/* Description paragraphs */}
               <div className="space-y-6 text-slate-600 font-sans text-[16px] sm:text-[17px] leading-relaxed">
                 <p>
-                  <strong className="text-slate-900">MANO: Kerala Psychology Conclave</strong> is a 2-Day Residential Conclave organized by <span className="text-slate-950 font-semibold underline decoration-[#D7AEC8] decoration-2">Sereniche Academy</span> in association with <span className="text-slate-950 font-semibold underline decoration-[#2551A4] decoration-2">KMM College of Arts and Science</span>.
+                  <strong className="text-slate-900">MANO: Kerala Psychology Conclave</strong> is a 2-Day Residential Conclave organized by <span className="text-slate-950 font-semibold underline decoration-[#E0B6CF] decoration-2">Sereniche Academy</span> in association with the <span className="text-slate-950 font-semibold underline decoration-[#2451A6] decoration-2">PG Department of Psychology, KMM College of Arts and Science</span>.
                 </p>
                 <p>
-                  The conclave brings together psychology students, educators, researchers, clinicians, counsellors, and industry professionals from across Kerala to explore the diverse world of psychology.
+                  The conclave bridges the gap between academic learning and real-world professional psychology practice, bringing together 250+ psychology students, educators, researchers, clinicians, counsellors, and industry professionals from across Kerala.
                 </p>
                 <p>
-                  Through expert sessions, panel discussions, networking opportunities, career-focused programs, and interactive activities, MANO aims to create meaningful learning experiences that prepare students for the future of mental health and psychological practice.
+                  Students will engage directly with <strong className="text-slate-800">practitioners, researchers, academicians,</strong> and <strong className="text-slate-800">industry experts</strong> through expert sessions, panel discussions, networking opportunities, career-focused programs, and interactive activities.
                 </p>
               </div>
 
+              {/* KPSA Highlight */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mt-8 p-5 rounded-2xl bg-gradient-to-r from-[#2451A6]/5 to-[#169857]/5 border border-[#2451A6]/15 relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E0B6CF]/10 rounded-full blur-[40px] pointer-events-none" />
+                <div className="relative z-10 flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#2451A6]/10 flex items-center justify-center text-[#2451A6] shrink-0 border border-[#2451A6]/15">
+                    <FaPeopleGroup size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-slate-900 text-sm mb-1">🎉 Historic Milestone — KPSA Launch</h4>
+                    <p className="text-xs text-slate-600 font-medium leading-relaxed">Grand launch of the <strong className="text-[#2451A6]">Kerala Psychology Students Association (KPSA)</strong> — the first state-level student community dedicated to psychology in Kerala.</p>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* Vision & Mission Row */}
               <div className="grid sm:grid-cols-2 gap-5 mt-10">
-                <div className="glass-panel p-6.5 rounded-[2rem] border border-white/60 bg-white/40 shadow-[0_12px_24px_rgba(37,81,164,0.02)] flex items-start gap-4 hover:bg-white/80 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-xl bg-[#149257]/10 flex items-center justify-center text-[#149257] shrink-0 border border-[#149257]/15">
-                    <Compass size={20} />
+                <div className="glass-panel p-6.5 rounded-[2rem] border border-white/60 bg-white/40 shadow-[0_12px_24px_rgba(36,81,166,0.02)] flex items-start gap-4 hover:bg-white/80 transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-[#169857]/10 flex items-center justify-center text-[#169857] shrink-0 border border-[#169857]/15">
+                    <FaCompass size={20} />
                   </div>
                   <div>
                     <h4 className="font-display font-bold text-slate-900 text-sm mb-1.5">Conclave Vision</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">To create Kerala's largest gathering of aspiring mental health professionals.</p>
+                    <p className="text-xs text-slate-500 font-medium leading-relaxed">To create Kerala&#39;s largest gathering of aspiring mental health professionals.</p>
                   </div>
                 </div>
 
-                <div className="glass-panel p-6.5 rounded-[2rem] border border-white/60 bg-white/40 shadow-[0_12px_24px_rgba(37,81,164,0.02)] flex items-start gap-4 hover:bg-white/80 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-xl bg-[#F74A1C]/10 flex items-center justify-center text-[#F74A1C] shrink-0 border border-[#F74A1C]/15">
-                    <Target size={20} />
+                <div className="glass-panel p-6.5 rounded-[2rem] border border-white/60 bg-white/40 shadow-[0_12px_24px_rgba(36,81,166,0.02)] flex items-start gap-4 hover:bg-white/80 transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-[#F74A1D]/10 flex items-center justify-center text-[#F74A1D] shrink-0 border border-[#F74A1D]/15">
+                    <FaBullseye size={20} />
                   </div>
                   <div>
                     <h4 className="font-display font-bold text-slate-900 text-sm mb-1.5">Conclave Mission</h4>
@@ -115,7 +133,7 @@ export function About() {
 
           {/* RIGHT COLUMN: Statistics Grid */}
           <div className="lg:w-1/2 w-full relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#2551A4]/4 via-[#D7AEC8]/4 to-[#149257]/4 rounded-[3rem] blur-2xl transform translate-y-4 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#2451A6]/4 via-[#E0B6CF]/4 to-[#169857]/4 rounded-[3rem] blur-2xl transform translate-y-4 pointer-events-none" />
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
               {stats.map((stat, idx) => {
@@ -132,7 +150,7 @@ export function About() {
                       boxShadow: `0 20px 40px -10px ${stat.glow}`,
                       transition: { duration: 0.2, ease: "easeOut" } 
                     }}
-                    className="group glass-panel p-8 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(37,81,164,0.04)] flex flex-col justify-between min-h-[220px] transition-all duration-300"
+                    className="group glass-panel p-8 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.04)] flex flex-col justify-between min-h-[220px] transition-all duration-300"
                   >
                     {/* Top Section */}
                     <div className="flex justify-between items-start mb-6">
@@ -159,9 +177,9 @@ export function About() {
             </div>
             
             {/* Themed Accent Row */}
-            <div className="mt-6.5 glass-panel p-6 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(37,81,164,0.02)] flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="mt-6.5 glass-panel p-6 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.02)] flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4.5">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2551A4] via-[#D7AEC8] to-[#149257] flex items-center justify-center text-white text-xl font-bold shadow-md shadow-[#2551A4]/10">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2451A6] via-[#E0B6CF] to-[#169857] flex items-center justify-center text-white text-xl font-bold shadow-md shadow-[#2451A6]/10">
                   🧠
                 </div>
                 <div>
@@ -169,7 +187,7 @@ export function About() {
                   <p className="text-xs text-slate-500 font-medium mt-0.5">Exploring the Diverse World of Psychology</p>
                 </div>
               </div>
-              <div className="px-4.5 py-2 rounded-full bg-[#149257]/10 text-[#149257] text-xs font-bold uppercase tracking-wider border border-[#149257]/20 shadow-sm shrink-0">
+              <div className="px-4.5 py-2 rounded-full bg-[#169857]/10 text-[#169857] text-xs font-bold uppercase tracking-wider border border-[#169857]/20 shadow-sm shrink-0">
                 Kerala Flagship Event
               </div>
             </div>

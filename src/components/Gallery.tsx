@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Camera } from 'lucide-react';
+import { FaCamera } from 'react-icons/fa6';
 
 const galleryImages = [
   {
@@ -50,7 +50,7 @@ export function Gallery() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-100 border border-slate-200 text-slate-800 font-display font-bold text-sm mb-6 shadow-sm uppercase tracking-widest"
             >
-              <Camera size={16} className="text-royal" /> 
+              <FaCamera size={16} className="text-royal" /> 
               Highlights
             </motion.div>
             

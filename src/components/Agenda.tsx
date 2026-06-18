@@ -1,137 +1,232 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, Clock, MapPin } from 'lucide-react';
+import { MdOutlineCalendarMonth } from 'react-icons/md';
+import { FaRegClock } from 'react-icons/fa6';
 
 const schedule = {
   day1: [
     {
-      badge: 'OPENING CEREMONY',
-      title: 'Conclave Inauguration & Intro to MANO',
-      description: 'Welcome address by Sereniche Academy and KMM College heads. Setting the stage for Exploring the Diverse World of Psychology.',
-      time: '09:00 AM – 10:00 AM',
-      color: 'text-[#2551A4]',
-      bg: 'bg-[#2551A4]/10'
+      badge: 'WELCOME',
+      title: 'Ice Breaker & Programme Introduction',
+      description: 'A fun and energetic opening to bring 250+ psychology students together. Set the tone for two days of learning, connection, and growth.',
+      time: '10:00 – 10:30 AM',
+      color: 'text-[#2451A6]',
+      bg: 'bg-[#2451A6]/10'
     },
     {
-      badge: 'CLINICAL & COUNSELLING',
-      title: 'Emerging Paradigms in Clinical Assessment',
-      description: 'Understanding diagnosis models, assessment methods, and cultural adaptation in client care.',
-      time: '10:30 AM – 12:00 PM',
-      color: 'text-[#149257]',
-      bg: 'bg-[#149257]/10'
+      badge: 'EXPERT TALK',
+      title: 'Expert Talk – Session 1',
+      description: 'An impactful opening talk from a leading figure in the psychology field, setting the stage for the day\'s conversations.',
+      time: '10:30 – 11:15 AM',
+      color: 'text-[#169857]',
+      bg: 'bg-[#169857]/10'
     },
     {
-      badge: 'PEER NETWORKING',
-      title: 'Icebreakers & Student Interactive Connect',
-      description: 'Connecting 200+ students from different corners of Kerala through structured communication exercises.',
-      time: '12:30 PM – 01:30 PM',
-      color: 'text-[#F1D10A]',
-      bg: 'bg-[#F1D10A]/20'
+      badge: 'BREAK',
+      title: 'Tea Break',
+      description: 'Refresh, connect and network with fellow psychology students from across Kerala.',
+      time: '11:15 – 11:30 AM',
+      color: 'text-[#E0B6CF]',
+      bg: 'bg-[#E0B6CF]/20'
     },
     {
-      badge: 'CAREER PANEL',
-      title: 'Private Practice & Licensing in Kerala',
-      description: 'A comprehensive panel session detailing how to set up an ethical, compliant mental health counseling clinic.',
-      time: '02:00 PM – 03:30 PM',
-      color: 'text-[#F74A1C]',
-      bg: 'bg-[#F74A1C]/10'
+      badge: 'HISTORIC MILESTONE',
+      title: 'Inauguration Ceremony & Grand Launch of KPSA',
+      description: 'The historic launch of the Kerala Psychology Students Association — a landmark moment for psychology students across the state.',
+      time: '11:30 AM – 12:30 PM',
+      color: 'text-[#F74A1D]',
+      bg: 'bg-[#F74A1D]/10'
     },
     {
-      badge: 'ORGANISATIONAL & INDUSTRIAL',
-      title: 'Psychology in Corporate Ecosystems',
-      description: 'Understanding organizational behavior models, industrial workplace design, and employee wellness coaching.',
-      time: '04:00 PM – 05:30 PM',
-      color: 'text-[#D7AEC8]',
-      bg: 'bg-[#D7AEC8]/20'
+      badge: 'PANEL DISCUSSION I',
+      title: 'Is Psychology a Viable Career in Kerala?',
+      description: 'Experts and practitioners dissect the real career landscape for psychology graduates in Kerala today and tomorrow.',
+      time: '12:40 – 1:30 PM',
+      color: 'text-[#2451A6]',
+      bg: 'bg-[#2451A6]/10'
     },
     {
-      badge: 'CULTURAL NIGHT',
-      title: 'Evening Cultural Events & Campfire Acoustics',
-      description: 'Student-led art performances, poetry readings, and informal networking around the campfire.',
-      time: '06:30 PM – 09:30 PM',
-      color: 'text-[#F74A1C]',
-      bg: 'bg-[#F74A1C]/10'
+      badge: 'LUNCH & PRAYER',
+      title: 'Lunch Break',
+      description: 'Afternoon break for lunch, prayer, and informal peer connections.',
+      time: '1:30 – 2:30 PM',
+      color: 'text-[#E0B6CF]',
+      bg: 'bg-[#E0B6CF]/20'
+    },
+    {
+      badge: 'INTERACTIVE SESSION',
+      title: 'Interactive Session',
+      description: 'Engaging hands-on activity designed to encourage participation, reflection, and teamwork among participants.',
+      time: '2:30 – 3:00 PM',
+      color: 'text-[#169857]',
+      bg: 'bg-[#169857]/10'
+    },
+    {
+      badge: 'PANEL DISCUSSION II',
+      title: 'The Many Faces of Psychology – Which Path Is Right for You?',
+      description: 'Explore diverse specializations within psychology and discover what path aligns best with your interests and strengths.',
+      time: '3:00 – 3:40 PM',
+      color: 'text-[#2451A6]',
+      bg: 'bg-[#2451A6]/10'
+    },
+    {
+      badge: 'INTERACTIVE SESSION',
+      title: 'Interactive Session',
+      description: 'A collaborative exercise to deepen understanding and encourage student-led discussion.',
+      time: '3:40 – 4:15 PM',
+      color: 'text-[#169857]',
+      bg: 'bg-[#169857]/10'
+    },
+    {
+      badge: 'PANEL DISCUSSION III',
+      title: 'Old School vs New Age – How Is the Field Really Changing?',
+      description: 'Veteran practitioners and emerging voices debate how psychology is evolving and what it means for students entering the field.',
+      time: '4:15 – 5:00 PM',
+      color: 'text-[#2451A6]',
+      bg: 'bg-[#2451A6]/10'
+    },
+    {
+      badge: 'BREAK',
+      title: 'Tea Break',
+      description: 'Evening refreshments before the flagship competition.',
+      time: '5:00 – 5:15 PM',
+      color: 'text-[#E0B6CF]',
+      bg: 'bg-[#E0B6CF]/20'
+    },
+    {
+      badge: 'PSYCHLAUNCH 🚀',
+      title: 'PsychLaunch – Pitch Your Psychology Product Idea',
+      description: 'Students pitch innovative psychology-based product and service ideas to a panel of experts. Creativity, boldness, and vision rewarded.',
+      time: '5:15 – 6:30 PM',
+      color: 'text-[#F74A1D]',
+      bg: 'bg-[#F74A1D]/10'
+    },
+    {
+      badge: 'BREAK',
+      title: 'Evening Break',
+      description: 'Wind down before the Cultural Evening.',
+      time: '6:30 – 7:00 PM',
+      color: 'text-[#E0B6CF]',
+      bg: 'bg-[#E0B6CF]/20'
+    },
+    {
+      badge: 'CULTURAL EVENING 🎭',
+      title: 'Cultural Evening – Performances & Entertainment',
+      description: 'An unforgettable evening of student performances, cultural presentations, music, and entertainment to celebrate the MANO community.',
+      time: '7:00 – 10:30 PM',
+      color: 'text-[#F74A1D]',
+      bg: 'bg-[#F74A1D]/10'
     }
   ],
   day2: [
     {
-      badge: 'FORENSIC & LEGAL',
-      title: 'Forensic Investigation and Criminal Minds',
-      description: 'Exploring crime scenes, criminal profiling techniques, and the legal applications of psychology in Indian courtrooms.',
-      time: '09:00 AM – 10:30 AM',
-      color: 'text-[#2551A4]',
-      bg: 'bg-[#2551A4]/10'
+      badge: 'REGISTRATION',
+      title: 'Registration & Check-In',
+      description: 'Morning registration and orientation for Day 2 participants.',
+      time: '9:00 – 9:15 AM',
+      color: 'text-[#E0B6CF]',
+      bg: 'bg-[#E0B6CF]/20'
     },
     {
-      badge: 'DIGITAL MENTAL HEALTH',
-      title: 'Mental Health in the Age of AI and Teletherapy',
-      description: 'Exploring software diagnostics, online platforms, tele-consultation models, and automated support applications.',
+      badge: 'PANEL DISCUSSION IV',
+      title: 'From Campus to Career – The Transition Nobody Prepares You For',
+      description: 'Honest conversations about navigating the gap between academic psychology and real-world professional practice.',
+      time: '9:15 – 10:00 AM',
+      color: 'text-[#2451A6]',
+      bg: 'bg-[#2451A6]/10'
+    },
+    {
+      badge: 'EXPERT TALK',
+      title: 'Expert Talk – Session 2',
+      description: 'A focused talk from a leading psychology professional covering key themes relevant to today\'s students.',
+      time: '10:00 – 10:45 AM',
+      color: 'text-[#169857]',
+      bg: 'bg-[#169857]/10'
+    },
+    {
+      badge: 'BREAK',
+      title: 'Tea Break',
+      description: 'Mid-morning refreshments and networking.',
+      time: '10:45 – 11:00 AM',
+      color: 'text-[#E0B6CF]',
+      bg: 'bg-[#E0B6CF]/20'
+    },
+    {
+      badge: 'MINDQUIZ 🧠',
+      title: 'MindQuiz – Psychology Quiz Competition',
+      description: 'The ultimate psychology knowledge challenge. Teams compete across clinical, forensic, organisational, and research domains.',
       time: '11:00 AM – 12:30 PM',
-      color: 'text-[#149257]',
-      bg: 'bg-[#149257]/10'
+      color: 'text-[#F74A1D]',
+      bg: 'bg-[#F74A1D]/10'
     },
     {
-      badge: 'KPSA LAUNCH',
-      title: 'Launch of Kerala Psychology Students Association',
-      description: 'Official inauguration ceremony of KPSA state-wide student network. Special guest declarations and officer installations.',
-      time: '01:30 PM – 02:30 PM',
-      color: 'text-[#F1D10A]',
-      bg: 'bg-[#F1D10A]/20'
+      badge: 'LUNCH',
+      title: 'Lunch Break',
+      description: 'Afternoon lunch and informal networking among participants.',
+      time: '12:30 – 1:30 PM',
+      color: 'text-[#E0B6CF]',
+      bg: 'bg-[#E0B6CF]/20'
     },
     {
-      badge: 'POSITIVE PSYCHOLOGY',
-      title: 'Human Strengths, Virtues & Community Resilience',
-      description: 'How to build positive thinking networks and encourage mental wellbeing outside clinical therapy contexts.',
-      time: '03:00 PM – 04:30 PM',
-      color: 'text-[#F74A1C]',
-      bg: 'bg-[#F74A1C]/10'
+      badge: 'PANEL DISCUSSION V',
+      title: 'Can Psychology Change Kerala? Community, Policy & Social Impact',
+      description: 'Exploring the broader social role of psychologists in shaping community mental health policy and social impact in Kerala.',
+      time: '1:30 – 2:15 PM',
+      color: 'text-[#2451A6]',
+      bg: 'bg-[#2451A6]/10'
+    },
+    {
+      badge: 'EXPERT TALK',
+      title: 'Expert Talk – Session 3',
+      description: 'Closing expert session to inspire, inform, and equip students with actionable insights for their psychology careers.',
+      time: '2:15 – 3:00 PM',
+      color: 'text-[#169857]',
+      bg: 'bg-[#169857]/10'
     },
     {
       badge: 'CLOSING CEREMONY',
-      title: 'Valedictory Session & Certificate Distribution',
-      description: 'Collecting feedback, acknowledging coordinators, and distribution of physical conclave credentials.',
-      time: '04:45 PM – 05:30 PM',
-      color: 'text-[#D7AEC8]',
-      bg: 'bg-[#D7AEC8]/20'
+      title: 'Certificate Ceremony & Valedictory',
+      description: 'Celebrating two transformative days. Certificate distribution, acknowledgements, and the official closing of MANO 2026.',
+      time: '3:00 – 4:00 PM',
+      color: 'text-[#F74A1D]',
+      bg: 'bg-[#F74A1D]/10'
     }
   ]
 };
 
 export function Agenda() {
   const [activeDay, setActiveDay] = useState<'day1' | 'day2'>('day1');
-
   const currentSchedule = schedule[activeDay];
 
   return (
     <section id="agenda" className="py-24 md:py-32 bg-slate-50/50 relative overflow-hidden border-t border-slate-200">
-      {/* Background gradients */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2551A4]/5 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/4" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#D7AEC8]/10 rounded-full blur-[150px] pointer-events-none translate-y-1/3 -translate-x-1/4" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2451A6]/5 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/4" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#E0B6CF]/10 rounded-full blur-[150px] pointer-events-none translate-y-1/3 -translate-x-1/4" />
 
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="text-center mb-16 md:mb-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-slate-200 text-slate-800 font-display font-bold text-sm mb-6 shadow-sm uppercase tracking-widest"
           >
-            <Calendar size={16} className="text-[#2551A4]" /> 
-            Conclave Agenda ✨
-          </motion.div>
-          
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 mb-6 leading-tight tracking-tight">
+            <MdOutlineCalendarMonth size={16} className="text-[#2451A6]" />
             Conclave Schedule
+          </motion.div>
+
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 mb-6 leading-tight tracking-tight">
+            Programme Agenda
           </h2>
-          
+
           <p className="font-sans text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto">
-            A comprehensive 2-day schedule detailing sessions, speakers, launches, panels, and cultural experiences.
+            Two full days of expert talks, panel discussions, competitions, networking, and cultural experiences — all curated for psychology students.
           </p>
         </div>
 
         {/* Day Switcher */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -139,22 +234,22 @@ export function Agenda() {
           className="flex justify-center mb-16"
         >
           <div className="inline-flex p-1.5 bg-white border border-slate-200 rounded-full shadow-sm relative">
-            {['day1', 'day2'].map((day) => (
+            {(['day1', 'day2'] as const).map((day) => (
               <button
                 key={day}
-                onClick={() => setActiveDay(day as 'day1' | 'day2')}
+                onClick={() => setActiveDay(day)}
                 className={`relative px-8 py-3 rounded-full font-display font-bold text-sm md:text-base uppercase tracking-wider transition-colors z-10 ${
-                  activeDay === day ? 'text-white' : 'text-slate-600 hover:text-[#2551A4]'
+                  activeDay === day ? 'text-white' : 'text-slate-600 hover:text-[#2451A6]'
                 }`}
               >
                 {activeDay === day && (
                   <motion.div
                     layoutId="activeDayIndicator"
-                    className="absolute inset-0 bg-[#2551A4] rounded-full -z-10 shadow-md"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    className="absolute inset-0 bg-[#2451A6] rounded-full -z-10 shadow-md"
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}
-                {day === 'day1' ? 'July 4th (Day 1)' : 'July 5th (Day 2)'}
+                {day === 'day1' ? 'Sat, 18 July (Day 1)' : 'Sun, 19 July (Day 2)'}
               </button>
             ))}
           </div>
@@ -169,27 +264,24 @@ export function Agenda() {
                 initial={{ opacity: 0, y: 20, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl p-6 md:p-8 lg:p-10 shadow-[0_15px_40px_-15px_rgba(37,81,164,0.05)] hover:shadow-[0_20px_50px_-15px_rgba(37,81,164,0.1)] transition-all duration-300 group"
+                transition={{ duration: 0.4, delay: index * 0.04 }}
+                className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl p-6 md:p-8 shadow-[0_15px_40px_-15px_rgba(36,81,166,0.05)] hover:shadow-[0_20px_50px_-15px_rgba(36,81,166,0.1)] transition-all duration-300 group"
               >
                 <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 w-full">
-                  {/* Left: Time & Badge */}
                   <div className="w-full md:w-48 shrink-0 flex flex-col items-start gap-4 pb-4 md:pb-0 md:border-r border-slate-100">
                     <div className="flex items-center gap-2 text-slate-500 font-sans font-bold text-sm tracking-wide">
-                      <Clock size={16} />
+                      <FaRegClock size={16} />
                       {item.time}
                     </div>
                     <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase ${item.bg} ${item.color}`}>
                       {item.badge}
                     </div>
                   </div>
-
-                  {/* Right: Content */}
                   <div className="flex-1">
-                    <h3 className="font-display font-bold text-2xl md:text-3xl text-slate-800 mb-3 group-hover:text-[#2551A4] transition-colors duration-300">
+                    <h3 className="font-display font-bold text-xl md:text-2xl text-slate-800 mb-3 group-hover:text-[#2451A6] transition-colors duration-300">
                       {item.title}
                     </h3>
-                    <p className="text-slate-600 font-medium leading-relaxed md:text-lg">
+                    <p className="text-slate-600 font-medium leading-relaxed">
                       {item.description}
                     </p>
                   </div>

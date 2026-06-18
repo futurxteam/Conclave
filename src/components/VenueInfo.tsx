@@ -1,17 +1,19 @@
 import { motion } from 'motion/react';
-import { MapPin, Sparkles, Navigation, Building, ShieldAlert, Award } from 'lucide-react';
+import { IoLocationOutline } from 'react-icons/io5';
+import { FaBuilding, FaShieldHalved } from 'react-icons/fa6';
+import { MdOutlineNavigation } from 'react-icons/md';
 
 export function VenueInfo() {
   return (
     <section id="venue" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-slate-200/50">
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#2551A4]/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#2451A6]/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2551A4]/5 border border-[#2551A4]/10 text-[#2551A4] font-display font-bold text-xs uppercase tracking-widest mb-6">
-            <MapPin size={14} className="text-[#F1D10A]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2451A6]/5 border border-[#2451A6]/10 text-[#2451A6] font-display font-bold text-xs uppercase tracking-widest mb-6">
+            <IoLocationOutline size={14} className="text-[#F4D313]" />
             Location Details
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight mb-6">
@@ -42,8 +44,8 @@ export function VenueInfo() {
 
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#2551A4]/10 text-[#2551A4] flex items-center justify-center shrink-0">
-                  <Navigation size={18} />
+                <div className="w-10 h-10 rounded-xl bg-[#2451A6]/10 text-[#2451A6] flex items-center justify-center shrink-0">
+                  <MdOutlineNavigation size={18} />
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-slate-900 text-sm">Full Address</h4>
@@ -52,8 +54,8 @@ export function VenueInfo() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#149257]/10 text-[#149257] flex items-center justify-center shrink-0">
-                  <Building size={18} />
+                <div className="w-10 h-10 rounded-xl bg-[#169857]/10 text-[#169857] flex items-center justify-center shrink-0">
+                  <FaBuilding size={18} />
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-slate-900 text-sm">Residential Accommodation</h4>
@@ -62,8 +64,8 @@ export function VenueInfo() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#F74A1C]/10 text-[#F74A1C] flex items-center justify-center shrink-0">
-                  <ShieldAlert size={18} />
+                <div className="w-10 h-10 rounded-xl bg-[#F74A1D]/10 text-[#F74A1D] flex items-center justify-center shrink-0">
+                  <FaShieldHalved size={18} />
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-slate-900 text-sm">Safety & Support</h4>
@@ -77,7 +79,7 @@ export function VenueInfo() {
                 href="https://maps.app.goo.gl/xo8uvVMV1gx6FcEm6"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-[#2551A4] hover:bg-[#1d428a] text-white font-bold text-xs py-3 px-6 rounded-full shadow-md transition-all"
+                className="inline-flex items-center gap-2 bg-[#2451A6] hover:bg-[#1c3f85] text-white font-bold text-xs py-3 px-6 rounded-full shadow-md transition-all"
               >
                 Open Google Maps &rarr;
               </a>

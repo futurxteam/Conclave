@@ -1,17 +1,17 @@
 import { motion } from 'motion/react';
-import { Music, Sparkles } from 'lucide-react';
+import { IoMusicalNotesOutline } from 'react-icons/io5';
 
 export function CulturalPrograms() {
   return (
     <section id="cultural" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-slate-200/50">
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#D7AEC8]/10 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/2" />
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#E0B6CF]/10 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/2" />
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D7AEC8]/15 border border-[#D7AEC8]/35 text-[#D7AEC8] font-display font-bold text-xs uppercase tracking-widest mb-6">
-            <Music size={14} className="text-[#F1D10A]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E0B6CF]/15 border border-[#E0B6CF]/35 text-[#E0B6CF] font-display font-bold text-xs uppercase tracking-widest mb-6">
+            <IoMusicalNotesOutline size={14} className="text-[#F4D313]" />
             Evening Festivities
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight mb-6">
@@ -32,7 +32,7 @@ export function CulturalPrograms() {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <div className="glass-panel p-8 rounded-[2rem] border border-white/60 shadow-[0_15px_40px_rgba(37,81,164,0.03)]">
+            <div className="glass-panel p-8 rounded-[2rem] border border-white/60 shadow-[0_15px_40px_rgba(36,81,166,0.03)]">
               <h3 className="font-display font-bold text-2xl text-slate-900 mb-4 flex items-center gap-3">
                 <span className="text-2xl">🌟</span> Evening Cultural Programs
               </h3>
@@ -41,7 +41,7 @@ export function CulturalPrograms() {
               </p>
             </div>
 
-            <div className="glass-panel p-8 rounded-[2rem] border border-white/60 shadow-[0_15px_40px_rgba(37,81,164,0.03)]">
+            <div className="glass-panel p-8 rounded-[2rem] border border-white/60 shadow-[0_15px_40px_rgba(36,81,166,0.03)]">
               <h3 className="font-display font-bold text-2xl text-slate-900 mb-4 flex items-center gap-3">
                 <span className="text-2xl">🎤</span> Student Performances
               </h3>
@@ -65,7 +65,7 @@ export function CulturalPrograms() {
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-8 left-8 z-20">
-              <span className="px-3 py-1 rounded-full bg-[#F1D10A]/20 text-[#F1D10A] text-[10px] font-bold tracking-wider uppercase border border-[#F1D10A]/30">
+              <span className="px-3 py-1 rounded-full bg-[#F4D313]/20 text-[#F4D313] text-[10px] font-bold tracking-wider uppercase border border-[#F4D313]/30">
                 July 4th Evening
               </span>
               <h4 className="font-display font-black text-2xl text-white mt-3 leading-tight">Campfire Acoustics & Dinner</h4>

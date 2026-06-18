@@ -1,48 +1,50 @@
 import { motion } from 'motion/react';
-import { Sparkles, Users, Award, BookOpen, Presentation, Calendar } from 'lucide-react';
+import { FaStethoscope, FaFlask, FaBuilding } from 'react-icons/fa6';
+import { HiOutlineHeart, HiSparkles } from 'react-icons/hi2';
+import { MdGavel } from 'react-icons/md';
 
 const stats = [
-  { value: '10+', label: 'Expert Speakers', color: 'text-[#2551A4]', bg: 'bg-[#2551A4]/10' },
-  { value: '20+', label: 'Panelists', color: 'text-[#D7AEC8]', bg: 'bg-[#D7AEC8]/15' },
-  { value: '5+', label: 'Psychology Domains', color: 'text-[#149257]', bg: 'bg-[#149257]/10' },
-  { value: '200+', label: 'Participants', color: 'text-[#F74A1C]', bg: 'bg-[#F74A1C]/10' },
+  { value: '10+', label: 'Expert Speakers', color: 'text-[#2451A6]', bg: 'bg-[#2451A6]/10' },
+  { value: '20+', label: 'Panelists', color: 'text-[#E0B6CF]', bg: 'bg-[#E0B6CF]/15' },
+  { value: '5+', label: 'Psychology Domains', color: 'text-[#169857]', bg: 'bg-[#169857]/10' },
+  { value: '200+', label: 'Participants', color: 'text-[#F74A1D]', bg: 'bg-[#F74A1D]/10' },
 ];
 
 const categories = [
   {
     title: 'Clinical Psychology',
-    emoji: '🧠',
+    Icon: FaStethoscope,
     desc: 'Deep diving into complex diagnostics, therapeutic practices, and patient rehabilitation methodologies.',
-    color: '#2551A4',
-    bg: 'rgba(37, 81, 164, 0.05)'
+    color: '#2451A6',
+    bg: 'rgba(36, 81, 166, 0.05)'
   },
   {
     title: 'Counselling Psychology',
-    emoji: '💬',
+    Icon: HiOutlineHeart,
     desc: 'Understanding personal and family therapy, trauma resolution, and cognitive behavior counseling.',
-    color: '#D7AEC8',
-    bg: 'rgba(215, 174, 200, 0.08)'
+    color: '#E0B6CF',
+    bg: 'rgba(224, 182, 207, 0.08)'
   },
   {
     title: 'Research & Academia',
-    emoji: '🎓',
+    Icon: FaFlask,
     desc: 'Focusing on qualitative and quantitative analysis, academic publications, and educational paradigms.',
-    color: '#F1D10A',
-    bg: 'rgba(241, 209, 10, 0.05)'
+    color: '#F4D313',
+    bg: 'rgba(244, 211, 19, 0.05)'
   },
   {
     title: 'Industrial & Organisational Psychology',
-    emoji: '🏢',
+    Icon: FaBuilding,
     desc: 'Exploring workplace mental health, employee counseling, selection, and group dynamics.',
-    color: '#149257',
-    bg: 'rgba(20, 146, 87, 0.05)'
+    color: '#169857',
+    bg: 'rgba(22, 152, 87, 0.05)'
   },
   {
     title: 'Forensic & Legal Psychology',
-    emoji: '⚖️',
+    Icon: MdGavel,
     desc: 'Analyzing criminal behavior, investigative methods, and testimony checks in legal settings.',
-    color: '#F74A1C',
-    bg: 'rgba(247, 74, 28, 0.05)'
+    color: '#F74A1D',
+    bg: 'rgba(247, 74, 29, 0.05)'
   }
 ];
 
@@ -58,15 +60,15 @@ export function Speakers() {
   return (
     <section id="speakers" className="py-24 sm:py-32 bg-slate-50/20 relative overflow-hidden border-t border-slate-200/50">
       {/* Decorative background orbs */}
-      <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#2551A4]/5 rounded-full blur-[130px] pointer-events-none -translate-x-1/2" />
-      <div className="absolute bottom-1/4 right-0 w-[550px] h-[550px] bg-[#D7AEC8]/8 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />
+      <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#2451A6]/5 rounded-full blur-[130px] pointer-events-none -translate-x-1/2" />
+      <div className="absolute bottom-1/4 right-0 w-[550px] h-[550px] bg-[#E0B6CF]/8 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Main Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 border border-slate-200/80 text-[#2551A4] font-display font-bold text-xs uppercase tracking-widest mb-6 shadow-[0_4px_12px_rgba(37,81,164,0.03)]">
-            <Sparkles size={14} className="text-[#F1D10A]" />
+          <div className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/80 border border-slate-200/80 text-[#2451A6] font-display font-bold text-xs uppercase tracking-widest mb-6 shadow-[0_4px_12px_rgba(36,81,166,0.03)]">
+            <HiSparkles size={14} className="text-[#F4D313]" />
             CONCLAVE EXPERTS & PANELS
           </div>
           
@@ -121,9 +123,9 @@ export function Speakers() {
                     className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-5 border border-slate-200/50 shadow-sm transition-transform duration-300 group-hover:scale-110"
                     style={{ backgroundColor: cat.bg }}
                   >
-                    <span className="transition-transform duration-500 group-hover:rotate-[12deg]">{cat.emoji}</span>
+                    <div className="transition-transform duration-500 group-hover:rotate-[12deg]" style={{ color: cat.color }}><cat.Icon size={24} /></div>
                   </div>
-                  <h4 className="font-display font-bold text-base text-slate-900 mb-2 leading-tight group-hover:text-[#2551A4] transition-colors">
+                  <h4 className="font-display font-bold text-base text-slate-900 mb-2 leading-tight group-hover:text-[#2451A6] transition-colors">
                     {cat.title}
                   </h4>
                   <p className="font-sans text-xs text-slate-500 leading-relaxed">
@@ -136,10 +138,10 @@ export function Speakers() {
         </div>
 
         {/* Panel Discussions Section */}
-        <div className="glass-panel p-8 sm:p-12 rounded-[2.5rem] border border-white/60 shadow-[0_20px_50px_rgba(37,81,164,0.04)] bg-white/40">
+        <div className="glass-panel p-8 sm:p-12 rounded-[2.5rem] border border-white/60 shadow-[0_20px_50px_rgba(36,81,166,0.04)] bg-white/40">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-12">
             <div className="max-w-xl">
-              <span className="px-3.5 py-1 rounded-full bg-[#2551A4]/10 border border-[#2551A4]/15 text-[#2551A4] text-xs font-bold uppercase tracking-wider mb-4 inline-block">
+              <span className="px-3.5 py-1 rounded-full bg-[#2451A6]/10 border border-[#2451A6]/15 text-[#2451A6] text-xs font-bold uppercase tracking-wider mb-4 inline-block">
                 Interactive Panel Tracks
               </span>
               <h3 className="font-display font-black text-2xl sm:text-3xl text-slate-900 leading-tight">
@@ -162,7 +164,7 @@ export function Speakers() {
                 className="bg-white/70 border border-slate-200/60 rounded-2xl p-6.5 hover:shadow-md transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-4.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#2551A4]/10 text-[#2551A4] flex items-center justify-center font-bold text-xs">
+                  <div className="w-8 h-8 rounded-lg bg-[#2451A6]/10 text-[#2451A6] flex items-center justify-center font-bold text-xs">
                     0{idx + 1}
                   </div>
                   <h4 className="font-display font-bold text-base text-slate-900 leading-snug">
