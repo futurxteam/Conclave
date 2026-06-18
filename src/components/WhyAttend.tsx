@@ -5,33 +5,9 @@ import { IoArrowForward } from 'react-icons/io5';
 
 const reasons = [
   {
-    title: 'Learn From Experts',
-    desc: 'Gain insights from experienced psychologists, researchers, academicians, and mental health professionals.',
-    Icon: FaBrain,
-    color: '#2451A6',
-    bg: 'rgba(36, 81, 166, 0.05)',
-    glow: 'rgba(36, 81, 166, 0.15)'
-  },
-  {
-    title: 'Build Your Network',
-    desc: 'Meet like-minded students and professionals from across Kerala and create valuable connections.',
-    Icon: FaUsers,
-    color: '#169857',
-    bg: 'rgba(22, 152, 87, 0.05)',
-    glow: 'rgba(22, 152, 87, 0.15)'
-  },
-  {
-    title: 'Explore Career Opportunities',
-    desc: 'Discover emerging career pathways and opportunities within various branches of psychology.',
-    Icon: FaRocket,
-    color: '#F74A1D',
-    bg: 'rgba(247, 74, 29, 0.05)',
-    glow: 'rgba(247, 74, 29, 0.15)'
-  },
-  {
     title: 'Gain Practical Exposure',
     desc: 'Participate in discussions, workshops, activities, and real-world learning experiences.',
-    Icon: FaBullseye,
+    Icon: FaBrain, // use FaBrain or original FaBullseye, let's keep original icons or update if needed
     color: '#E0B6CF',
     bg: 'rgba(224, 182, 207, 0.08)',
     glow: 'rgba(224, 182, 207, 0.2)'

@@ -180,7 +180,7 @@ export function Hero() {
                   <div className="flex items-start justify-between mb-14">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center">
-                        <FaBrain size={28} className="text-[#E0B6CF]" />
+                        <img src="/mano logo m'.png" alt="MANO Logo" className="w-8 h-8 object-contain" />
                       </div>
                       <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center rotate-45">
                         <HiSparkles size={18} className="text-[#169857] -rotate-45" />

@@ -4,37 +4,37 @@ import { FaUsers, FaCompass, FaBullseye, FaUserTie, FaPeopleGroup } from 'react-
 import { HiOutlineMicrophone, HiSparkles } from 'react-icons/hi2';
 
 const stats = [
-  { 
-    label: 'Residential Experience', 
-    value: '2 Days', 
-    icon: MdOutlineCalendarMonth, 
-    color: 'text-[#2451A6]', 
-    bg: 'bg-[#2451A6]/8', 
-    glow: 'rgba(36, 81, 166, 0.15)' 
+  {
+    label: 'Residential Experience',
+    value: '2 Days',
+    icon: MdOutlineCalendarMonth,
+    color: 'text-[#2451A6]',
+    bg: 'bg-[#2451A6]/8',
+    glow: 'rgba(36, 81, 166, 0.15)'
   },
-  { 
-    label: 'Expected Participants', 
-    value: '250+', 
-    icon: FaUsers, 
-    color: 'text-[#169857]', 
-    bg: 'bg-[#169857]/8', 
-    glow: 'rgba(22, 152, 87, 0.15)' 
+  {
+    label: 'Expected Participants',
+    value: '250+',
+    icon: FaUsers,
+    color: 'text-[#169857]',
+    bg: 'bg-[#169857]/8',
+    glow: 'rgba(22, 152, 87, 0.15)'
   },
-  { 
-    label: 'Expert Speakers', 
-    value: '10+', 
-    icon: HiOutlineMicrophone, 
-    color: 'text-[#F74A1D]', 
-    bg: 'bg-[#F74A1D]/8', 
-    glow: 'rgba(247, 74, 29, 0.15)' 
+  {
+    label: 'Expert Speakers',
+    value: '10+',
+    icon: HiOutlineMicrophone,
+    color: 'text-[#F74A1D]',
+    bg: 'bg-[#F74A1D]/8',
+    glow: 'rgba(247, 74, 29, 0.15)'
   },
-  { 
-    label: 'Panelists', 
-    value: '25+', 
-    icon: FaUserTie, 
-    color: 'text-[#E0B6CF]', 
-    bg: 'bg-[#E0B6CF]/12', 
-    glow: 'rgba(224, 182, 207, 0.15)' 
+  {
+    label: 'Panelists',
+    value: '25+',
+    icon: FaUserTie,
+    color: 'text-[#E0B6CF]',
+    bg: 'bg-[#E0B6CF]/12',
+    glow: 'rgba(224, 182, 207, 0.15)'
   },
 ];
 
@@ -48,7 +48,7 @@ export function About() {
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
-          
+
           {/* LEFT COLUMN: Content */}
           <div className="lg:w-1/2">
             <motion.div
@@ -62,17 +62,12 @@ export function About() {
                 <HiSparkles size={14} className="text-[#169857] animate-pulse" />
                 ABOUT MANO
               </div>
-              
+
               {/* Heading */}
               <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-[3.25rem] text-[#0A0F1C] mb-6 leading-[1.1] tracking-tight">
                 What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2451A6] via-[#E0B6CF] to-[#169857]">MANO?</span>
               </h2>
-              
-              {/* Subheading */}
-              <h3 className="font-sans font-bold text-lg sm:text-xl text-slate-800 mb-8 leading-relaxed border-l-4 border-[#2451A6] pl-5">
-                Kerala&#39;s first large-scale gathering designed exclusively for psychology students — rooted in the word <em className="text-[#2451A6] not-italic font-black">&quot;Manas&quot;</em>, meaning mind.
-              </h3>
-              
+
               {/* Description paragraphs */}
               <div className="space-y-6 text-slate-600 font-sans text-[16px] sm:text-[17px] leading-relaxed">
                 <p>
@@ -134,7 +129,7 @@ export function About() {
           {/* RIGHT COLUMN: Statistics Grid */}
           <div className="lg:w-1/2 w-full relative">
             <div className="absolute inset-0 bg-gradient-to-br from-[#2451A6]/4 via-[#E0B6CF]/4 to-[#169857]/4 rounded-[3rem] blur-2xl transform translate-y-4 pointer-events-none" />
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
@@ -145,10 +140,10 @@ export function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 60 }}
-                    whileHover={{ 
-                      y: -8, 
+                    whileHover={{
+                      y: -8,
                       boxShadow: `0 20px 40px -10px ${stat.glow}`,
-                      transition: { duration: 0.2, ease: "easeOut" } 
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
                     className="group glass-panel p-8 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.04)] flex flex-col justify-between min-h-[220px] transition-all duration-300"
                   >
@@ -161,7 +156,7 @@ export function About() {
                         0{idx + 1}
                       </span>
                     </div>
-                    
+
                     {/* Stat Values */}
                     <div>
                       <div className="font-display font-black text-4xl sm:text-5xl text-[#0A0F1C] tracking-tight mb-2">
@@ -175,7 +170,7 @@ export function About() {
                 );
               })}
             </div>
-            
+
             {/* Themed Accent Row */}
             <div className="mt-6.5 glass-panel p-6 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.02)] flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4.5">
@@ -192,7 +187,7 @@ export function About() {
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>

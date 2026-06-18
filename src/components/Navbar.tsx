@@ -74,9 +74,9 @@ export function Navbar() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, name: string) => {
     if (!isHomePage) {
-      return; 
+      return;
     }
-    
+
     e.preventDefault();
     setActiveTab(name);
     const element = document.getElementById(href.substring(1));
@@ -90,32 +90,31 @@ export function Navbar() {
   };
 
   return (
-    <nav 
+    <nav
       className="fixed w-full z-50 top-6 flex justify-center pointer-events-none px-4"
       style={{ transform: 'translateZ(0)', willChange: 'transform' }}
     >
-      <motion.div 
+      <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
-        className={`pointer-events-auto flex items-center justify-between w-full max-w-[1100px] transition-all duration-500 rounded-full ${
-          isScrolled 
-            ? 'bg-white/80 backdrop-blur-2xl border border-slate-200/50 shadow-[0_20px_40px_-10px_rgba(36,81,166,0.15)] py-2 px-3' 
+        className={`pointer-events-auto flex items-center justify-between w-full max-w-[1100px] transition-all duration-500 rounded-full ${isScrolled
+            ? 'bg-white/80 backdrop-blur-2xl border border-slate-200/50 shadow-[0_20px_40px_-10px_rgba(36,81,166,0.15)] py-2 px-3'
             : 'bg-white/50 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_-10px_rgba(36,81,166,0.05)] py-3 px-4'
-        } relative overflow-hidden`}
+          } relative overflow-hidden`}
       >
         {/* Animated Neural Node Effect */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-full">
-          <motion.div 
-             animate={{ x: ["-100%", "200%", "-100%"] }} 
-             transition={{ duration: 15, ease: "linear", repeat: Infinity }}
-             className="absolute top-1/2 -translate-y-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-[#2451A6]/20 to-transparent blur-md mix-blend-multiply"
+          <motion.div
+            animate={{ x: ["-100%", "200%", "-100%"] }}
+            transition={{ duration: 15, ease: "linear", repeat: Infinity }}
+            className="absolute top-1/2 -translate-y-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-[#2451A6]/20 to-transparent blur-md mix-blend-multiply"
           />
         </div>
 
         {/* Logo / Brand Name */}
         <div className="hidden lg:flex items-center gap-2 pl-4 relative z-10">
-          <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2451A6] to-[#E0B6CF] flex items-center justify-center text-[11px] text-white font-black">MANO</span>
+          <img src="/mano logo m'.png" alt="MANO Logo" className="h-8 w-auto object-contain" />
         </div>
 
         {/* Links */}
@@ -124,15 +123,14 @@ export function Navbar() {
             const isActive = activeTab === link.name;
             const targetHref = isHomePage ? link.href : `/${link.href}`;
             return (
-              <a 
-                key={link.name} 
+              <a
+                key={link.name}
                 href={targetHref}
                 onClick={(e) => handleNavClick(e, link.href, link.name)}
-                className={`relative flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all duration-300 group overflow-hidden ${
-                  isActive 
-                    ? 'text-white shadow-sm' 
+                className={`relative flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all duration-300 group overflow-hidden ${isActive
+                    ? 'text-white shadow-sm'
                     : 'text-slate-600 hover:text-[#2451A6]'
-                }`}
+                  }`}
               >
                 {isActive && (
                   <motion.div

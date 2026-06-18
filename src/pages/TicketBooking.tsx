@@ -13,7 +13,7 @@ const TICKETS = {
     title: 'Early Bird Offer',
     price: 1500,
     for: 'Psychology Students & Researchers',
-    features: ['2-Day Conclave Access', 'Hostel Accommodation Option', 'KPSA Launch Ceremony Entrance', 'Participation Certificate'],
+    features: ['2-Day Conclave Access', 'Hostel Accommodation Option', 'KPSA Launch Ceremony Entrance', 'Participation Certificate', 'Meeting Expertise', 'All Specialized Workshops'],
     color: 'text-[#2451A6]',
     bgHover: 'hover:bg-[#2451A6]',
     borderActive: 'border-[#2451A6]'
@@ -210,11 +210,11 @@ export function TicketBooking() {
           >
             <div className="flex items-center gap-2 text-slate-700 font-bold bg-white/60 px-5 py-2.5 rounded-full shadow-sm border border-slate-200 text-sm">
               <MdOutlineCalendarMonth size={16} className="text-[#F74A1D]" />
-              July 4 & 5, 2026
+              July 18 & 19, 2026
             </div>
             <div className="flex items-center gap-2 text-slate-700 font-bold bg-white/60 px-5 py-2.5 rounded-full shadow-sm border border-slate-200 text-sm">
               <IoLocationOutline size={16} className="text-[#169857]" />
-              KMM College of Arts and Science
+              KMM Edu Hub
             </div>
           </motion.div>
         </div>
@@ -237,9 +237,12 @@ export function TicketBooking() {
                 <div className="flex flex-col gap-3">
                   <div
                     onClick={() => handleTicketSelect('student')}
-                    className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl ${selectedTicket === 'student' ? 'border-[#2451A6] shadow-[0_15px_40px_-15px_rgba(36,81,166,0.3)] ring-4 ring-[#2451A6]/10' : 'border-slate-200 shadow-sm'}`}
+                    className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden ${selectedTicket === 'student' ? 'border-[#2451A6] shadow-[0_15px_40px_-15px_rgba(36,81,166,0.3)] ring-4 ring-[#2451A6]/10' : 'border-slate-200 shadow-sm'}`}
                   >
-                    <h3 className="font-display font-black text-xl text-slate-800 mb-1">Early Bird Offer</h3>
+                    <div className="absolute top-0 right-0 bg-gradient-to-l from-[#F74A1D] to-[#F4D313] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
+                      Till July 5
+                    </div>
+                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">Early Bird Offer</h3>
                     <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Psychology Students</p>
                     <div className="flex items-baseline gap-1 mb-6">
                       <span className="text-4xl font-black text-[#2451A6]">₹1500</span>
@@ -485,23 +488,23 @@ export function TicketBooking() {
                         </div>
 
                         <AnimatePresence>
-                        {addAccommodation && (
-                          <motion.div
-                            key="accommodation-row"
-                            initial={{ opacity: 0, y: -6 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -6 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex justify-between items-center"
-                          >
-                            <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
-                              <FaBed size={13} className="shrink-0" />
-                              Accommodation
-                              {quantity > 1 && <span className="text-slate-400 font-medium">×{quantity}</span>}
-                            </span>
-                            <span className="font-bold text-emerald-700">₹{getAccommodationTotal()}</span>
-                          </motion.div>
-                        )}
+                          {addAccommodation && (
+                            <motion.div
+                              key="accommodation-row"
+                              initial={{ opacity: 0, y: -6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -6 }}
+                              transition={{ duration: 0.2 }}
+                              className="flex justify-between items-center"
+                            >
+                              <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                                <FaBed size={13} className="shrink-0" />
+                                Accommodation
+                                {quantity > 1 && <span className="text-slate-400 font-medium">×{quantity}</span>}
+                              </span>
+                              <span className="font-bold text-emerald-700">₹{getAccommodationTotal()}</span>
+                            </motion.div>
+                          )}
                         </AnimatePresence>
 
                         <div className="flex justify-between items-center">

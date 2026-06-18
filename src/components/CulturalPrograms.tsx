@@ -66,7 +66,7 @@ export function CulturalPrograms() {
             />
             <div className="absolute bottom-8 left-8 z-20">
               <span className="px-3 py-1 rounded-full bg-[#F4D313]/20 text-[#F4D313] text-[10px] font-bold tracking-wider uppercase border border-[#F4D313]/30">
-                July 4th Evening
+                July 18th Evening
               </span>
               <h4 className="font-display font-black text-2xl text-white mt-3 leading-tight">Campfire Acoustics & Dinner</h4>
               <p className="text-white/80 text-xs font-sans mt-1">Join the community after the sessions end</p>

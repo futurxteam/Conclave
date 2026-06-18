@@ -20,7 +20,7 @@ export function VenueInfo() {
             Venue & Campus Information
           </h2>
           <p className="font-sans text-slate-600 text-lg md:text-xl font-medium">
-            Join us at the beautifully designed modern campus of KMM College of Arts and Science.
+            Join us at the beautifully designed modern campus of KMM Edu Hub.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export function VenueInfo() {
             className="space-y-6"
           >
             <h3 className="font-display font-black text-3xl text-slate-950 leading-tight">
-              KMM College of Arts and Science
+              KMM Edu Hub
             </h3>
 
             <p className="font-sans text-slate-600 leading-relaxed text-base">
@@ -49,7 +49,7 @@ export function VenueInfo() {
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-slate-900 text-sm">Full Address</h4>
-                  <p className="text-sm text-slate-500 font-sans mt-0.5">KMM College of Arts and Science, Thrikkakara, Ernakulam, Kerala</p>
+                  <p className="text-sm text-slate-500 font-sans mt-0.5">KMM Edu Hub, Thrikkakara, Ernakulam, Kerala</p>
                 </div>
               </div>
 

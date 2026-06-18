@@ -238,9 +238,8 @@ export function Agenda() {
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`relative px-8 py-3 rounded-full font-display font-bold text-sm md:text-base uppercase tracking-wider transition-colors z-10 ${
-                  activeDay === day ? 'text-white' : 'text-slate-600 hover:text-[#2451A6]'
-                }`}
+                className={`relative px-8 py-3 rounded-full font-display font-bold text-sm md:text-base uppercase tracking-wider transition-colors z-10 ${activeDay === day ? 'text-white' : 'text-slate-600 hover:text-[#2451A6]'
+                  }`}
               >
                 {activeDay === day && (
                   <motion.div

@@ -66,8 +66,8 @@ export function CulturalAndKPSA() {
             const bottomLabel = isKPSA
               ? 'Special Ceremony'
               : isPsychTalks
-              ? 'Open Speaker Session'
-              : 'Evening Program';
+                ? 'Open Speaker Session'
+                : 'Evening Program';
 
             const CardWrapper = isPsychTalks ? 'a' : 'div';
             const cardProps = isPsychTalks

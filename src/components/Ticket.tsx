@@ -13,7 +13,7 @@ export function Ticket() {
       <div className="absolute bottom-1/4 right-0 w-[550px] h-[550px] bg-[#E0B6CF]/8 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +24,7 @@ export function Ticket() {
           {/* Internal glow orbs */}
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#2451A6]/20 rounded-full blur-[80px] pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-[#169857]/12 rounded-full blur-[80px] pointer-events-none" />
-          
+
           {/* Sparkle decoration */}
           <div className="absolute top-6 right-8 opacity-10 pointer-events-none">
             <HiSparkles size={72} />

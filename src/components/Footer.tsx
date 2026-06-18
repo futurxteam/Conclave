@@ -30,7 +30,7 @@ export function Footer() {
             <IoLocationOutline className="text-[#F74A1D]" size={16} /> KMM Edu Hub
           </div>
           <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors">
-            <MdOutlineCalendarMonth className="text-[#F4D313]" size={16} /> July 4 &amp; 5, 2026
+            <MdOutlineCalendarMonth className="text-[#F4D313]" size={16} /> July 18 &amp; 19, 2026
           </div>
         </div>
 
