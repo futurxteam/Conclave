@@ -49,7 +49,44 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex flex-col pb-16 overflow-hidden">
+
+      {/* Spacer that equals navbar height so content starts below the navbar */}
+      <div className="h-24 shrink-0" />
+
+      {/* ── MANO Vector Marquee Strip ── sits right below navbar, sticks on scroll */}
+      <div
+        className="sticky z-40 left-0 w-screen overflow-hidden pointer-events-none select-none flex items-center"
+        style={{
+          top: '76px', /* matches the navbar pill bottom edge */
+          backgroundColor: '#8E939C',
+          marginLeft: 'calc(-50vw + 50%)',
+        }}
+      >
+        <div className="w-full flex overflow-hidden py-1 md:py-2">
+          <div className="flex shrink-0 animate-marquee gap-2">
+            {Array.from({ length: 60 }).map((_, i) => (
+              <img
+                key={`v1-${i}`}
+                src="/mano-vector.png"
+                alt=""
+                className="h-7 md:h-9 w-auto object-contain shrink-0"
+                style={{ filter: 'contrast(1.08) saturate(1.15)' }}
+              />
+            ))}
+            {Array.from({ length: 60 }).map((_, i) => (
+              <img
+                key={`v2-${i}`}
+                src="/mano-vector.png"
+                alt=""
+                className="h-7 md:h-9 w-auto object-contain shrink-0"
+                style={{ filter: 'contrast(1.08) saturate(1.15)' }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Ambient background orbs */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-[#2451A6]/10 rounded-full blur-[120px]" />
@@ -57,7 +94,7 @@ export function Hero() {
         <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-[#169857]/6 rounded-full blur-[100px]" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-12 relative z-10">
+      <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-12 relative z-10 flex-1 flex items-center">
         <motion.div
           className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center"
           variants={containerVariants}
@@ -112,34 +149,60 @@ export function Hero() {
 
             {/* Event detail pills */}
             <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mb-10">
-              {eventDetails.map(({ icon: Icon, label, sub, color, bg }) => (
-                <div
-                  key={label}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/80 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow group`}
-                >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${bg} ${color}`}>
-                    <Icon size={18} />
+              {eventDetails.map(({ icon: Icon, label, sub }, idx) => {
+                const pillThemes = [
+                  {
+                    bg: 'bg-[#2451A6]',
+                    border: 'border-[#1a3a80]',
+                    shadow: 'hover:shadow-[0_8px_24px_rgba(36,81,166,0.4)]',
+                    iconBg: 'bg-white/20',
+                    iconColor: 'text-white'
+                  },
+                  {
+                    bg: 'bg-[#169857]',
+                    border: 'border-[#0f7040]',
+                    shadow: 'hover:shadow-[0_8px_24px_rgba(22,152,87,0.4)]',
+                    iconBg: 'bg-white/20',
+                    iconColor: 'text-white'
+                  },
+                  {
+                    bg: 'bg-[#F74A1D]',
+                    border: 'border-[#c23612]',
+                    shadow: 'hover:shadow-[0_8px_24px_rgba(247,74,29,0.4)]',
+                    iconBg: 'bg-white/20',
+                    iconColor: 'text-white'
+                  }
+                ];
+                const theme = pillThemes[idx % pillThemes.length];
+                return (
+                  <div
+                    key={label}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-2xl ${theme.bg} border ${theme.border} text-white shadow-md ${theme.shadow} transition-all duration-300 hover:-translate-y-0.5 group`}
+                  >
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${theme.iconBg} ${theme.iconColor}`}>
+                      <Icon size={18} />
+                    </div>
+                    <div>
+                      <p className="font-display font-bold text-sm text-white leading-tight">{label}</p>
+                      <p className="text-[11px] text-white/80 font-medium leading-tight">{sub}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-display font-bold text-sm text-slate-900 leading-tight">{label}</p>
-                    <p className="text-[11px] text-slate-500 font-medium leading-tight">{sub}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </motion.div>
 
             {/* CTA buttons */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link
                 to="/ticket-booking"
-                className="group flex items-center justify-center gap-3 bg-[#2451A6] hover:bg-[#1c3f85] text-white font-bold text-sm px-8 py-4 rounded-full shadow-[0_8px_30px_rgba(36,81,166,0.35)] hover:shadow-[0_12px_40px_rgba(36,81,166,0.45)] transition-all duration-300 hover:-translate-y-0.5"
+                className="group flex items-center justify-center gap-3 bg-gradient-to-r from-[#2451A6] to-[#169857] hover:from-[#1a3a80] hover:to-[#0f7040] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-[0_12px_40px_rgba(36,81,166,0.45)] transition-all duration-300 hover:-translate-y-0.5"
               >
-                Reserve Your Seat
+                🎟 Reserve Your Seat
                 <IoArrowForward size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <button
                 onClick={scrollToAgenda}
-                className="group flex items-center justify-center gap-3 bg-white/80 backdrop-blur hover:bg-white border border-slate-200 text-slate-800 font-bold text-sm px-8 py-4 rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+                className="group flex items-center justify-center gap-3 bg-[#F4D313] hover:bg-[#e6c500] text-slate-900 font-bold text-sm px-8 py-4 rounded-full shadow-md hover:shadow-[0_12px_30px_rgba(244,211,19,0.45)] transition-all duration-300 hover:-translate-y-0.5 border border-[#e6c500]"
               >
                 Explore Agenda
                 <FaChevronDown size={18} className="group-hover:translate-y-0.5 transition-transform" />
@@ -152,7 +215,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* ── RIGHT COLUMN — Visual Card ── */}
+          {/* ── RIGHT COLUMN Visual Card ── */}
           <div className="relative w-full flex flex-col items-center justify-center perspective-[2000px]">
             <motion.div
               variants={cardVariants}
@@ -176,7 +239,7 @@ export function Hero() {
 
                 {/* Card content */}
                 <div className="relative z-10 p-12 flex flex-col justify-center min-h-[340px]">
-                  {/* Top row — icons + edition */}
+                  {/* Top row icons + edition */}
                   <div className="flex items-start justify-between mb-14">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center">

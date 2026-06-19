@@ -93,46 +93,73 @@ export function ExpertTalkTopics() {
 
         {/* Topics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {topics.map((topic, idx) => (
-            <motion.div
-              key={topic.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.05, type: 'spring', stiffness: 60 }}
-              whileHover={{
-                y: -8,
-                boxShadow: `0 20px 40px -10px ${topic.bg.replace('0.06', '0.20').replace('0.10', '0.25')}`,
-                transition: { duration: 0.2 },
-              }}
-              className="group glass-panel p-7 rounded-[2rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.03)] hover:bg-white/90 transition-all flex flex-col"
-            >
-              {/* Top row */}
-              <div className="flex justify-between items-center mb-5">
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center border border-slate-200/50 shadow-sm transition-all duration-300 group-hover:scale-110"
-                  style={{ backgroundColor: topic.bg }}
-                >
-                  <div className="transition-transform duration-500 group-hover:rotate-[12deg]" style={{ color: topic.color }}>
-                    <topic.Icon size={22} />
+          {topics.map((topic, idx) => {
+            const topicThemes = [
+              {
+                bg: 'from-[#0d142a] via-[#122247] to-[#0d142a]',
+                border: 'border-white/10 group-hover:border-[#2451A6]/30',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(36,81,166,0.2)]',
+                iconColor: 'text-[#3b82f6]',
+              },
+              {
+                bg: 'from-[#07130d] via-[#0f291a] to-[#07130d]',
+                border: 'border-white/10 group-hover:border-[#169857]/30',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(22,152,87,0.2)]',
+                iconColor: 'text-[#10b981]',
+              },
+              {
+                bg: 'from-[#151206] via-[#2a240c] to-[#151206]',
+                border: 'border-white/10 group-hover:border-[#F4D313]/30',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(244,211,19,0.2)]',
+                iconColor: 'text-[#fbbf24]',
+              },
+              {
+                bg: 'from-[#1a0c0a] via-[#351811] to-[#1a0c0a]',
+                border: 'border-white/10 group-hover:border-[#F74A1D]/30',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(247,74,29,0.2)]',
+                iconColor: 'text-[#f87171]',
+              }
+            ];
+            const theme = topicThemes[idx % topicThemes.length];
+            return (
+              <motion.div
+                key={topic.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.05, type: 'spring', stiffness: 60 }}
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.2 },
+                }}
+                className={`group bg-gradient-to-br ${theme.bg} ${theme.border} ${theme.shadow} p-7 rounded-[2rem] border shadow-[0_15px_35px_rgba(0,0,0,0.2)] transition-all flex flex-col`}
+              >
+                {/* Top row */}
+                <div className="flex justify-between items-center mb-5">
+                  <div
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center border border-white/10 bg-white/5 shadow-sm transition-all duration-300 group-hover:scale-110"
+                  >
+                    <div className={`transition-transform duration-500 group-hover:rotate-[12deg] ${theme.iconColor}`}>
+                      <topic.Icon size={22} />
+                    </div>
                   </div>
+                  <span className="text-white/20 group-hover:text-[#E0B6CF]/40 font-display text-sm font-bold tracking-wider transition-colors">
+                    {topic.number}
+                  </span>
                 </div>
-                <span className="text-slate-300 group-hover:text-slate-400 font-display text-sm font-bold tracking-wider transition-colors">
-                  {topic.number}
-                </span>
-              </div>
 
-              {/* Title */}
-              <h3 className="font-display font-bold text-lg text-slate-900 leading-snug group-hover:text-[#2451A6] transition-colors duration-300 flex-1">
-                {topic.title}
-              </h3>
+                {/* Title */}
+                <h3 className="font-display font-bold text-lg text-white leading-snug group-hover:text-[#E0B6CF] transition-colors duration-300 flex-1">
+                  {topic.title}
+                </h3>
 
-              {/* Bottom accent */}
-              <div className="mt-5 pt-4 border-t border-slate-100 text-xs font-bold text-slate-400 group-hover:text-slate-600 transition-colors">
-                Expert Talk
-              </div>
-            </motion.div>
-          ))}
+                {/* Bottom accent */}
+                <div className="mt-5 pt-4 border-t border-white/10 text-xs font-bold text-white/40 group-hover:text-white/60 transition-colors">
+                  Expert Talk
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Reserve Topic */}
@@ -141,15 +168,15 @@ export function ExpertTalkTopics() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-10 glass-panel p-6 rounded-[2rem] border border-dashed border-[#2451A6]/20 bg-[#2451A6]/3 max-w-2xl mx-auto"
+          className="mt-10 bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] text-white p-6 rounded-[2rem] border border-dashed border-white/20 max-w-2xl mx-auto shadow-sm"
         >
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-[#2451A6]/10 flex items-center justify-center shrink-0">
-              <reserveTopic.Icon size={18} className="text-[#2451A6]" />
+            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+              <reserveTopic.Icon size={18} className="text-[#f87171]" />
             </div>
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#2451A6]/60 block mb-0.5">Reserve Topic</span>
-              <p className="font-display font-bold text-sm text-slate-800">{reserveTopic.title}</p>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#f87171] block mb-0.5">Reserve Topic</span>
+              <p className="font-display font-bold text-sm text-white">{reserveTopic.title}</p>
             </div>
           </div>
         </motion.div>

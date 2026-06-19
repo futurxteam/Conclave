@@ -49,19 +49,50 @@ export function CountdownTimer() {
         { label: 'Hours', value: timeLeft.hours },
         { label: 'Minutes', value: timeLeft.minutes },
         { label: 'Seconds', value: timeLeft.seconds }
-      ].map((item) => (
-        <div key={item.label} className="flex flex-col items-center">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_32px_rgba(36,81,166,0.1)] rounded-2xl flex items-center justify-center relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-royal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="font-display font-black text-2xl sm:text-3xl text-royal relative z-10">
-              {item.value.toString().padStart(2, '0')}
+      ].map((item, idx) => {
+        const timerThemes = [
+          {
+            bg: '#2451A6',
+            border: 'border-[#1a3a80]',
+            shadow: 'shadow-[0_8px_24px_rgba(36,81,166,0.45)]',
+            textColor: 'text-white'
+          },
+          {
+            bg: '#169857',
+            border: 'border-[#0f7040]',
+            shadow: 'shadow-[0_8px_24px_rgba(22,152,87,0.45)]',
+            textColor: 'text-white'
+          },
+          {
+            bg: '#F4D313',
+            border: 'border-[#e6c500]',
+            shadow: 'shadow-[0_8px_24px_rgba(244,211,19,0.45)]',
+            textColor: 'text-slate-900'
+          },
+          {
+            bg: '#F74A1D',
+            border: 'border-[#c23612]',
+            shadow: 'shadow-[0_8px_24px_rgba(247,74,29,0.45)]',
+            textColor: 'text-white'
+          }
+        ];
+        const theme = timerThemes[idx % timerThemes.length];
+        return (
+          <div key={item.label} className="flex flex-col items-center">
+            <div
+              className={`w-16 h-16 sm:w-20 sm:h-20 border ${theme.border} ${theme.shadow} rounded-2xl flex items-center justify-center relative overflow-hidden hover:scale-105 transition-transform duration-200`}
+              style={{ backgroundColor: theme.bg }}
+            >
+              <span className={`font-display font-black text-2xl sm:text-3xl ${theme.textColor} relative z-10`}>
+                {item.value.toString().padStart(2, '0')}
+              </span>
+            </div>
+            <span className="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-slate-600 mt-3">
+              {item.label}
             </span>
           </div>
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mt-3">
-            {item.label}
-          </span>
-        </div>
-      ))}
+        );
+      })}
     </motion.div>
   );
 }

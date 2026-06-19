@@ -80,34 +80,59 @@ export function Gallery() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] gap-6">
-          {galleryImages.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group relative rounded-3xl overflow-hidden bg-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-500 glass-panel p-2 ${image.className}`}
-            >
-              <div className="w-full h-full rounded-[1.25rem] overflow-hidden relative">
-                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <img 
-                  src={image.url} 
-                  alt={image.title} 
-                  className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                
-                {/* Overlay Text */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-end p-6 md:p-8">
-                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white font-display font-bold text-xl md:text-2xl drop-shadow-md">
-                      {image.title}
-                    </p>
+          {galleryImages.map((image, index) => {
+            const galleryThemes = [
+              {
+                bg: 'from-[#0d142a] via-[#122247] to-[#0d142a]',
+                border: 'border-white/10 group-hover:border-[#2451A6]/40',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(36,81,166,0.25)]'
+              },
+              {
+                bg: 'from-[#07130d] via-[#0f291a] to-[#07130d]',
+                border: 'border-white/10 group-hover:border-[#169857]/40',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(22,152,87,0.25)]'
+              },
+              {
+                bg: 'from-[#151206] via-[#2a240c] to-[#151206]',
+                border: 'border-white/10 group-hover:border-[#F4D313]/40',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(244,211,19,0.25)]'
+              },
+              {
+                bg: 'from-[#1a0c0a] via-[#351811] to-[#1a0c0a]',
+                border: 'border-white/10 group-hover:border-[#F74A1D]/40',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(247,74,29,0.25)]'
+              }
+            ];
+            const theme = galleryThemes[index % galleryThemes.length];
+            return (
+              <motion.div
+                key={image.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`group relative rounded-3xl overflow-hidden bg-gradient-to-br ${theme.bg} ${theme.border} ${theme.shadow} border shadow-sm transition-all duration-500 p-2 ${image.className}`}
+              >
+                <div className="w-full h-full rounded-[1.25rem] overflow-hidden relative">
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  <img 
+                    src={image.url} 
+                    alt={image.title} 
+                    className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  
+                  {/* Overlay Text */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-end p-6 md:p-8">
+                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="text-white font-display font-bold text-xl md:text-2xl drop-shadow-md">
+                        {image.title}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

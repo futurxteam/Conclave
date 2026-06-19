@@ -131,9 +131,9 @@ export function CulturalAndKPSA() {
           })}
         </div>
 
-        {/* KPSA Featured Banner — "A Historic Moment for Psychology Students" */}
-        <Link 
-          to="/ticket-booking" 
+        {/* KPSA Featured Banner "A Historic Moment for Psychology Students" */}
+        <Link
+          to="/ticket-booking"
           className="block relative z-10 cursor-pointer group"
           role="button"
           tabIndex={0}
@@ -166,7 +166,7 @@ export function CulturalAndKPSA() {
               <div className="max-w-2xl">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-[#F4D313] text-xs font-bold uppercase tracking-widest mb-5">
                   <span className="w-2 h-2 rounded-full bg-[#F4D313] animate-pulse" />
-                  KPSA — Special Announcement
+                  KPSA Special Announcement
                 </span>
                 <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-white leading-tight mb-5 tracking-tight group-hover:text-[#E0B6CF] transition-colors duration-300">
                   A Historic Moment for<br className="hidden sm:block" /> Psychology Students

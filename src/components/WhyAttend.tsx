@@ -8,26 +8,41 @@ const reasons = [
   {
     title: 'Gain Practical Exposure',
     desc: 'Participate in discussions, workshops, activities, and real-world learning experiences.',
-    Icon: FaBrain, // use FaBrain or original FaBullseye, let's keep original icons or update if needed
-    color: '#E0B6CF',
-    bg: 'rgba(224, 182, 207, 0.08)',
-    glow: 'rgba(224, 182, 207, 0.2)'
+    Icon: FaBrain,
+    bg: '#2451A6',
+    border: '#1a3a80',
+    shadow: 'rgba(36,81,166,0.4)',
+    textColor: 'text-white',
+    subtextColor: 'text-white/80',
+    labelColor: 'text-white/60',
+    accentColor: 'text-white',
+    iconBg: 'bg-white/20'
   },
   {
     title: 'Earn Recognition',
     desc: 'Receive participation certificates and become part of a growing psychology community.',
     Icon: FaAward,
-    color: '#F4D313',
-    bg: 'rgba(244, 211, 19, 0.06)',
-    glow: 'rgba(244, 211, 19, 0.18)'
+    bg: '#F4D313',
+    border: '#e6c500',
+    shadow: 'rgba(244,211,19,0.4)',
+    textColor: 'text-slate-900',
+    subtextColor: 'text-slate-800',
+    labelColor: 'text-slate-700',
+    accentColor: 'text-slate-900',
+    iconBg: 'bg-slate-900/15'
   },
   {
     title: 'Be Part of Something Bigger',
     desc: "Join Kerala's aspiring mental health professionals in a conclave built for learning, collaboration, and impact.",
     Icon: FaStar,
-    color: '#2451A6',
-    bg: 'rgba(36, 81, 166, 0.04)',
-    glow: 'rgba(36, 81, 166, 0.12)'
+    bg: '#169857',
+    border: '#0f7040',
+    shadow: 'rgba(22,152,87,0.4)',
+    textColor: 'text-white',
+    subtextColor: 'text-white/80',
+    labelColor: 'text-white/60',
+    accentColor: 'text-white',
+    iconBg: 'bg-white/20'
   }
 ];
 
@@ -60,11 +75,10 @@ export function WhyAttend() {
           </h2>
 
           <p className="font-sans text-slate-600 text-lg sm:text-xl font-medium leading-relaxed">
-            More than a conclave — an opportunity to learn, connect, grow, and shape your future in psychology.
+            More than a conclave an opportunity to learn, connect, grow, and shape your future in psychology.
           </p>
         </div>
 
-        {/* 6 Premium Feature Cards — 3x2 grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {reasons.map((card, idx) => (
             <motion.div
@@ -75,42 +89,42 @@ export function WhyAttend() {
               transition={{ duration: 0.5, delay: idx * 0.08, type: "spring", stiffness: 60 }}
               whileHover={{
                 y: -8,
-                boxShadow: `0 24px 48px -12px ${card.glow}`,
+                boxShadow: `0 24px 48px -12px ${card.shadow}`,
                 transition: { duration: 0.2 }
               }}
-              className="group glass-panel p-8 sm:p-9 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.03)] hover:bg-white/90 transition-all flex flex-col justify-between min-h-[280px]"
+              className={`group p-8 sm:p-9 rounded-[2.25rem] border shadow-md flex flex-col justify-between min-h-[280px] transition-all cursor-pointer`}
+              style={{ backgroundColor: card.bg, borderColor: card.border }}
             >
               <div>
                 {/* Icon + Index */}
                 <div className="flex justify-between items-center mb-7">
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-slate-200/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
-                    style={{ backgroundColor: card.bg }}
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-sm transition-all duration-300 group-hover:scale-110 ${card.iconBg}`}
                   >
-                    <div className="transition-transform duration-500 group-hover:rotate-[12deg]" style={{ color: card.color }}>
+                    <div className={`transition-transform duration-500 group-hover:rotate-[12deg] ${card.textColor}`}>
                       <card.Icon size={24} />
                     </div>
                   </div>
-                  <span className="text-slate-300 group-hover:text-slate-400 font-display text-sm font-bold tracking-wider transition-colors">
+                  <span className={`${card.labelColor} font-display text-sm font-bold tracking-wider transition-colors`}>
                     0{idx + 1}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display font-bold text-lg sm:text-xl text-slate-900 mb-3 leading-snug group-hover:text-[#2451A6] transition-colors duration-300">
+                <h3 className={`font-display font-bold text-lg sm:text-xl ${card.textColor} mb-3 leading-snug`}>
                   {card.title}
                 </h3>
 
                 {/* Description */}
-                <p className="font-sans text-sm text-slate-600 leading-relaxed">
+                <p className={`font-sans text-sm ${card.subtextColor} leading-relaxed`}>
                   {card.desc}
                 </p>
               </div>
 
               {/* Bottom Accent */}
-              <div className="border-t border-slate-100 mt-7 pt-4 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-slate-700 transition-colors duration-300">
+              <div className={`border-t border-white/20 mt-7 pt-4 flex items-center justify-between text-xs font-bold ${card.labelColor} group-hover:${card.accentColor} transition-colors duration-300`}>
                 <span>Key Benefit</span>
-                <span className="flex items-center gap-1 transition-colors" style={{ color: card.color }}>
+                <span className={`flex items-center gap-1 ${card.accentColor}`}>
                   Learn More <IoArrowForward size={12} className="group-hover:translate-x-0.5 transition-transform" />
                 </span>
               </div>
@@ -171,9 +185,9 @@ export function WhyAttend() {
 
               <Link
                 to="/ticket-booking"
-                className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] hover:from-[#1c3f85] hover:to-[#c9a1ba] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-[0_15px_35px_rgba(36,81,166,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
+                className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#F74A1D] to-[#ef4444] hover:from-[#c23612] hover:to-[#dc2626] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-[0_15px_35px_rgba(247,74,29,0.45)] transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
               >
-                Reserve Your Seat
+                🎟 Reserve Your Seat
                 <IoArrowForward size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

@@ -70,10 +70,10 @@ function AccommodationAddon({ selected, onToggle }: AccommodationAddonProps) {
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full text-left transition-all duration-300 rounded-2xl border-2 p-4 backdrop-blur-xl group
+        className={`w-full text-left transition-all duration-300 rounded-2xl border p-4 backdrop-blur-xl group
           ${selected
-            ? 'bg-emerald-50/80 border-emerald-400 shadow-[0_6px_24px_-8px_rgba(20,146,87,0.28)] ring-4 ring-emerald-400/10'
-            : 'bg-white/70 border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/40 hover:shadow-md'
+            ? 'bg-gradient-to-br from-[#07130d] via-[#0f291a] to-[#07130d] border-[#169857] shadow-[0_6px_24px_-8px_rgba(22,152,87,0.4)]'
+            : 'bg-[#0d142a]/40 border-white/10 text-white/80 hover:border-[#169857]/40 hover:bg-[#07130d]/30 hover:shadow-md'
           }`}
       >
         {/* Header row */}
@@ -81,19 +81,19 @@ function AccommodationAddon({ selected, onToggle }: AccommodationAddonProps) {
           <div className="flex items-start gap-3 flex-1 min-w-0">
             {/* Bed icon circle */}
             <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300
-              ${selected ? 'bg-emerald-500 text-white shadow-md' : 'bg-slate-100 text-slate-500 group-hover:bg-emerald-100 group-hover:text-emerald-600'}`}>
+              ${selected ? 'bg-emerald-500 text-white shadow-md border border-emerald-400' : 'bg-white/5 border border-white/10 text-white/50 group-hover:bg-white/10 group-hover:text-emerald-400'}`}>
               <FaBed size={17} />
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Need Accommodation?</p>
+              <p className="text-[11px] font-bold text-white/40 uppercase tracking-widest mb-0.5">Need Accommodation?</p>
               <div className="flex items-center gap-2 flex-wrap">
-                <span className={`font-bold text-sm transition-colors duration-200 ${selected ? 'text-emerald-700' : 'text-slate-700'}`}>
+                <span className={`font-bold text-sm transition-colors duration-200 ${selected ? 'text-[#10b981]' : 'text-white'}`}>
                   🏨 Hostel &amp; Accommodation
                 </span>
-                <span className={`font-black text-sm ${selected ? 'text-emerald-600' : 'text-slate-500'}`}>+₹250</span>
+                <span className={`font-black text-sm ${selected ? 'text-[#34d399]' : 'text-white/50'}`}>+₹250</span>
               </div>
-              <p className="text-xs text-slate-400 font-medium mt-0.5 leading-snug">
+              <p className="text-xs text-white/40 font-medium mt-0.5 leading-snug">
                 Add hostel / guest-house for the duration of the conclave.
               </p>
             </div>
@@ -101,7 +101,7 @@ function AccommodationAddon({ selected, onToggle }: AccommodationAddonProps) {
 
           {/* Toggle */}
           <div className={`w-11 h-6 rounded-full flex items-center shrink-0 mt-1 transition-all duration-300 relative
-            ${selected ? 'bg-emerald-500 shadow-md' : 'bg-slate-200'}`}>
+            ${selected ? 'bg-emerald-500 shadow-md' : 'bg-white/10 border border-white/10'}`}>
             <motion.div
               animate={{ x: selected ? 20 : 2 }}
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
@@ -114,8 +114,8 @@ function AccommodationAddon({ selected, onToggle }: AccommodationAddonProps) {
         <div className="mt-2.5 ml-12 flex items-center gap-2">
           <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full transition-all duration-300
             ${selected
-              ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-              : 'bg-slate-100 text-slate-500 border border-slate-200 group-hover:bg-emerald-50 group-hover:text-emerald-600 group-hover:border-emerald-200'
+              ? 'bg-[#169857]/20 text-[#10b981] border border-emerald-500/20'
+              : 'bg-white/5 text-white/50 border border-white/10 group-hover:bg-white/10 group-hover:text-[#10b981] group-hover:border-emerald-500/20'
             }`}>
             ₹250 per participant
           </span>
@@ -253,27 +253,27 @@ export function TicketBooking() {
                 <div className="flex flex-col gap-3">
                   <div
                     onClick={() => handleTicketSelect('student')}
-                    className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden ${selectedTicket === 'student' ? 'border-[#2451A6] shadow-[0_15px_40px_-15px_rgba(36,81,166,0.3)] ring-4 ring-[#2451A6]/10' : 'border-slate-200 shadow-sm'}`}
+                    className={`bg-gradient-to-br from-[#0d142a] via-[#122247] to-[#0d142a] border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden ${selectedTicket === 'student' ? 'border-[#2451A6] shadow-[0_15px_40px_-15px_rgba(36,81,166,0.3)] ring-4 ring-[#2451A6]/10' : 'border-white/10 shadow-sm'}`}
                   >
                     <div className="absolute top-0 right-0 bg-gradient-to-l from-[#F74A1D] to-[#F4D313] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
                       Till July 5
                     </div>
-                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">{TICKETS.student.title}</h3>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Psychology Students</p>
-                    
+                    <h3 className="font-display font-black text-xl text-white mb-1 mt-2">{TICKETS.student.title}</h3>
+                    <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Ideal For: Psychology Students</p>
+
                     <div className="flex items-baseline gap-1.5 mb-1">
-                      <span className="text-4xl font-black text-[#2451A6]">₹1500</span>
-                      <span className="text-xs font-bold text-slate-400">/ person</span>
+                      <span className="text-4xl font-black text-[#3b82f6]">₹1500</span>
+                      <span className="text-xs font-bold text-white/40">/ person</span>
                     </div>
 
                     {/* Group Discount Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2451A6]/10 border border-[#2451A6]/20 text-[#2451A6] text-[11px] font-bold uppercase tracking-wider mb-4">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#3b82f6] text-[11px] font-bold uppercase tracking-wider mb-4">
                       <FaUsers size={12} /> Group Offer Available
                     </div>
 
                     {/* Group Offers Info */}
-                    <div className="bg-slate-50/80 border border-slate-100 rounded-2xl p-4 mb-6 space-y-3 text-xs font-semibold text-slate-700">
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-6 space-y-3 text-xs font-semibold text-white/90">
+                      <div className="text-[10px] font-bold text-white/40 uppercase tracking-wider mb-1 flex items-center justify-between">
                         <span>Group Offer</span>
                         {quantity >= 10 && selectedTicket === 'student' && (
                           <span className="bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
@@ -281,35 +281,38 @@ export function TicketBooking() {
                           </span>
                         )}
                       </div>
-                      
-                      <div className={`flex items-center justify-between p-2 rounded-lg border-2 border-dashed transition-all ${quantity >= 10 && selectedTicket === 'student' ? 'bg-emerald-100/50 border-emerald-400 text-[#169857]' : 'bg-emerald-50/30 border-emerald-400/20 text-slate-700'}`}>
+
+                      <div className={`flex items-center justify-between p-2 rounded-lg border-2 border-dashed transition-all ${quantity >= 10 && selectedTicket === 'student' ? 'bg-[#169857]/20 border-emerald-500 text-[#169857]' : 'bg-white/5 border-white/10 text-white/80'}`}>
                         <span className="flex items-center gap-1 font-bold">
                           10+ Participants
                           <span className="bg-emerald-500 text-white text-[8px] font-extrabold px-1.5 py-0.2 rounded uppercase tracking-wider">
                             Best Value
                           </span>
                         </span>
-                        <span className="font-extrabold text-[#169857]">₹1300 <span className="text-[10px] font-normal text-slate-500">each</span></span>
+                        <span className="font-extrabold text-[#169857]">₹1300 <span className="text-[10px] font-normal text-white/40">each</span></span>
                       </div>
-                      
-                      <p className="text-[10px] text-slate-400 font-medium leading-normal text-center italic">
+
+                      <p className="text-[10px] text-white/40 font-medium leading-normal text-center italic">
                         Perfect for college groups and psychology departments.
                       </p>
 
                       {/* Dropdown Selection Box */}
-                      <div className="border-t border-slate-200/60 pt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
-                        <span className="text-slate-500 font-bold text-[11px] uppercase tracking-wider">Select Group Size:</span>
+                      <div className="border-t border-white/10 pt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                        <span className="text-white/50 font-bold text-[11px] uppercase tracking-wider">Select Group Size:</span>
                         <select
-                          value={selectedTicket === 'student' ? quantity : 1}
+                          value={selectedTicket === 'student' && quantity >= 10 ? quantity : ''}
                           onChange={(e) => {
                             setSelectedTicket('student');
-                            setQuantity(parseInt(e.target.value));
+                            if (e.target.value) {
+                              setQuantity(parseInt(e.target.value));
+                            }
                           }}
-                          className="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2451A6]/20 focus:border-[#2451A6] transition-all cursor-pointer shadow-sm hover:border-slate-300"
+                          className="px-2.5 py-1.5 rounded-lg border border-white/10 bg-[#0d142a] text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#2451A6]/20 focus:border-[#2451A6] transition-all cursor-pointer shadow-sm hover:border-white/20"
                         >
-                          {Array.from({ length: 50 }, (_, i) => i + 1).map((val) => (
+                          <option value="">Select Group Size</option>
+                          {Array.from({ length: 41 }, (_, i) => i + 10).map((val) => (
                             <option key={val} value={val}>
-                              {val} {val === 1 ? 'Participant' : val >= 10 ? `Participants (₹1300 each)` : `Participants`}
+                              {val} Participants (₹1300 each)
                             </option>
                           ))}
                         </select>
@@ -318,14 +321,14 @@ export function TicketBooking() {
 
                     <div className="space-y-3 mb-8 flex-1">
                       {TICKETS.student.features.filter(f => !f.toLowerCase().includes('hostel') && !f.toLowerCase().includes('accommodation')).map((feature) => (
-                        <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
-                          <FaCircleCheck size={16} className="text-[#169857] shrink-0 mt-0.5" />
+                        <div key={feature} className="flex items-start gap-2.5 text-white/70 font-medium text-sm">
+                          <FaCircleCheck size={16} className="text-[#3b82f6] shrink-0 mt-0.5" />
                           {feature}
                         </div>
                       ))}
                     </div>
                     <button
-                      className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'student' ? 'bg-[#2451A6] text-white shadow-md' : 'bg-slate-100 text-slate-700 group-hover:bg-[#2451A6] group-hover:text-white'}`}
+                      className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'student' ? 'bg-gradient-to-r from-[#2451A6] to-[#3b82f6] text-white shadow-md' : 'bg-white/5 border border-white/10 text-white group-hover:bg-gradient-to-r group-hover:from-[#2451A6] group-hover:to-[#3b82f6]'}`}
                     >
                       {selectedTicket === 'student' ? 'Selected' : 'Select Pass'}
                     </button>
@@ -344,27 +347,27 @@ export function TicketBooking() {
                 <div className="flex flex-col gap-3">
                   <div
                     onClick={() => handleTicketSelect('professional')}
-                    className={`bg-white/80 backdrop-blur-xl border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden ${selectedTicket === 'professional' ? 'border-[#169857] shadow-[0_15px_40px_-15px_rgba(20,146,87,0.3)] ring-4 ring-[#169857]/10' : 'border-slate-200 shadow-sm'}`}
+                    className={`bg-gradient-to-br from-[#151206] via-[#2a240c] to-[#151206] border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden ${selectedTicket === 'professional' ? 'border-[#F4D313] shadow-[0_15px_40px_-15px_rgba(244,211,19,0.3)] ring-4 ring-[#F4D313]/10' : 'border-white/10 shadow-sm'}`}
                   >
                     <div className="absolute top-0 right-0 bg-gradient-to-l from-[#2451A6] to-[#E0B6CF] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
                       Most Popular
                     </div>
-                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">{TICKETS.professional.title}</h3>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Educators & Professionals</p>
-                    
+                    <h3 className="font-display font-black text-xl text-white mb-1 mt-2">{TICKETS.professional.title}</h3>
+                    <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Ideal For: Educators & Professionals</p>
+
                     <div className="flex items-baseline gap-1.5 mb-1">
-                      <span className="text-4xl font-black text-[#169857]">₹2000</span>
-                      <span className="text-xs font-bold text-slate-400">/ person</span>
+                      <span className="text-4xl font-black text-[#fbbf24]">₹2000</span>
+                      <span className="text-xs font-bold text-white/40">/ person</span>
                     </div>
 
                     {/* Group Discount Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#169857]/10 border border-[#169857]/20 text-[#169857] text-[11px] font-bold uppercase tracking-wider mb-4">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#fbbf24] text-[11px] font-bold uppercase tracking-wider mb-4">
                       <FaUsers size={12} /> Group Offer Available
                     </div>
 
                     {/* Group Offers Info */}
-                    <div className="bg-slate-50/80 border border-slate-100 rounded-2xl p-4 mb-6 space-y-3 text-xs font-semibold text-slate-700">
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-6 space-y-3 text-xs font-semibold text-white/90">
+                      <div className="text-[10px] font-bold text-white/40 uppercase tracking-wider mb-1 flex items-center justify-between">
                         <span>Group Offer</span>
                         {quantity >= 10 && selectedTicket === 'professional' && (
                           <span className="bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
@@ -372,35 +375,38 @@ export function TicketBooking() {
                           </span>
                         )}
                       </div>
-                      
-                      <div className={`flex items-center justify-between p-2 rounded-lg border-2 border-dashed transition-all ${quantity >= 10 && selectedTicket === 'professional' ? 'bg-emerald-100/50 border-emerald-400 text-[#169857]' : 'bg-emerald-50/30 border-emerald-400/20 text-slate-700'}`}>
+
+                      <div className={`flex items-center justify-between p-2 rounded-lg border-2 border-dashed transition-all ${quantity >= 10 && selectedTicket === 'professional' ? 'bg-[#169857]/20 border-emerald-500 text-[#169857]' : 'bg-white/5 border-white/10 text-white/80'}`}>
                         <span className="flex items-center gap-1 font-bold">
                           10+ Participants
                           <span className="bg-emerald-500 text-white text-[8px] font-extrabold px-1.5 py-0.2 rounded uppercase tracking-wider">
                             Best Value
                           </span>
                         </span>
-                        <span className="font-extrabold text-[#169857]">₹1600 <span className="text-[10px] font-normal text-slate-500">each</span></span>
+                        <span className="font-extrabold text-[#169857]">₹1600 <span className="text-[10px] font-normal text-white/40">each</span></span>
                       </div>
-                      
-                      <p className="text-[10px] text-slate-400 font-medium leading-normal text-center italic">
+
+                      <p className="text-[10px] text-white/40 font-medium leading-normal text-center italic">
                         Perfect for college groups and psychology departments.
                       </p>
 
                       {/* Dropdown Selection Box */}
-                      <div className="border-t border-slate-200/60 pt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
-                        <span className="text-slate-500 font-bold text-[11px] uppercase tracking-wider">Select Group Size:</span>
+                      <div className="border-t border-white/10 pt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                        <span className="text-white/50 font-bold text-[11px] uppercase tracking-wider">Select Group Size:</span>
                         <select
-                          value={selectedTicket === 'professional' ? quantity : 1}
+                          value={selectedTicket === 'professional' && quantity >= 10 ? quantity : ''}
                           onChange={(e) => {
                             setSelectedTicket('professional');
-                            setQuantity(parseInt(e.target.value));
+                            if (e.target.value) {
+                              setQuantity(parseInt(e.target.value));
+                            }
                           }}
-                          className="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all cursor-pointer shadow-sm hover:border-slate-300"
+                          className="px-2.5 py-1.5 rounded-lg border border-white/10 bg-[#151206] text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#F4D313]/20 focus:border-[#F4D313] transition-all cursor-pointer shadow-sm hover:border-white/20"
                         >
-                          {Array.from({ length: 50 }, (_, i) => i + 1).map((val) => (
+                          <option value="">Select Group Size</option>
+                          {Array.from({ length: 41 }, (_, i) => i + 10).map((val) => (
                             <option key={val} value={val}>
-                              {val} {val === 1 ? 'Participant' : val >= 10 ? `Participants (₹1600 each)` : `Participants`}
+                              {val} Participants (₹1600 each)
                             </option>
                           ))}
                         </select>
@@ -409,16 +415,16 @@ export function TicketBooking() {
 
                     <div className="space-y-3 mb-8 flex-1">
                       {TICKETS.professional.features.filter(f => !f.toLowerCase().includes('hostel') && !f.toLowerCase().includes('accommodation') && !f.toLowerCase().includes('guest')).map((feature) => (
-                        <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
-                          <FaCircleCheck size={16} className="text-[#169857] shrink-0 mt-0.5" />
+                        <div key={feature} className="flex items-start gap-2.5 text-white/70 font-medium text-sm">
+                          <FaCircleCheck size={16} className="text-[#fbbf24] shrink-0 mt-0.5" />
                           {feature}
                         </div>
                       ))}
                     </div>
                     <button
-                      className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'professional' ? 'bg-[#169857] text-white shadow-md' : 'bg-[#169857] text-white hover:bg-slate-900 shadow-sm'}`}
+                      className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'professional' ? 'bg-gradient-to-r from-[#F4D313] to-[#fbbf24] text-slate-900 font-extrabold shadow-md' : 'bg-white/5 border border-white/10 text-white group-hover:bg-gradient-to-r group-hover:from-[#F4D313] group-hover:to-[#fbbf24] group-hover:text-slate-900'}`}
                     >
-                      {selectedTicket === 'professional' ? 'Selected' : 'Choose Professional'}
+                      {selectedTicket === 'professional' ? 'Selected' : 'Select'}
                     </button>
                   </div>
 
@@ -445,37 +451,37 @@ export function TicketBooking() {
                   className="pt-8"
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step >= 2 ? 'bg-[#2451A6] text-white' : 'bg-slate-200 text-slate-500'}`}>2</div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-gradient-to-r from-[#169857] to-[#10b981] text-white shadow-sm`}>2</div>
                     <h2 className="font-display font-black text-2xl text-slate-800">Personal Details</h2>
                   </div>
 
-                  <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-[2rem] p-6 sm:p-10 shadow-sm">
+                  <div className="bg-gradient-to-br from-[#07130d] via-[#0f291a] to-[#07130d] text-white border border-white/10 rounded-[2rem] p-6 sm:p-10 shadow-sm">
                     <form className="space-y-6">
                       <div className="grid sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
-                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#2451A6]/30 focus:border-[#2451A6] transition-all font-medium text-slate-800 shadow-sm" placeholder="John Doe" />
+                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Full Name</label>
+                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="John Doe" />
                         </div>
                         <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
-                          <input type="email" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#2451A6]/30 focus:border-[#2451A6] transition-all font-medium text-slate-800 shadow-sm" placeholder="john@example.com" />
+                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Email Address</label>
+                          <input type="email" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="john@example.com" />
                         </div>
                       </div>
 
                       <div className="grid sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Phone Number</label>
-                          <input type="tel" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#2451A6]/30 focus:border-[#2451A6] transition-all font-medium text-slate-800 shadow-sm" placeholder="+91 98765 43210" />
+                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Phone Number</label>
+                          <input type="tel" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="+91 98765 43210" />
                         </div>
                         <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Institution / Organization</label>
-                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#2451A6]/30 focus:border-[#2451A6] transition-all font-medium text-slate-800 shadow-sm" placeholder="University of Kerala" />
+                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Institution / Organization</label>
+                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="University of Kerala" />
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">City</label>
-                        <input type="text" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#2451A6]/30 focus:border-[#2451A6] transition-all font-medium text-slate-800 shadow-sm" placeholder="Kochi" />
+                        <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">City</label>
+                        <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="Kochi" />
                       </div>
 
                       <div className="pt-6">
@@ -486,7 +492,7 @@ export function TicketBooking() {
                             setStep(3);
                             window.scrollTo({ top: (document.getElementById('review-booking')?.offsetTop || 0) - 100, behavior: 'smooth' });
                           }}
-                          className="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-white bg-slate-900 hover:bg-[#2451A6] transition-all duration-300 shadow-md flex items-center justify-center gap-2"
+                          className="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-[#169857] to-[#10b981] hover:from-[#107040] hover:to-[#059669] transition-all duration-300 shadow-md flex items-center justify-center gap-2"
                         >
                           Continue to Review
                         </button>
@@ -508,48 +514,48 @@ export function TicketBooking() {
                   className="pt-8 mb-12"
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-[#2451A6] text-white`}>3</div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-gradient-to-r from-[#F74A1D] to-[#ef4444] text-white shadow-sm`}>3</div>
                     <h2 className="font-display font-black text-2xl text-slate-800">Review & Payment</h2>
                   </div>
 
-                  <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-[2rem] p-6 sm:p-10 shadow-[0_15px_40px_-15px_rgba(36,81,166,0.1)]">
-                    <h3 className="font-display font-bold text-xl text-slate-800 mb-6">Secure Payment</h3>
+                  <div className="bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] text-white border border-white/10 rounded-[2rem] p-6 sm:p-10 shadow-[0_15px_40px_rgba(247,74,29,0.15)]">
+                    <h3 className="font-display font-bold text-xl text-white mb-6">Secure Payment</h3>
 
                     {/* Payment Form Mockup UI */}
                     <div className="space-y-6">
                       <div className="flex flex-wrap gap-2 mb-6">
                         {['UPI', 'Google Pay', 'PhonePe', 'Paytm', 'Debit Card', 'Credit Card'].map((method) => (
-                          <span key={method} className="text-xs font-bold text-slate-600 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm cursor-pointer hover:border-[#2451A6] transition-colors">
+                          <span key={method} className="text-xs font-bold text-white/80 bg-white/5 px-4 py-2 rounded-lg border border-white/10 shadow-sm cursor-pointer hover:border-[#F74A1D] hover:bg-white/10 transition-colors">
                             {method}
                           </span>
                         ))}
                       </div>
 
-                      <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
+                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
                         <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Card Number (Mock)</label>
-                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none transition-all font-mono text-slate-800" placeholder="0000 0000 0000 0000" disabled />
+                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Card Number (Mock)</label>
+                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none transition-all font-mono text-white" placeholder="0000 0000 0000 0000" disabled />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-2">
-                            <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Expiry</label>
-                            <input type="text" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none transition-all font-mono text-slate-800" placeholder="MM/YY" disabled />
+                            <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Expiry</label>
+                            <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none transition-all font-mono text-white" placeholder="MM/YY" disabled />
                           </div>
                           <div className="space-y-2">
-                            <label className="font-sans text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">CVV</label>
-                            <input type="text" className="w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none transition-all font-mono text-slate-800" placeholder="123" disabled />
+                            <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">CVV</label>
+                            <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none transition-all font-mono text-white" placeholder="123" disabled />
                           </div>
                         </div>
                       </div>
 
-                      <div className="pt-6 border-t border-slate-200">
+                      <div className="pt-6 border-t border-white/10">
                         <div className="flex items-center justify-between gap-4 flex-wrap">
-                          <div className="flex items-center gap-2 text-slate-500 font-medium text-sm">
+                          <div className="flex items-center gap-2 text-white/60 font-medium text-sm">
                             <FaShieldHalved size={20} className="text-[#169857]" />
                             Secure 256-bit SSL encryption
                           </div>
 
-                          <button className="w-full sm:w-auto py-4 px-8 rounded-full font-bold text-white bg-[#2451A6] hover:bg-[#169857] transition-all duration-300 shadow-[0_10px_20px_rgba(36,81,166,0.2)] flex items-center justify-center gap-2 text-lg">
+                          <button className="w-full sm:w-auto py-4 px-8 rounded-full font-bold text-white bg-gradient-to-r from-[#F74A1D] to-[#ef4444] hover:from-[#c23612] hover:to-[#dc2626] transition-all duration-300 shadow-[0_10px_20px_rgba(247,74,29,0.3)] flex items-center justify-center gap-2 text-lg">
                             Pay ₹{getTotal().toLocaleString('en-IN')} Now <IoArrowForward size={20} />
                           </button>
                         </div>
@@ -572,10 +578,10 @@ export function TicketBooking() {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-[2rem] p-6 sm:p-8 shadow-[0_20px_40px_-15px_rgba(36,81,166,0.15)]"
+                    className="bg-gradient-to-br from-[#0d142a] via-[#122247] to-[#0d142a] text-white border border-white/10 rounded-[2rem] p-6 sm:p-8 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]"
                   >
                     <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
-                      <h3 className="font-display font-black text-xl text-slate-800">Booking Summary</h3>
+                      <h3 className="font-display font-black text-xl text-white">Booking Summary</h3>
                       {quantity >= 10 && (
                         <span className="bg-gradient-to-r from-emerald-500 to-[#169857] text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm animate-pulse flex items-center gap-1">
                           🎉 Discount Active
@@ -586,38 +592,38 @@ export function TicketBooking() {
                     <div className="space-y-6">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className="font-bold text-slate-800 mb-1">{TICKETS[selectedTicket as keyof typeof TICKETS].title}</p>
-                          <p className="text-sm font-medium text-slate-500">₹{TICKETS[selectedTicket as keyof typeof TICKETS].price} per ticket</p>
+                          <p className="font-bold text-white mb-1">{TICKETS[selectedTicket as keyof typeof TICKETS].title}</p>
+                          <p className="text-sm font-medium text-white/60">₹{TICKETS[selectedTicket as keyof typeof TICKETS].price} per ticket</p>
                         </div>
 
                         {/* Quantity Selector */}
-                        <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-full px-2 py-1">
+                        <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-2 py-1">
                           <button
                             onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                            className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors"
+                            className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                           >
                             <FaMinus size={12} />
                           </button>
                           <span className="font-bold text-sm min-w-[12px] text-center">{quantity}</span>
                           <button
                             onClick={() => setQuantity(Math.min(50, quantity + 1))}
-                            className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors"
+                            className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                           >
                             <FaPlus size={12} />
                           </button>
                         </div>
                       </div>
 
-                      <div className="h-px w-full bg-slate-200" />
+                      <div className="h-px w-full bg-white/10" />
 
-                      <div className="space-y-3 text-sm font-medium text-slate-600">
+                      <div className="space-y-3 text-sm font-medium text-white/70">
                         <div className="flex justify-between items-center">
                           <span>Subtotal ({quantity} {quantity > 1 ? 'tickets' : 'ticket'})</span>
-                          <span className="font-bold text-slate-800">₹{getSubtotal()}</span>
+                          <span className="font-bold text-white">₹{getSubtotal()}</span>
                         </div>
 
                         {getGroupDiscount() > 0 && (
-                          <div className="flex justify-between items-center text-emerald-600 font-semibold bg-emerald-50/50 p-2 rounded-xl border border-emerald-100">
+                          <div className="flex justify-between items-center text-emerald-400 font-semibold bg-white/5 p-2 rounded-xl border border-white/10">
                             <span className="flex items-center gap-1">
                               🏷️ Group Discount (10+ Offer)
                             </span>
@@ -635,22 +641,22 @@ export function TicketBooking() {
                               transition={{ duration: 0.2 }}
                               className="flex justify-between items-center"
                             >
-                              <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                              <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
                                 <FaBed size={13} className="shrink-0" />
                                 Accommodation Option
-                                {quantity > 1 && <span className="text-slate-400 font-medium">×{quantity}</span>}
+                                {quantity > 1 && <span className="text-white/40 font-medium">×{quantity}</span>}
                               </span>
-                              <span className="font-bold text-emerald-700">₹{getAccommodationTotal()}</span>
+                              <span className="font-bold text-emerald-400">₹{getAccommodationTotal()}</span>
                             </motion.div>
                           )}
                         </AnimatePresence>
                       </div>
 
-                      <div className="h-px w-full bg-slate-200" />
+                      <div className="h-px w-full bg-white/10" />
 
                       <div className="flex justify-between items-center pt-2">
-                        <span className="font-bold text-slate-800 text-lg">Final Amount</span>
-                        <span className="font-black text-[#2451A6] text-3xl">₹{getTotal()}</span>
+                        <span className="font-bold text-white text-lg">Final Amount</span>
+                        <span className="font-black text-[#3b82f6] text-3xl">₹{getTotal()}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -662,35 +668,35 @@ export function TicketBooking() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-[2rem] p-6 sm:p-8"
+                className="bg-gradient-to-br from-[#0d142a] via-[#111d3a] to-[#0d142a] text-white border border-white/10 rounded-[2rem] p-6 sm:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.2)]"
               >
-                <h4 className="font-display font-bold text-slate-800 mb-6">Why Attend?</h4>
+                <h4 className="font-display font-bold text-white mb-6">Why Attend?</h4>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#2451A6]/10 flex items-center justify-center text-[#2451A6]">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#3b82f6] border border-white/10">
                       <FaUsers size={18} />
                     </div>
                     <div>
-                      <p className="font-bold text-slate-800">200+ Selected Students</p>
-                      <p className="text-xs font-medium text-slate-500">Peer networking & team tasks</p>
+                      <p className="font-bold text-white">200+ Selected Students</p>
+                      <p className="text-xs font-medium text-white/50">Peer networking & team tasks</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#169857]/10 flex items-center justify-center text-[#169857]">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#10b981] border border-white/10">
                       <HiOutlineMicrophone size={18} />
                     </div>
                     <div>
-                      <p className="font-bold text-slate-800">10+ Key Speakers</p>
-                      <p className="text-xs font-medium text-slate-500">Top clinicians & researchers</p>
+                      <p className="font-bold text-white">10+ Key Speakers</p>
+                      <p className="text-xs font-medium text-white/50">Top clinicians & researchers</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#F74A1D]/10 flex items-center justify-center text-[#F74A1D]">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#f87171] border border-white/10">
                       <FaChalkboardUser size={18} />
                     </div>
                     <div>
-                      <p className="font-bold text-slate-800">20+ Panel Experts</p>
-                      <p className="text-xs font-medium text-slate-500">Debates across 9 distinct domains</p>
+                      <p className="font-bold text-white">20+ Panel Experts</p>
+                      <p className="text-xs font-medium text-white/50">Debates across 9 distinct domains</p>
                     </div>
                   </div>
                 </div>
@@ -707,15 +713,15 @@ export function TicketBooking() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-24 text-center max-w-4xl mx-auto bg-gradient-to-br from-[#2451A6]/10 to-[#E0B6CF]/10 backdrop-blur-xl rounded-[3rem] p-12 border border-white"
+          className="mt-24 text-center max-w-4xl mx-auto bg-gradient-to-br from-[#0d142a] via-[#122247] to-[#0d142a] backdrop-blur-xl rounded-[3rem] p-12 border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.3)] text-white"
         >
-          <h2 className="font-display font-black text-4xl text-slate-800 mb-4">Ready To Join?</h2>
-          <p className="font-sans text-xl font-medium text-slate-600 mb-8 max-w-2xl mx-auto">
+          <h2 className="font-display font-black text-4xl text-white mb-4">Ready To Join?</h2>
+          <p className="font-sans text-xl font-medium text-white/70 mb-8 max-w-2xl mx-auto">
             Reserve your ticket and become part of Kerala's leading psychology gathering.
           </p>
           <button
             onClick={() => window.scrollTo({ top: (document.getElementById('select-ticket')?.offsetTop || 0) - 100, behavior: 'smooth' })}
-            className="px-8 py-4 rounded-full font-bold text-white bg-[#2451A6] hover:bg-slate-900 transition-all duration-300 shadow-[0_10px_25px_rgba(36,81,166,0.3)] text-lg"
+            className="px-8 py-4 rounded-full font-bold text-white bg-gradient-to-r from-[#2451A6] to-[#3b82f6] hover:from-[#1d3f80] hover:to-[#2563eb] transition-all duration-300 shadow-[0_10px_25px_rgba(36,81,166,0.3)] text-lg animate-pulse"
           >
             Complete Booking
           </button>

@@ -88,11 +88,11 @@ export function Speakers() {
               className="group glass-panel p-6 rounded-[2.5rem] border border-white/80 shadow-[0_15px_40px_rgba(36,81,166,0.03)] hover:shadow-xl hover:bg-white transition-all duration-300 flex flex-col items-center text-center"
             >
               <SpeakerImage src={speaker.image} alt={speaker.name} />
-              
+
               <h3 className="font-display font-bold text-[1.5rem] text-slate-900 mb-1 group-hover:text-[#2451A6] transition-colors leading-tight">
                 {speaker.name}
               </h3>
-              
+
               <p className="font-sans text-[0.95rem] text-slate-500 font-medium opacity-75">
                 MANO 2026 Expert Panelist
               </p>

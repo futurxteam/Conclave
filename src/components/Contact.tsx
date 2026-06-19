@@ -58,6 +58,23 @@ export function Contact() {
           {contactInfo.map((card, idx) => {
             const isLink = card.href.startsWith('mailto:') || card.href.startsWith('tel:');
             const CardWrapper = isLink ? 'a' : 'div';
+            const contactThemes = [
+              {
+                bg: 'from-[#0d142a] via-[#122247] to-[#0d142a]',
+                border: 'border-white/10 group-hover:border-[#2451A6]/30',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(36,81,166,0.2)]',
+                iconColor: 'text-[#3b82f6]',
+                accent: 'text-[#3b82f6]'
+              },
+              {
+                bg: 'from-[#07130d] via-[#0f291a] to-[#07130d]',
+                border: 'border-white/10 group-hover:border-[#169857]/30',
+                shadow: 'hover:shadow-[0_15px_35px_rgba(22,152,87,0.2)]',
+                iconColor: 'text-[#10b981]',
+                accent: 'text-[#10b981]'
+              }
+            ];
+            const theme = contactThemes[idx % contactThemes.length];
             return (
               <motion.div
                 key={card.title}
@@ -67,10 +84,9 @@ export function Contact() {
                 transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 60 }}
                 whileHover={{
                   y: -8,
-                  boxShadow: `0 24px 48px -12px ${card.glow}`,
                   transition: { duration: 0.2 }
                 }}
-                className="group glass-panel p-8 sm:p-10 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.03)] hover:bg-white/90 transition-all flex flex-col justify-between min-h-[260px] text-left cursor-pointer"
+                className={`group bg-gradient-to-br ${theme.bg} ${theme.border} ${theme.shadow} p-8 sm:p-10 rounded-[2.25rem] border shadow-[0_15px_35px_rgba(0,0,0,0.2)] transition-all flex flex-col justify-between min-h-[260px] text-left cursor-pointer`}
                 onClick={() => {
                   if (card.href.startsWith('#')) {
                     document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' });
@@ -83,33 +99,32 @@ export function Contact() {
                   {/* Icon + Index */}
                   <div className="flex justify-between items-center mb-6">
                     <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-slate-200/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
-                      style={{ backgroundColor: card.bg }}
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-white/10 bg-white/5 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
                     >
-                      <div className="transition-transform duration-500 group-hover:rotate-[12deg]" style={{ color: card.color }}>
+                      <div className={`transition-transform duration-500 group-hover:rotate-[12deg] ${theme.iconColor}`}>
                         <card.Icon size={24} />
                       </div>
                     </div>
-                    <span className="text-slate-300 group-hover:text-slate-400 font-display text-sm font-bold tracking-wider transition-colors">
+                    <span className="text-white/20 group-hover:text-[#E0B6CF]/40 font-display text-sm font-bold tracking-wider transition-colors">
                       {card.title.toUpperCase()}
                     </span>
                   </div>
 
                   {/* Value */}
-                  <h3 className="font-display font-black text-xl sm:text-2xl text-slate-900 mb-2 leading-snug break-words group-hover:text-[#2451A6] transition-colors duration-300">
+                  <h3 className="font-display font-black text-xl sm:text-2xl text-white mb-2 leading-snug break-words group-hover:text-[#E0B6CF] transition-colors duration-300">
                     {card.value}
                   </h3>
 
                   {/* Description */}
-                  <p className="font-sans text-sm text-slate-500 leading-relaxed">
+                  <p className="font-sans text-sm text-white/70 leading-relaxed">
                     {card.desc}
                   </p>
                 </div>
 
                 {/* Bottom line */}
-                <div className="border-t border-slate-100 mt-6 pt-4 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-slate-700 transition-colors duration-300">
+                <div className="border-t border-white/10 mt-6 pt-4 flex items-center justify-between text-xs font-bold text-white/40 group-hover:text-white/80 transition-colors duration-300">
                   <span>Contact Route</span>
-                  <span className="flex items-center gap-1 transition-colors" style={{ color: card.color }}>
+                  <span className={`flex items-center gap-1 transition-colors ${theme.accent}`}>
                     Connect <IoArrowForward size={12} className="group-hover:translate-x-0.5 transition-transform" />
                   </span>
                 </div>
@@ -120,18 +135,18 @@ export function Contact() {
 
 
 
-        {/* Premium CTA Banner — "Ready to Join MANO?" */}
+        {/* Premium CTA Banner "Ready to Join MANO?" */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, type: "spring", stiffness: 50 }}
-          className="relative rounded-[2.5rem] bg-gradient-to-br from-[#0d142a] via-[#111d3a] to-[#0d142a] text-white p-8 sm:p-12 lg:p-16 overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-white/5 text-left"
+          className="relative rounded-[2.5rem] bg-gradient-to-br from-[#07130d] via-[#0f291a] to-[#07130d] text-white p-8 sm:p-12 lg:p-16 overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] border border-white/10 text-left"
         >
           {/* Internal glow orbs */}
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#2451A6]/20 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-[#169857]/12 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-[#E0B6CF]/6 rounded-full blur-[60px] pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#169857]/20 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-[#10b981]/12 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-[#F4D313]/5 rounded-full blur-[60px] pointer-events-none" />
 
           {/* Decorative sparkle */}
           <div className="absolute top-8 right-8 opacity-10 pointer-events-none">
@@ -141,8 +156,8 @@ export function Contact() {
           <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
             {/* Left: Text content */}
             <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-[#E0B6CF] text-xs font-bold uppercase tracking-widest mb-5">
-                <span className="w-2 h-2 rounded-full bg-[#F4D313] animate-pulse" />
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-[#10b981] text-xs font-bold uppercase tracking-widest mb-5">
+                <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
                 Conclave Registration
               </span>
               <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-white leading-tight mb-5 tracking-tight">
@@ -156,7 +171,7 @@ export function Contact() {
             {/* Right: CTA */}
             <Link
               to="/ticket-booking"
-              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] hover:from-[#1c3f85] hover:to-[#c9a1ba] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-[0_15px_35px_rgba(36,81,166,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
+              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#169857] to-[#10b981] hover:from-[#107040] hover:to-[#059669] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-[0_15px_35px_rgba(22,152,87,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
             >
               Reserve Your Seat
               <IoArrowForward size={16} className="group-hover:translate-x-1 transition-transform" />

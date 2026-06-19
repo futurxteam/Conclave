@@ -54,57 +54,83 @@ export function PanelDiscussions() {
 
         {/* Panel Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {panels.map((panel, idx) => (
-            <motion.div
-              key={panel.topic}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="glass-panel p-8 rounded-[2.5rem] border border-white/80 shadow-[0_15px_40px_rgba(36,81,166,0.03)] hover:shadow-xl transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex justify-between items-center mb-6">
-                  <span className="px-3.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider">
-                    {panel.tag}
-                  </span>
-                  <span className="text-slate-500 font-sans text-xs font-bold flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#F74A1D]" />
-                    {panel.time}
-                  </span>
+          {panels.map((panel, idx) => {
+            const panelThemes = [
+              {
+                bg: 'from-[#0d142a] via-[#122247] to-[#0d142a]',
+                border: 'border-white/10 group-hover:border-[#2451A6]/40',
+                shadow: 'hover:shadow-[0_20px_50px_rgba(36,81,166,0.25)]',
+                accentText: 'text-[#3b82f6]',
+                accentGlow: 'bg-[#2451A6]/10 border-[#2451A6]/20'
+              },
+              {
+                bg: 'from-[#07130d] via-[#0f291a] to-[#07130d]',
+                border: 'border-white/10 group-hover:border-[#169857]/40',
+                shadow: 'hover:shadow-[0_20px_50px_rgba(22,152,87,0.25)]',
+                accentText: 'text-[#10b981]',
+                accentGlow: 'bg-[#169857]/10 border-[#169857]/20'
+              },
+              {
+                bg: 'from-[#151206] via-[#2a240c] to-[#151206]',
+                border: 'border-white/10 group-hover:border-[#F4D313]/40',
+                shadow: 'hover:shadow-[0_20px_50px_rgba(244,211,19,0.25)]',
+                accentText: 'text-[#fbbf24]',
+                accentGlow: 'bg-[#F4D313]/10 border-[#F4D313]/20'
+              }
+            ];
+            const theme = panelThemes[idx % panelThemes.length];
+            return (
+              <motion.div
+                key={panel.topic}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className={`group bg-gradient-to-br ${theme.bg} ${theme.border} ${theme.shadow} border rounded-[2.5rem] p-8 shadow-[0_15px_40px_rgba(0,0,0,0.2)] transition-all flex flex-col justify-between`}
+              >
+                <div>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className={`px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider ${theme.accentText}`}>
+                      {panel.tag}
+                    </span>
+                    <span className="text-white/60 font-sans text-xs font-bold flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#F74A1D]" />
+                      {panel.time}
+                    </span>
+                  </div>
+                  
+                  <h3 className={`font-display font-bold text-xl text-white mb-4 leading-snug group-hover:${theme.accentText} transition-colors`}>
+                    {panel.topic}
+                  </h3>
+                  <p className="font-sans text-sm text-white/70 leading-relaxed mb-6">
+                    {panel.desc}
+                  </p>
                 </div>
-                
-                <h3 className="font-display font-bold text-xl text-slate-900 mb-4 leading-snug hover:text-[#2451A6] transition-colors">
-                  {panel.topic}
-                </h3>
-                <p className="font-sans text-sm text-slate-600 leading-relaxed mb-6">
-                  {panel.desc}
-                </p>
-              </div>
 
-              <div>
-                <div className="border-t border-slate-100 pt-6">
-                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Key Speakers & Panelists</p>
-                  <div className="space-y-2">
-                    {panel.panelists.map((panelist) => (
-                      <div key={panelist} className="flex items-center gap-2 text-sm text-slate-800 font-semibold">
-                        <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-xs text-slate-500 shrink-0 border border-slate-200">
-                          <FaUser size={12} />
+                <div>
+                  <div className="border-t border-white/10 pt-6">
+                    <p className="text-[11px] font-bold text-white/40 uppercase tracking-widest mb-3">Key Speakers & Panelists</p>
+                    <div className="space-y-2">
+                      {panel.panelists.map((panelist) => (
+                        <div key={panelist} className="flex items-center gap-2 text-sm text-white/90 font-semibold">
+                          <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center text-xs text-[#E0B6CF] shrink-0 border border-white/10">
+                            <FaUser size={12} />
+                          </div>
+                          <span>{panelist}</span>
                         </div>
-                        <span>{panelist}</span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Interactive teaser */}
         <div className="mt-12 text-center">
-          <p className="text-sm text-slate-500 font-medium">
-            Want to submit questions for the panel discussions? <a href="#contact" className="text-[#2451A6] font-bold hover:underline">Send them to our coordinators &rarr;</a>
+          <p className="text-sm text-white/50 font-medium">
+            Want to submit questions for the panel discussions? <a href="#contact" className="text-[#E0B6CF] font-bold hover:text-[#c9a1ba] hover:underline">Send them to our coordinators &rarr;</a>
           </p>
         </div>
 

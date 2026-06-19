@@ -32,20 +32,20 @@ export function CulturalPrograms() {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <div className="glass-panel p-8 rounded-[2rem] border border-white/60 shadow-[0_15px_40px_rgba(36,81,166,0.03)]">
-              <h3 className="font-display font-bold text-2xl text-slate-900 mb-4 flex items-center gap-3">
+            <div className="bg-gradient-to-br from-[#0d142a] via-[#122247] to-[#0d142a] p-8 rounded-[2rem] border border-white/10 shadow-[0_15px_40px_rgba(36,81,166,0.05)] text-white">
+              <h3 className="font-display font-bold text-2xl text-white mb-4 flex items-center gap-3">
                 <span className="text-2xl">🌟</span> Evening Cultural Programs
               </h3>
-              <p className="font-sans text-slate-600 leading-relaxed text-base">
+              <p className="font-sans text-white/70 leading-relaxed text-base">
                 Join us for a stellar evening cultural event designed to help you relax, unwind, and build deeper connections with speakers and peers. Featuring acoustic music, stand-up, storytelling sessions, and a delicious buffet dinner.
               </p>
             </div>
 
-            <div className="glass-panel p-8 rounded-[2rem] border border-white/60 shadow-[0_15px_40px_rgba(36,81,166,0.03)]">
-              <h3 className="font-display font-bold text-2xl text-slate-900 mb-4 flex items-center gap-3">
+            <div className="bg-gradient-to-br from-[#07130d] via-[#0f291a] to-[#07130d] p-8 rounded-[2rem] border border-white/10 shadow-[0_15px_40px_rgba(22,152,87,0.05)] text-white">
+              <h3 className="font-display font-bold text-2xl text-white mb-4 flex items-center gap-3">
                 <span className="text-2xl">🎤</span> Student Performances
               </h3>
-              <p className="font-sans text-slate-600 leading-relaxed text-base">
+              <p className="font-sans text-white/70 leading-relaxed text-base">
                 A platform dedicated entirely to showcasing the talents of psychology students from across Kerala. Show off your music, dance, theatre, or creative writing talents and collaborate on collaborative stage performances.
               </p>
             </div>
@@ -56,7 +56,7 @@ export function CulturalPrograms() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative rounded-[2.5rem] overflow-hidden aspect-video bg-slate-100 shadow-xl border border-white"
+            className="relative rounded-[2.5rem] overflow-hidden aspect-video bg-white/5 shadow-xl border border-white/10"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10 to-transparent z-10" />
             <img 

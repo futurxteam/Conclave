@@ -61,7 +61,7 @@ html {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 300s linear infinite;
+  animation: marquee 250s linear infinite;
 }
 
 @keyframes pulseGlow {

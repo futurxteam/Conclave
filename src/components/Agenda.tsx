@@ -32,7 +32,7 @@ const schedule = {
     {
       badge: 'HISTORIC MILESTONE',
       title: 'Inauguration Ceremony & Grand Launch of KPSA',
-      description: 'The historic launch of the Kerala Psychology Students Association — a landmark moment for psychology students across the state.',
+      description: 'The historic launch of the Kerala Psychology Students Association a landmark moment for psychology students across the state.',
       time: '11:30 AM – 12:30 PM',
       color: 'text-[#F74A1D]',
       bg: 'bg-[#F74A1D]/10'
@@ -221,7 +221,7 @@ export function Agenda() {
           </h2>
 
           <p className="font-sans text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto">
-            Two full days of expert talks, panel discussions, competitions, networking, and cultural experiences — all curated for psychology students.
+            Two full days of expert talks, panel discussions, competitions, networking, and cultural experiences all curated for psychology students.
           </p>
         </div>
 
@@ -233,18 +233,18 @@ export function Agenda() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex justify-center mb-16"
         >
-          <div className="inline-flex p-1.5 bg-white border border-slate-200 rounded-full shadow-sm relative">
+          <div className="inline-flex p-1.5 bg-[#0d142a]/60 backdrop-blur-md border border-white/10 rounded-full shadow-sm relative">
             {(['day1', 'day2'] as const).map((day) => (
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`relative px-8 py-3 rounded-full font-display font-bold text-sm md:text-base uppercase tracking-wider transition-colors z-10 ${activeDay === day ? 'text-white' : 'text-slate-600 hover:text-[#2451A6]'
+                className={`relative px-8 py-3 rounded-full font-display font-bold text-sm md:text-base uppercase tracking-wider transition-colors z-10 ${activeDay === day ? 'text-white' : 'text-white/60 hover:text-[#E0B6CF]'
                   }`}
               >
                 {activeDay === day && (
                   <motion.div
                     layoutId="activeDayIndicator"
-                    className="absolute inset-0 bg-[#2451A6] rounded-full -z-10 shadow-md"
+                    className="absolute inset-0 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] rounded-full -z-10 shadow-md"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -257,36 +257,65 @@ export function Agenda() {
         {/* Schedule Cards */}
         <div className="space-y-6">
           <AnimatePresence mode="wait">
-            {currentSchedule.map((item, index) => (
-              <motion.div
-                key={`${activeDay}-${index}`}
-                initial={{ opacity: 0, y: 20, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
-                transition={{ duration: 0.4, delay: index * 0.04 }}
-                className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl p-6 md:p-8 shadow-[0_15px_40px_-15px_rgba(36,81,166,0.05)] hover:shadow-[0_20px_50px_-15px_rgba(36,81,166,0.1)] transition-all duration-300 group"
-              >
-                <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 w-full">
-                  <div className="w-full md:w-48 shrink-0 flex flex-col items-start gap-4 pb-4 md:pb-0 md:border-r border-slate-100">
-                    <div className="flex items-center gap-2 text-slate-500 font-sans font-bold text-sm tracking-wide">
-                      <FaRegClock size={16} />
-                      {item.time}
+            {currentSchedule.map((item, index) => {
+              const agendaThemes = [
+                {
+                  bg: 'from-[#0d142a] via-[#122247] to-[#0d142a]',
+                  border: 'border-white/10 group-hover:border-[#2451A6]/30',
+                  shadow: 'hover:shadow-[0_20px_50px_-15px_rgba(36,81,166,0.2)]',
+                  iconColor: 'text-[#3b82f6]',
+                },
+                {
+                  bg: 'from-[#07130d] via-[#0f291a] to-[#07130d]',
+                  border: 'border-white/10 group-hover:border-[#169857]/30',
+                  shadow: 'hover:shadow-[0_20px_50px_-15px_rgba(22,152,87,0.2)]',
+                  iconColor: 'text-[#10b981]',
+                },
+                {
+                  bg: 'from-[#151206] via-[#2a240c] to-[#151206]',
+                  border: 'border-white/10 group-hover:border-[#F4D313]/30',
+                  shadow: 'hover:shadow-[0_20px_50px_-15px_rgba(244,211,19,0.2)]',
+                  iconColor: 'text-[#fbbf24]',
+                },
+                {
+                  bg: 'from-[#1a0c0a] via-[#351811] to-[#1a0c0a]',
+                  border: 'border-white/10 group-hover:border-[#F74A1D]/30',
+                  shadow: 'hover:shadow-[0_20px_50px_-15px_rgba(247,74,29,0.2)]',
+                  iconColor: 'text-[#f87171]',
+                }
+              ];
+              const theme = agendaThemes[index % agendaThemes.length];
+              return (
+                <motion.div
+                  key={`${activeDay}-${index}`}
+                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
+                  transition={{ duration: 0.4, delay: index * 0.04 }}
+                  className={`bg-gradient-to-br ${theme.bg} ${theme.border} ${theme.shadow} border rounded-3xl p-6 md:p-8 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.2)] transition-all duration-300 group`}
+                >
+                  <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 w-full">
+                    <div className="w-full md:w-48 shrink-0 flex flex-col items-start gap-4 pb-4 md:pb-0 md:border-r border-white/10">
+                      <div className="flex items-center gap-2 text-white/60 font-sans font-bold text-sm tracking-wide">
+                        <FaRegClock size={16} />
+                        {item.time}
+                      </div>
+                      <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-white/5 border border-white/10 ${theme.iconColor}`}>
+                        {item.badge}
+                      </div>
                     </div>
-                    <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase ${item.bg} ${item.color}`}>
-                      {item.badge}
+                    <div className="flex-1">
+                      <h3 className={`font-display font-bold text-xl md:text-2xl text-white mb-3 group-hover:text-[#E0B6CF] transition-colors duration-300`}>
+                        {item.title}
+                      </h3>
+                      <p className="text-white/70 font-medium leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-display font-bold text-xl md:text-2xl text-slate-800 mb-3 group-hover:text-[#2451A6] transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-600 font-medium leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </div>
       </div>

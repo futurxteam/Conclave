@@ -90,37 +90,6 @@ export function Navbar() {
 
   return (
     <>
-      {/* Decorative Moving Vector Background Element */}
-      <div 
-        className="fixed top-[72px] md:top-[88px] left-0 w-full overflow-hidden pointer-events-none select-none z-40 flex items-center py-1 md:py-1.5"
-        style={{ backgroundColor: '#8E939C' }}
-      >
-        <div className="w-full flex overflow-hidden">
-          <div className="flex shrink-0 animate-marquee gap-2 p-0 m-0">
-            {/* Group 1 */}
-            {Array.from({ length: 80 }).map((_, i) => (
-              <img
-                key={`vector-g1-${i}`}
-                src="/mano-vector.png"
-                alt=""
-                className="h-7 md:h-10 w-auto object-contain shrink-0 m-0 p-0"
-                style={{ filter: 'contrast(1.08) saturate(1.15)' }}
-              />
-            ))}
-            {/* Group 2 (identical to Group 1) */}
-            {Array.from({ length: 80 }).map((_, i) => (
-              <img
-                key={`vector-g2-${i}`}
-                src="/mano-vector.png"
-                alt=""
-                className="h-7 md:h-10 w-auto object-contain shrink-0 m-0 p-0"
-                style={{ filter: 'contrast(1.08) saturate(1.15)' }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
       <nav
         className="fixed w-full z-50 top-6 flex justify-center pointer-events-none px-4"
         style={{ transform: 'translateZ(0)', willChange: 'transform' }}
@@ -130,8 +99,8 @@ export function Navbar() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
           className={`pointer-events-auto flex items-center justify-between w-full max-w-[1100px] transition-all duration-500 rounded-full ${isScrolled
-              ? 'bg-white/80 backdrop-blur-2xl border border-slate-200/50 shadow-[0_20px_40px_-10px_rgba(36,81,166,0.15)] py-2 px-3'
-              : 'bg-white/50 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_-10px_rgba(36,81,166,0.05)] py-3 px-4'
+            ? 'bg-white/80 backdrop-blur-2xl border border-slate-200/50 shadow-[0_20px_40px_-10px_rgba(36,81,166,0.15)] py-2 px-3'
+            : 'bg-white/50 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_-10px_rgba(36,81,166,0.05)] py-3 px-4'
             } relative overflow-hidden`}
         >
           {/* Animated Neural Node Effect */}
@@ -159,8 +128,8 @@ export function Navbar() {
                   href={targetHref}
                   onClick={(e) => handleNavClick(e, link.href, link.name)}
                   className={`relative flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all duration-300 group overflow-hidden ${isActive
-                      ? 'text-white shadow-sm'
-                      : 'text-slate-600 hover:text-[#2451A6]'
+                    ? 'text-white shadow-sm'
+                    : 'text-slate-600 hover:text-[#2451A6]'
                     }`}
                 >
                   {isActive && (

@@ -87,16 +87,16 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-8 p-5 rounded-2xl bg-gradient-to-r from-[#2451A6]/5 to-[#169857]/5 border border-[#2451A6]/15 relative overflow-hidden"
+                className="mt-8 p-5 rounded-2xl bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] border border-[#F74A1D]/20 text-white relative overflow-hidden shadow-sm"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E0B6CF]/10 rounded-full blur-[40px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#F74A1D]/10 rounded-full blur-[40px] pointer-events-none" />
                 <div className="relative z-10 flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#2451A6]/10 flex items-center justify-center text-[#2451A6] shrink-0 border border-[#2451A6]/15">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#f87171] shrink-0 border border-white/10">
                     <FaPeopleGroup size={20} />
                   </div>
                   <div>
-                    <h4 className="font-display font-bold text-slate-900 text-sm mb-1">🎉 Historic Milestone — KPSA Launch</h4>
-                    <p className="text-xs text-slate-600 font-medium leading-relaxed">Grand launch of the <strong className="text-[#2451A6]">Kerala Psychology Students Association (KPSA)</strong> — the first state-level student community dedicated to psychology in Kerala.</p>
+                    <h4 className="font-display font-bold text-white text-sm mb-1">🎉 Historic Milestone KPSA Launch</h4>
+                    <p className="text-xs text-white/70 font-medium leading-relaxed">Grand launch of the <strong className="text-[#fbbf24]">Kerala Psychology Students Association (KPSA)</strong> the first state-level student community dedicated to psychology in Kerala.</p>
                   </div>
                 </div>
               </motion.div>
@@ -110,6 +110,33 @@ export function About() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
+                const statThemes = [
+                  {
+                    bg: 'from-[#0d142a] via-[#122247] to-[#0d142a]',
+                    border: 'border-white/10 group-hover:border-[#2451A6]/30',
+                    shadow: 'hover:shadow-[0_15px_35px_rgba(36,81,166,0.2)]',
+                    iconColor: 'text-[#3b82f6]',
+                  },
+                  {
+                    bg: 'from-[#07130d] via-[#0f291a] to-[#07130d]',
+                    border: 'border-white/10 group-hover:border-[#169857]/30',
+                    shadow: 'hover:shadow-[0_15px_35px_rgba(22,152,87,0.2)]',
+                    iconColor: 'text-[#10b981]',
+                  },
+                  {
+                    bg: 'from-[#1a0c0a] via-[#351811] to-[#1a0c0a]',
+                    border: 'border-white/10 group-hover:border-[#F74A1D]/30',
+                    shadow: 'hover:shadow-[0_15px_35px_rgba(247,74,29,0.2)]',
+                    iconColor: 'text-[#f87171]',
+                  },
+                  {
+                    bg: 'from-[#151206] via-[#2a240c] to-[#151206]',
+                    border: 'border-white/10 group-hover:border-[#F4D313]/30',
+                    shadow: 'hover:shadow-[0_15px_35px_rgba(244,211,19,0.2)]',
+                    iconColor: 'text-[#fbbf24]',
+                  }
+                ];
+                const theme = statThemes[idx % statThemes.length];
                 return (
                   <motion.div
                     key={stat.label}
@@ -119,27 +146,26 @@ export function About() {
                     transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 60 }}
                     whileHover={{
                       y: -8,
-                      boxShadow: `0 20px 40px -10px ${stat.glow}`,
                       transition: { duration: 0.2, ease: "easeOut" }
                     }}
-                    className="group glass-panel p-8 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.04)] flex flex-col justify-between min-h-[220px] transition-all duration-300"
+                    className={`group bg-gradient-to-br ${theme.bg} ${theme.border} ${theme.shadow} p-8 rounded-[2.25rem] border shadow-[0_15px_35px_rgba(0,0,0,0.2)] flex flex-col justify-between min-h-[220px] transition-all duration-300`}
                   >
                     {/* Top Section */}
                     <div className="flex justify-between items-start mb-6">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${stat.bg} ${stat.color} border border-slate-200/50 shadow-sm transition-transform duration-300 group-hover:scale-110`}>
-                        <Icon size={22} className="transition-transform duration-500 group-hover:rotate-[15deg]" />
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 shadow-sm transition-transform duration-300 group-hover:scale-110`}>
+                        <Icon size={22} className={`transition-transform duration-500 group-hover:rotate-[15deg] ${theme.iconColor}`} />
                       </div>
-                      <span className="text-slate-300 group-hover:text-slate-400 font-display text-sm font-bold tracking-wider transition-colors">
+                      <span className="text-white/20 group-hover:text-[#E0B6CF]/40 font-display text-sm font-bold tracking-wider transition-colors">
                         0{idx + 1}
                       </span>
                     </div>
 
                     {/* Stat Values */}
                     <div>
-                      <div className="font-display font-black text-4xl sm:text-5xl text-[#0A0F1C] tracking-tight mb-2">
+                      <div className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight mb-2">
                         {stat.value}
                       </div>
-                      <div className="text-slate-500 font-sans font-bold text-xs sm:text-sm tracking-wider uppercase leading-tight">
+                      <div className="text-white/60 font-sans font-bold text-xs sm:text-sm tracking-wider uppercase leading-tight">
                         {stat.label}
                       </div>
                     </div>
