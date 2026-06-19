@@ -48,3 +48,46 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 300s linear infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 8px 30px rgba(36, 81, 166, 0.35);
+  }
+  100% {
+    transform: scale(1.03);
+    box-shadow: 0 12px 45px rgba(36, 81, 166, 0.6), 0 0 20px rgba(224, 182, 207, 0.4);
+  }
+}
+
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite alternate ease-in-out;
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 1.5s infinite ease-in-out;
+}

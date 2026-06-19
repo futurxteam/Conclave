@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { FaTrophy, FaRocket } from 'react-icons/fa6';
 import { HiOutlineHeart, HiSparkles } from 'react-icons/hi2';
 import { IoArrowForward } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 export function KPSALaunch() {
   return (
@@ -76,12 +77,12 @@ export function KPSALaunch() {
 
             {/* Launch Action */}
             <div className="flex flex-col sm:flex-row items-center gap-6">
-              <a
-                href="#register"
+              <Link
+                to="/ticket-booking"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] hover:from-[#1c3f85] hover:to-[#2451A6] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
               >
                 Get Conclave Pass to Attend Launch <IoArrowForward size={16} />
-              </a>
+              </Link>
               <span className="text-white/50 text-xs font-bold uppercase tracking-widest">
                 Be there for the foundation ceremony
               </span>

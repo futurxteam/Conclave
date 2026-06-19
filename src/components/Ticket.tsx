@@ -7,7 +7,7 @@ import { IoArrowForward } from 'react-icons/io5';
 
 export function Ticket() {
   return (
-    <section id="register" className="py-24 sm:py-32 bg-[#fafbfc] relative overflow-hidden border-t border-slate-200/50">
+    <section id="ticket-booking" className="py-24 sm:py-32 bg-[#fafbfc] relative overflow-hidden border-t border-slate-200/50">
       {/* Decorative background gradients */}
       <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#2451A6]/5 rounded-full blur-[130px] pointer-events-none -translate-x-1/2" />
       <div className="absolute bottom-1/4 right-0 w-[550px] h-[550px] bg-[#E0B6CF]/8 rounded-full blur-[130px] pointer-events-none translate-x-1/2" />

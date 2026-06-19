@@ -10,7 +10,7 @@ type TicketType = 'student' | 'professional' | 'vip' | null;
 const TICKETS = {
   student: {
     id: 'student',
-    title: 'Early Bird Offer',
+    title: 'Early Bird Pass',
     price: 1500,
     for: 'Psychology Students & Researchers',
     features: ['2-Day Conclave Access', 'Hostel Accommodation Option', 'KPSA Launch Ceremony Entrance', 'Participation Certificate', 'Meeting Expertise', 'All Specialized Workshops'],
@@ -38,6 +38,19 @@ const TICKETS = {
     bgHover: 'hover:bg-[#F4D313]',
     borderActive: 'border-[#F4D313]'
   }
+};
+
+const getPerTicketPrice = (type: TicketType, qty: number): number => {
+  if (!type) return 0;
+  if (type === 'student') {
+    if (qty >= 10) return 1300;
+    return 1500;
+  }
+  if (type === 'professional') {
+    if (qty >= 10) return 1600;
+    return 2000;
+  }
+  return TICKETS[type as keyof typeof TICKETS]?.price || 0;
 };
 
 // --- Accommodation Add-on Card ---
@@ -150,17 +163,20 @@ export function TicketBooking() {
     return TICKETS[selectedTicket as keyof typeof TICKETS].price * quantity;
   };
 
+  const getGroupDiscount = () => {
+    if (!selectedTicket) return 0;
+    const basePrice = TICKETS[selectedTicket as keyof typeof TICKETS].price;
+    const discountedPrice = getPerTicketPrice(selectedTicket, quantity);
+    return (basePrice - discountedPrice) * quantity;
+  };
+
   const getAccommodationTotal = () => {
     if (!addAccommodation) return 0;
     return ACCOMMODATION_PRICE * quantity;
   };
 
-  const getGST = () => {
-    return Math.round(getSubtotal() * 0.18);
-  };
-
   const getTotal = () => {
-    return getSubtotal() + getGST() + getAccommodationTotal();
+    return getSubtotal() - getGroupDiscount() + getAccommodationTotal();
   };
 
   return (
@@ -242,11 +258,64 @@ export function TicketBooking() {
                     <div className="absolute top-0 right-0 bg-gradient-to-l from-[#F74A1D] to-[#F4D313] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
                       Till July 5
                     </div>
-                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">Early Bird Offer</h3>
+                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">{TICKETS.student.title}</h3>
                     <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Psychology Students</p>
-                    <div className="flex items-baseline gap-1 mb-6">
+                    
+                    <div className="flex items-baseline gap-1.5 mb-1">
                       <span className="text-4xl font-black text-[#2451A6]">₹1500</span>
+                      <span className="text-xs font-bold text-slate-400">/ person</span>
                     </div>
+
+                    {/* Group Discount Badge */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2451A6]/10 border border-[#2451A6]/20 text-[#2451A6] text-[11px] font-bold uppercase tracking-wider mb-4">
+                      <FaUsers size={12} /> Group Offer Available
+                    </div>
+
+                    {/* Group Offers Info */}
+                    <div className="bg-slate-50/80 border border-slate-100 rounded-2xl p-4 mb-6 space-y-3 text-xs font-semibold text-slate-700">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+                        <span>Group Offer</span>
+                        {quantity >= 10 && selectedTicket === 'student' && (
+                          <span className="bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className={`flex items-center justify-between p-2 rounded-lg border-2 border-dashed transition-all ${quantity >= 10 && selectedTicket === 'student' ? 'bg-emerald-100/50 border-emerald-400 text-[#169857]' : 'bg-emerald-50/30 border-emerald-400/20 text-slate-700'}`}>
+                        <span className="flex items-center gap-1 font-bold">
+                          10+ Participants
+                          <span className="bg-emerald-500 text-white text-[8px] font-extrabold px-1.5 py-0.2 rounded uppercase tracking-wider">
+                            Best Value
+                          </span>
+                        </span>
+                        <span className="font-extrabold text-[#169857]">₹1300 <span className="text-[10px] font-normal text-slate-500">each</span></span>
+                      </div>
+                      
+                      <p className="text-[10px] text-slate-400 font-medium leading-normal text-center italic">
+                        Perfect for college groups and psychology departments.
+                      </p>
+
+                      {/* Dropdown Selection Box */}
+                      <div className="border-t border-slate-200/60 pt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                        <span className="text-slate-500 font-bold text-[11px] uppercase tracking-wider">Select Group Size:</span>
+                        <select
+                          value={selectedTicket === 'student' ? quantity : 1}
+                          onChange={(e) => {
+                            setSelectedTicket('student');
+                            setQuantity(parseInt(e.target.value));
+                          }}
+                          className="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2451A6]/20 focus:border-[#2451A6] transition-all cursor-pointer shadow-sm hover:border-slate-300"
+                        >
+                          {Array.from({ length: 50 }, (_, i) => i + 1).map((val) => (
+                            <option key={val} value={val}>
+                              {val} {val === 1 ? 'Participant' : val >= 10 ? `Participants (₹1300 each)` : `Participants`}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
                     <div className="space-y-3 mb-8 flex-1">
                       {TICKETS.student.features.filter(f => !f.toLowerCase().includes('hostel') && !f.toLowerCase().includes('accommodation')).map((feature) => (
                         <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
@@ -280,11 +349,64 @@ export function TicketBooking() {
                     <div className="absolute top-0 right-0 bg-gradient-to-l from-[#2451A6] to-[#E0B6CF] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
                       Most Popular
                     </div>
-                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">Normal Pass</h3>
+                    <h3 className="font-display font-black text-xl text-slate-800 mb-1 mt-2">{TICKETS.professional.title}</h3>
                     <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ideal For: Educators & Professionals</p>
-                    <div className="flex items-baseline gap-1 mb-6">
+                    
+                    <div className="flex items-baseline gap-1.5 mb-1">
                       <span className="text-4xl font-black text-[#169857]">₹2000</span>
+                      <span className="text-xs font-bold text-slate-400">/ person</span>
                     </div>
+
+                    {/* Group Discount Badge */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#169857]/10 border border-[#169857]/20 text-[#169857] text-[11px] font-bold uppercase tracking-wider mb-4">
+                      <FaUsers size={12} /> Group Offer Available
+                    </div>
+
+                    {/* Group Offers Info */}
+                    <div className="bg-slate-50/80 border border-slate-100 rounded-2xl p-4 mb-6 space-y-3 text-xs font-semibold text-slate-700">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+                        <span>Group Offer</span>
+                        {quantity >= 10 && selectedTicket === 'professional' && (
+                          <span className="bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className={`flex items-center justify-between p-2 rounded-lg border-2 border-dashed transition-all ${quantity >= 10 && selectedTicket === 'professional' ? 'bg-emerald-100/50 border-emerald-400 text-[#169857]' : 'bg-emerald-50/30 border-emerald-400/20 text-slate-700'}`}>
+                        <span className="flex items-center gap-1 font-bold">
+                          10+ Participants
+                          <span className="bg-emerald-500 text-white text-[8px] font-extrabold px-1.5 py-0.2 rounded uppercase tracking-wider">
+                            Best Value
+                          </span>
+                        </span>
+                        <span className="font-extrabold text-[#169857]">₹1600 <span className="text-[10px] font-normal text-slate-500">each</span></span>
+                      </div>
+                      
+                      <p className="text-[10px] text-slate-400 font-medium leading-normal text-center italic">
+                        Perfect for college groups and psychology departments.
+                      </p>
+
+                      {/* Dropdown Selection Box */}
+                      <div className="border-t border-slate-200/60 pt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                        <span className="text-slate-500 font-bold text-[11px] uppercase tracking-wider">Select Group Size:</span>
+                        <select
+                          value={selectedTicket === 'professional' ? quantity : 1}
+                          onChange={(e) => {
+                            setSelectedTicket('professional');
+                            setQuantity(parseInt(e.target.value));
+                          }}
+                          className="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all cursor-pointer shadow-sm hover:border-slate-300"
+                        >
+                          {Array.from({ length: 50 }, (_, i) => i + 1).map((val) => (
+                            <option key={val} value={val}>
+                              {val} {val === 1 ? 'Participant' : val >= 10 ? `Participants (₹1600 each)` : `Participants`}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
                     <div className="space-y-3 mb-8 flex-1">
                       {TICKETS.professional.features.filter(f => !f.toLowerCase().includes('hostel') && !f.toLowerCase().includes('accommodation') && !f.toLowerCase().includes('guest')).map((feature) => (
                         <div key={feature} className="flex items-start gap-2.5 text-slate-600 font-medium text-sm">
@@ -452,7 +574,14 @@ export function TicketBooking() {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-[2rem] p-6 sm:p-8 shadow-[0_20px_40px_-15px_rgba(36,81,166,0.15)]"
                   >
-                    <h3 className="font-display font-black text-xl text-slate-800 mb-6">Booking Summary</h3>
+                    <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+                      <h3 className="font-display font-black text-xl text-slate-800">Booking Summary</h3>
+                      {quantity >= 10 && (
+                        <span className="bg-gradient-to-r from-emerald-500 to-[#169857] text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm animate-pulse flex items-center gap-1">
+                          🎉 Discount Active
+                        </span>
+                      )}
+                    </div>
 
                     <div className="space-y-6">
                       <div className="flex justify-between items-start">
@@ -471,7 +600,7 @@ export function TicketBooking() {
                           </button>
                           <span className="font-bold text-sm min-w-[12px] text-center">{quantity}</span>
                           <button
-                            onClick={() => setQuantity(Math.min(10, quantity + 1))}
+                            onClick={() => setQuantity(Math.min(50, quantity + 1))}
                             className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors"
                           >
                             <FaPlus size={12} />
@@ -483,9 +612,18 @@ export function TicketBooking() {
 
                       <div className="space-y-3 text-sm font-medium text-slate-600">
                         <div className="flex justify-between items-center">
-                          <span>{TICKETS[selectedTicket as keyof typeof TICKETS].title}</span>
+                          <span>Subtotal ({quantity} {quantity > 1 ? 'tickets' : 'ticket'})</span>
                           <span className="font-bold text-slate-800">₹{getSubtotal()}</span>
                         </div>
+
+                        {getGroupDiscount() > 0 && (
+                          <div className="flex justify-between items-center text-emerald-600 font-semibold bg-emerald-50/50 p-2 rounded-xl border border-emerald-100">
+                            <span className="flex items-center gap-1">
+                              🏷️ Group Discount (10+ Offer)
+                            </span>
+                            <span className="font-bold">-₹{getGroupDiscount()}</span>
+                          </div>
+                        )}
 
                         <AnimatePresence>
                           {addAccommodation && (
@@ -499,24 +637,19 @@ export function TicketBooking() {
                             >
                               <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
                                 <FaBed size={13} className="shrink-0" />
-                                Accommodation
+                                Accommodation Option
                                 {quantity > 1 && <span className="text-slate-400 font-medium">×{quantity}</span>}
                               </span>
                               <span className="font-bold text-emerald-700">₹{getAccommodationTotal()}</span>
                             </motion.div>
                           )}
                         </AnimatePresence>
-
-                        <div className="flex justify-between items-center">
-                          <span>Taxes (18% GST)</span>
-                          <span className="font-bold text-slate-800">₹{getGST()}</span>
-                        </div>
                       </div>
 
                       <div className="h-px w-full bg-slate-200" />
 
                       <div className="flex justify-between items-center pt-2">
-                        <span className="font-bold text-slate-800 text-lg">Grand Total</span>
+                        <span className="font-bold text-slate-800 text-lg">Final Amount</span>
                         <span className="font-black text-[#2451A6] text-3xl">₹{getTotal()}</span>
                       </div>
                     </div>

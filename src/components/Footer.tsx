@@ -10,10 +10,8 @@ export function Footer() {
 
       <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col items-center text-center">
         {/* Logo Text */}
-        <div className="mb-4">
-          <h2 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight leading-none">
-            MANO
-          </h2>
+        <div className="mb-4 flex flex-col items-center">
+          <img src="/mano logo m'.png" alt="MANO Logo" className="h-8 sm:h-9 w-auto object-contain" />
           <p className="font-sans text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[#E0B6CF] mt-1.5">
             Kerala Psychology Conclave
           </p>

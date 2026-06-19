@@ -100,29 +100,6 @@ export function About() {
                   </div>
                 </div>
               </motion.div>
-
-              {/* Vision & Mission Row */}
-              <div className="grid sm:grid-cols-2 gap-5 mt-10">
-                <div className="glass-panel p-6.5 rounded-[2rem] border border-white/60 bg-white/40 shadow-[0_12px_24px_rgba(36,81,166,0.02)] flex items-start gap-4 hover:bg-white/80 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-xl bg-[#169857]/10 flex items-center justify-center text-[#169857] shrink-0 border border-[#169857]/15">
-                    <FaCompass size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-bold text-slate-900 text-sm mb-1.5">Conclave Vision</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">To create Kerala&#39;s largest gathering of aspiring mental health professionals.</p>
-                  </div>
-                </div>
-
-                <div className="glass-panel p-6.5 rounded-[2rem] border border-white/60 bg-white/40 shadow-[0_12px_24px_rgba(36,81,166,0.02)] flex items-start gap-4 hover:bg-white/80 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-xl bg-[#F74A1D]/10 flex items-center justify-center text-[#F74A1D] shrink-0 border border-[#F74A1D]/15">
-                    <FaBullseye size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-bold text-slate-900 text-sm mb-1.5">Conclave Mission</h4>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">Connecting, Inspiring and Empowering the Next Generation of Psychologists.</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
 
@@ -169,22 +146,6 @@ export function About() {
                   </motion.div>
                 );
               })}
-            </div>
-
-            {/* Themed Accent Row */}
-            <div className="mt-6.5 glass-panel p-6 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.02)] flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-4.5">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2451A6] via-[#E0B6CF] to-[#169857] flex items-center justify-center text-white text-xl font-bold shadow-md shadow-[#2451A6]/10">
-                  🧠
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-[#0A0F1C] text-sm leading-tight">Theme 2026</h4>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">Exploring the Diverse World of Psychology</p>
-                </div>
-              </div>
-              <div className="px-4.5 py-2 rounded-full bg-[#169857]/10 text-[#169857] text-xs font-bold uppercase tracking-wider border border-[#169857]/20 shadow-sm shrink-0">
-                Kerala Flagship Event
-              </div>
             </div>
           </div>
 

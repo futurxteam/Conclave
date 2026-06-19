@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { IoMusicalNotesOutline, IoArrowForward } from 'react-icons/io5';
 import { HiOutlineMicrophone, HiSparkles } from 'react-icons/hi2';
 import { FaRocket } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 const featureCards = [
   {
@@ -131,48 +132,60 @@ export function CulturalAndKPSA() {
         </div>
 
         {/* KPSA Featured Banner — "A Historic Moment for Psychology Students" */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, type: "spring", stiffness: 50 }}
-          className="relative rounded-[2.5rem] bg-gradient-to-br from-[#0d142a] via-[#111d3a] to-[#0d142a] text-white p-8 sm:p-12 lg:p-16 overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-white/5"
+        <Link 
+          to="/ticket-booking" 
+          className="block relative z-10 cursor-pointer group"
+          role="button"
+          tabIndex={0}
         >
-          {/* Internal glow orbs */}
-          <div className="absolute -top-28 -right-28 w-80 h-80 bg-[#2451A6]/20 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute -bottom-28 -left-28 w-80 h-80 bg-[#E0B6CF]/12 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-[#F4D313]/5 rounded-full blur-[60px] pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 50 }}
+            whileHover={{
+              scale: 1.01,
+              boxShadow: "0 40px 80px -20px rgba(0,0,0,0.55)",
+              borderColor: "rgba(255,255,255,0.12)",
+              transition: { duration: 0.3 }
+            }}
+            className="relative rounded-[2.5rem] bg-gradient-to-br from-[#0d142a] via-[#111d3a] to-[#0d142a] text-white p-8 sm:p-12 lg:p-16 overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-white/5 transition-all duration-300"
+          >
+            {/* Internal glow orbs */}
+            <div className="absolute -top-28 -right-28 w-80 h-80 bg-[#2451A6]/20 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute -bottom-28 -left-28 w-80 h-80 bg-[#E0B6CF]/12 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-[#F4D313]/5 rounded-full blur-[60px] pointer-events-none" />
 
-          {/* Sparkle decoration */}
-          <div className="absolute top-6 right-8 opacity-10 pointer-events-none">
-            <FaRocket size={72} />
-          </div>
-
-          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
-            {/* Left: Text content */}
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-[#F4D313] text-xs font-bold uppercase tracking-widest mb-5">
-                <span className="w-2 h-2 rounded-full bg-[#F4D313] animate-pulse" />
-                KPSA — Special Announcement
-              </span>
-              <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-white leading-tight mb-5 tracking-tight">
-                A Historic Moment for<br className="hidden sm:block" /> Psychology Students
-              </h3>
-              <p className="font-sans text-white/70 text-sm sm:text-base leading-relaxed max-w-xl">
-                The launch of KPSA marks a significant step towards building a united psychology student community that promotes learning, collaboration, leadership, and professional development across Kerala.
-              </p>
+            {/* Sparkle decoration */}
+            <div className="absolute top-6 right-8 opacity-10 pointer-events-none">
+              <FaRocket size={72} />
             </div>
 
-            {/* Right: CTA */}
-            <a
-              href="#register"
-              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] hover:from-[#1c3f85] hover:to-[#c9a1ba] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-[0_15px_35px_rgba(36,81,166,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
-            >
-              Get Conclave Pass
-              <IoArrowForward size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </motion.div>
+            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+              {/* Left: Text content */}
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-[#F4D313] text-xs font-bold uppercase tracking-widest mb-5">
+                  <span className="w-2 h-2 rounded-full bg-[#F4D313] animate-pulse" />
+                  KPSA — Special Announcement
+                </span>
+                <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-white leading-tight mb-5 tracking-tight group-hover:text-[#E0B6CF] transition-colors duration-300">
+                  A Historic Moment for<br className="hidden sm:block" /> Psychology Students
+                </h3>
+                <p className="font-sans text-white/70 text-sm sm:text-base leading-relaxed max-w-xl">
+                  The launch of KPSA marks a significant step towards building a united psychology student community that promotes learning, collaboration, leadership, and professional development across Kerala.
+                </p>
+              </div>
+
+              {/* Right: CTA */}
+              <span
+                className="group-hover:scale-105 inline-flex items-center gap-2.5 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] hover:from-[#1c3f85] hover:to-[#c9a1ba] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform shrink-0"
+              >
+                Get Conclave Pass
+                <IoArrowForward size={16} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </div>
+          </motion.div>
+        </Link>
 
       </div>
     </section>

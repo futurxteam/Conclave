@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { HiSparkles } from 'react-icons/hi2';
 import { FaBrain, FaUsers, FaRocket, FaBullseye, FaAward, FaStar } from 'react-icons/fa6';
 import { IoArrowForward } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const reasons = [
   {
@@ -168,13 +169,13 @@ export function WhyAttend() {
                 </p>
               </div>
 
-              <a
-                href="#register"
+              <Link
+                to="/ticket-booking"
                 className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] hover:from-[#1c3f85] hover:to-[#c9a1ba] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-[0_15px_35px_rgba(36,81,166,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
               >
                 Reserve Your Seat
                 <IoArrowForward size={16} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>

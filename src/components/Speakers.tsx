@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { HiSparkles } from 'react-icons/hi2';
+import { FaUser } from 'react-icons/fa6';
 
 const stats = [
   { value: '10+', label: 'Expert Speakers', color: 'text-[#2451A6]', bg: 'bg-[#2451A6]/10' },
@@ -7,6 +9,46 @@ const stats = [
   { value: '5+', label: 'Psychology Domains', color: 'text-[#169857]', bg: 'bg-[#169857]/10' },
   { value: '200+', label: 'Participants', color: 'text-[#F74A1D]', bg: 'bg-[#F74A1D]/10' },
 ];
+
+const speakers = [
+  {
+    name: "Dr Benzir Hussain",
+    role: "MANO 2026 Expert Panelist",
+    image: "/guest 1.png"
+  },
+  {
+    name: "Dr Femi Abdulla",
+    role: "MANO 2026 Expert Panelist",
+    image: "/guest 2.png"
+  },
+  {
+    name: "Uveysudheen K H",
+    role: "MANO 2026 Expert Panelist",
+    image: "/guest 3.png"
+  }
+];
+
+function SpeakerImage({ src, alt }: { src: string; alt: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden mb-6 bg-slate-100/50 border border-slate-200/50 shadow-inner">
+      {!hasError ? (
+        <img
+          src={src}
+          alt={alt}
+          onError={() => setHasError(true)}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+        <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center text-slate-400 gap-2">
+          <FaUser size={40} className="opacity-40" />
+          <span className="text-[10px] font-sans font-bold uppercase tracking-wider opacity-60">Image Missing</span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Speakers() {
   return (
@@ -33,23 +75,27 @@ export function Speakers() {
           </p>
         </div>
 
-        {/* Statistics Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8 max-w-5xl mx-auto">
-          {stats.map((stat, idx) => (
+        {/* Speakers Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {speakers.map((speaker, idx) => (
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={speaker.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="glass-panel p-6 rounded-[2rem] border border-white/60 bg-white/50 text-center shadow-sm"
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="group glass-panel p-6 rounded-[2.5rem] border border-white/80 shadow-[0_15px_40px_rgba(36,81,166,0.03)] hover:shadow-xl hover:bg-white transition-all duration-300 flex flex-col items-center text-center"
             >
-              <div className="font-display font-black text-3xl sm:text-4xl text-slate-900 mb-1">
-                {stat.value}
-              </div>
-              <div className="text-slate-500 font-sans font-bold text-xs sm:text-sm tracking-wider uppercase leading-tight">
-                {stat.label}
-              </div>
+              <SpeakerImage src={speaker.image} alt={speaker.name} />
+              
+              <h3 className="font-display font-bold text-[1.5rem] text-slate-900 mb-1 group-hover:text-[#2451A6] transition-colors leading-tight">
+                {speaker.name}
+              </h3>
+              
+              <p className="font-sans text-[0.95rem] text-slate-500 font-medium opacity-75">
+                MANO 2026 Expert Panelist
+              </p>
             </motion.div>
           ))}
         </div>
