@@ -91,3 +91,13 @@ html {
 .animate-bounce-slow {
   animation: bounceSlow 1.5s infinite ease-in-out;
 }
+@keyframes gradientFx {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-fx {
+  background-size: 300% 300%;
+  animation: gradientFx 4s ease infinite;
+}

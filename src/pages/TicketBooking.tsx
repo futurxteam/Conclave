@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
 import { IoLocationOutline, IoArrowForward } from 'react-icons/io5';
-import { FaUsers, FaPlus, FaMinus, FaBed, FaCircleCheck, FaShieldHalved, FaChalkboardUser } from 'react-icons/fa6';
+import { FaUsers, FaPlus, FaMinus, FaBed, FaCircleCheck, FaWhatsapp, FaChalkboardUser } from 'react-icons/fa6';
 import { HiOutlineMicrophone } from 'react-icons/hi2';
+
+// ⚠️ UPDATE THIS with your WhatsApp number (country code + number, no + or spaces)
+const WHATSAPP_NUMBER = '919XXXXXXXXX'; // e.g. 919876543210
 
 type TicketType = 'student' | 'professional' | 'vip' | null;
 
@@ -120,16 +123,16 @@ function AccommodationAddon({ selected, onToggle }: AccommodationAddonProps) {
             ₹250 per participant
           </span>
           {selected && (
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-[11px] font-bold text-emerald-600 flex items-center gap-1"
-            >
-              ✓ Added
-            </motion.span>
-          )}
-        </div>
-      </button>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-[11px] font-bold text-emerald-600 flex items-center gap-1"
+              >
+                ✓ Added
+              </motion.span>
+            )}
+          </div>
+        </button>
     </motion.div>
   );
 }
@@ -140,11 +143,26 @@ export function TicketBooking() {
   const [step, setStep] = useState(1);
   const [addAccommodation, setAddAccommodation] = useState(false);
 
+  // Per-participant form state — array grows with quantity
+  const [participants, setParticipants] = useState<{ name: string; email: string; phone: string }[]>([{ name: '', email: '', phone: '' }]);
+
   const ACCOMMODATION_PRICE = 250;
+
+  // Keep participants array in sync with quantity
+  useEffect(() => {
+    setParticipants(prev => {
+      const next = Array.from({ length: quantity }, (_, i) => prev[i] ?? { name: '', email: '', phone: '' });
+      return next;
+    });
+  }, [quantity]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const updateParticipant = (idx: number, field: 'name' | 'email' | 'phone', value: string) => {
+    setParticipants(prev => prev.map((p, i) => i === idx ? { ...p, [field]: value } : p));
+  };
 
   const handleTicketSelect = (id: typeof selectedTicket) => {
     if (selectedTicket === id) {
@@ -154,9 +172,9 @@ export function TicketBooking() {
       setSelectedTicket(id);
       setQuantity(1);
       setAddAccommodation(false);
+      setParticipants([{ name: '', email: '', phone: '' }]);
     }
   };
-
 
   const getSubtotal = () => {
     if (!selectedTicket) return 0;
@@ -177,6 +195,37 @@ export function TicketBooking() {
 
   const getTotal = () => {
     return getSubtotal() - getGroupDiscount() + getAccommodationTotal();
+  };
+
+  const isFormValid = participants.every(p => p.name.trim() !== '' && p.email.trim() !== '' && p.phone.trim() !== '');
+
+  const sendToWhatsApp = () => {
+    if (!selectedTicket) return;
+    const ticket = TICKETS[selectedTicket as keyof typeof TICKETS];
+    const accommodation = addAccommodation ? `Yes (+₹${getAccommodationTotal()})` : 'No';
+
+    const participantLines = participants.flatMap((p, i) => [
+      ``,
+      `👤 *Participant ${quantity > 1 ? i + 1 : ''}:* ${p.name}`,
+      `   📧 ${p.email}  |  📞 ${p.phone}`,
+    ]);
+
+    const message = [
+      `🎫 *MANO 2026 – Ticket Booking Request*`,
+      ``,
+      `🎟️ *Package:* ${ticket.title}`,
+      `👥 *Quantity:* ${quantity} ${quantity > 1 ? 'tickets' : 'ticket'}`,
+      `🏨 *Accommodation:* ${accommodation}`,
+      `💰 *Total Amount:* ₹${getTotal().toLocaleString('en-IN')}`,
+      ``,
+      `*Participant Details:*`,
+      ...participantLines,
+      ``,
+      `_Please confirm my booking. Thank you!_`,
+    ].join('\n');
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
   };
 
   return (
@@ -440,7 +489,7 @@ export function TicketBooking() {
               </div>
             </section>
 
-            {/* STEP 2: PERSONAL DETAILS */}
+            {/* STEP 2: PARTICIPANT DETAILS */}
             <AnimatePresence>
               {selectedTicket && (
                 <motion.section
@@ -451,59 +500,83 @@ export function TicketBooking() {
                   className="pt-8"
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-gradient-to-r from-[#169857] to-[#10b981] text-white shadow-sm`}>2</div>
-                    <h2 className="font-display font-black text-2xl text-slate-800">Personal Details</h2>
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-gradient-to-r from-[#169857] to-[#10b981] text-white shadow-sm">2</div>
+                    <h2 className="font-display font-black text-2xl text-slate-800">
+                      {quantity > 1 ? `Participant Details (${quantity} persons)` : 'Your Details'}
+                    </h2>
                   </div>
 
-                  <div className="bg-gradient-to-br from-[#07130d] via-[#0f291a] to-[#07130d] text-white border border-white/10 rounded-[2rem] p-6 sm:p-10 shadow-sm">
-                    <form className="space-y-6">
-                      <div className="grid sm:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Full Name</label>
-                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="John Doe" />
+                  <div className="space-y-5">
+                    {participants.map((p, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-gradient-to-br from-[#07130d] via-[#0f291a] to-[#07130d] text-white border border-white/10 rounded-[2rem] p-6 sm:p-8 shadow-sm"
+                      >
+                        {quantity > 1 && (
+                          <div className="flex items-center gap-2 mb-5">
+                            <div className="w-7 h-7 rounded-full bg-[#169857] flex items-center justify-center text-white font-bold text-sm shrink-0">{idx + 1}</div>
+                            <span className="font-display font-bold text-white text-base">Participant {idx + 1}</span>
+                          </div>
+                        )}
+                        <div className="grid sm:grid-cols-2 gap-5">
+                          <div className="space-y-2">
+                            <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Full Name *</label>
+                            <input
+                              type="text"
+                              value={p.name}
+                              onChange={(e) => updateParticipant(idx, 'name', e.target.value)}
+                              className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/30 focus:border-[#169857] transition-all font-medium text-white shadow-sm"
+                              placeholder="John Doe"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Email Address *</label>
+                            <input
+                              type="email"
+                              value={p.email}
+                              onChange={(e) => updateParticipant(idx, 'email', e.target.value)}
+                              className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/30 focus:border-[#169857] transition-all font-medium text-white shadow-sm"
+                              placeholder="john@example.com"
+                            />
+                          </div>
                         </div>
-                        <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Email Address</label>
-                          <input type="email" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="john@example.com" />
+                        <div className="space-y-2 mt-5">
+                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Phone Number *</label>
+                          <input
+                            type="tel"
+                            value={p.phone}
+                            onChange={(e) => updateParticipant(idx, 'phone', e.target.value)}
+                            className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/30 focus:border-[#169857] transition-all font-medium text-white shadow-sm"
+                            placeholder="+91 98765 43210"
+                          />
                         </div>
                       </div>
+                    ))}
 
-                      <div className="grid sm:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Phone Number</label>
-                          <input type="tel" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="+91 98765 43210" />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Institution / Organization</label>
-                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="University of Kerala" />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">City</label>
-                        <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#169857]/20 focus:border-[#169857] transition-all font-medium text-white shadow-sm" placeholder="Kochi" />
-                      </div>
-
-                      <div className="pt-6">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setStep(3);
-                            window.scrollTo({ top: (document.getElementById('review-booking')?.offsetTop || 0) - 100, behavior: 'smooth' });
-                          }}
-                          className="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-[#169857] to-[#10b981] hover:from-[#107040] hover:to-[#059669] transition-all duration-300 shadow-md flex items-center justify-center gap-2"
-                        >
-                          Continue to Review
-                        </button>
-                      </div>
-                    </form>
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        disabled={!isFormValid}
+                        onClick={() => {
+                          if (!isFormValid) return;
+                          setStep(3);
+                          window.scrollTo({ top: (document.getElementById('review-booking')?.offsetTop || 0) - 100, behavior: 'smooth' });
+                        }}
+                        className={`w-full sm:w-auto px-8 py-3.5 rounded-full font-black text-lg transition-all duration-300 flex items-center justify-center gap-2 ${
+                          isFormValid
+                            ? 'text-white bg-[linear-gradient(45deg,#F74A1D,#F4D313,#169857,#2451A6)] animate-gradient-fx cursor-pointer hover:scale-105 hover:shadow-[0_15px_40px_rgba(247,74,29,0.4)] border border-white/20 shadow-xl'
+                            : 'text-slate-400 bg-slate-200 border border-slate-300 cursor-not-allowed shadow-inner'
+                        }`}
+                      >
+                        Review Booking <IoArrowForward size={16} />
+                      </button>
+                    </div>
                   </div>
                 </motion.section>
               )}
             </AnimatePresence>
 
-            {/* STEP 3: REVIEW & PAYMENT */}
+            {/* STEP 3: REVIEW & CONFIRM ON WHATSAPP */}
             <AnimatePresence>
               {selectedTicket && step >= 3 && (
                 <motion.section
@@ -514,53 +587,60 @@ export function TicketBooking() {
                   className="pt-8 mb-12"
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-gradient-to-r from-[#F74A1D] to-[#ef4444] text-white shadow-sm`}>3</div>
-                    <h2 className="font-display font-black text-2xl text-slate-800">Review & Payment</h2>
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-[#25D366] text-white shadow-sm">3</div>
+                    <h2 className="font-display font-black text-2xl text-slate-800">Review &amp; Confirm</h2>
                   </div>
 
-                  <div className="bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] text-white border border-white/10 rounded-[2rem] p-6 sm:p-10 shadow-[0_15px_40px_rgba(247,74,29,0.15)]">
-                    <h3 className="font-display font-bold text-xl text-white mb-6">Secure Payment</h3>
+                  <div className="bg-gradient-to-br from-[#061a0e] via-[#0a2e18] to-[#061a0e] text-white border border-[#25D366]/20 rounded-[2rem] p-6 sm:p-10 shadow-[0_15px_40px_rgba(37,211,102,0.12)]">
 
-                    {/* Payment Form Mockup UI */}
-                    <div className="space-y-6">
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {['UPI', 'Google Pay', 'PhonePe', 'Paytm', 'Debit Card', 'Credit Card'].map((method) => (
-                          <span key={method} className="text-xs font-bold text-white/80 bg-white/5 px-4 py-2 rounded-lg border border-white/10 shadow-sm cursor-pointer hover:border-[#F74A1D] hover:bg-white/10 transition-colors">
-                            {method}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-                        <div className="space-y-2">
-                          <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Card Number (Mock)</label>
-                          <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none transition-all font-mono text-white" placeholder="0000 0000 0000 0000" disabled />
+                    {/* Booking overview */}
+                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-4">Booking Summary</p>
+                    <div className="space-y-2 mb-6">
+                      {[
+                        { label: 'Package', value: TICKETS[selectedTicket as keyof typeof TICKETS].title },
+                        { label: 'Quantity', value: `${quantity} ticket${quantity > 1 ? 's' : ''}` },
+                        { label: 'Accommodation', value: addAccommodation ? `Yes (+₹${getAccommodationTotal()})` : 'No' },
+                      ].map(({ label, value }) => (
+                        <div key={label} className="flex items-center justify-between py-2.5 border-b border-white/8">
+                          <span className="text-white/50 text-sm font-semibold">{label}</span>
+                          <span className="text-white font-bold text-sm">{value}</span>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">Expiry</label>
-                            <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none transition-all font-mono text-white" placeholder="MM/YY" disabled />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="font-sans text-xs font-bold text-white/40 uppercase tracking-widest ml-1">CVV</label>
-                            <input type="text" className="w-full px-5 py-4 rounded-xl bg-[#0d142a] border border-white/10 focus:outline-none transition-all font-mono text-white" placeholder="123" disabled />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="pt-6 border-t border-white/10">
-                        <div className="flex items-center justify-between gap-4 flex-wrap">
-                          <div className="flex items-center gap-2 text-white/60 font-medium text-sm">
-                            <FaShieldHalved size={20} className="text-[#169857]" />
-                            Secure 256-bit SSL encryption
-                          </div>
-
-                          <button className="w-full sm:w-auto py-4 px-8 rounded-full font-bold text-white bg-gradient-to-r from-[#F74A1D] to-[#ef4444] hover:from-[#c23612] hover:to-[#dc2626] transition-all duration-300 shadow-[0_10px_20px_rgba(247,74,29,0.3)] flex items-center justify-center gap-2 text-lg">
-                            Pay ₹{getTotal().toLocaleString('en-IN')} Now <IoArrowForward size={20} />
-                          </button>
-                        </div>
+                      ))}
+                      <div className="flex items-center justify-between pt-4">
+                        <span className="text-white font-bold text-lg">Total Amount</span>
+                        <span className="font-black text-[#25D366] text-3xl">₹{getTotal().toLocaleString('en-IN')}</span>
                       </div>
                     </div>
+
+                    {/* Participants summary */}
+                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-3">Participants</p>
+                    <div className="space-y-3 mb-8">
+                      {participants.map((p, i) => (
+                        <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 flex-wrap">
+                          {quantity > 1 && (
+                            <span className="w-6 h-6 rounded-full bg-[#25D366]/20 text-[#25D366] text-xs font-black flex items-center justify-center shrink-0">{i + 1}</span>
+                          )}
+                          <span className="font-bold text-white text-sm">{p.name}</span>
+                          <span className="text-white/50 text-xs">{p.email}</span>
+                          <span className="text-white/50 text-xs">{p.phone}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* WhatsApp CTA */}
+                    <p className="text-white/40 text-xs font-medium mb-4 leading-relaxed">
+                      💬 Clicking below opens WhatsApp with your booking details pre-filled. Send the message to confirm your seat.
+                    </p>
+                    <button
+                      onClick={sendToWhatsApp}
+                      className="w-full py-5 px-8 rounded-2xl font-black text-white text-lg bg-[#25D366] hover:bg-[#1ebc58] active:scale-95 transition-all duration-200 shadow-[0_8px_30px_rgba(37,211,102,0.4)] flex items-center justify-center gap-3"
+                    >
+                      <FaWhatsapp size={26} />
+                      Continue on WhatsApp
+                    </button>
+                    <p className="text-white/25 text-[11px] font-medium mt-3 text-center">
+                      You'll be redirected to WhatsApp to complete your registration.
+                    </p>
                   </div>
                 </motion.section>
               )}
