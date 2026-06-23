@@ -87,16 +87,16 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-8 p-5 rounded-2xl bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] border border-[#F74A1D]/20 text-white relative overflow-hidden shadow-sm"
+                className="mt-10 w-full lg:w-[110%] lg:-ml-[10%] xl:w-[120%] xl:-ml-[20%] px-8 py-6 rounded-[1.75rem] bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] border border-[#F74A1D]/20 text-white relative overflow-hidden shadow-md z-20"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#F74A1D]/10 rounded-full blur-[40px] pointer-events-none" />
-                <div className="relative z-10 flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#f87171] shrink-0 border border-white/10">
-                    <FaPeopleGroup size={20} />
+                <div className="absolute top-0 right-0 w-36 h-36 bg-[#F74A1D]/10 rounded-full blur-[45px] pointer-events-none" />
+                <div className="relative z-10 flex items-start gap-4.5">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#f87171] shrink-0 border border-white/10 mt-0.5">
+                    <FaPeopleGroup size={22} />
                   </div>
                   <div>
-                    <h4 className="font-display font-bold text-white text-sm mb-1">🎉 Historic Milestone KPSA Launch</h4>
-                    <p className="text-xs text-white/70 font-medium leading-relaxed">Grand launch of the <strong className="text-[#fbbf24]">Kerala Psychology Students Association (KPSA)</strong> the first state-level student community dedicated to psychology in Kerala.</p>
+                    <h4 className="font-display font-bold text-white text-base md:text-lg mb-2">🎉 Historic Milestone KPSA Launch</h4>
+                    <p className="text-xs sm:text-sm text-white/70 font-medium leading-relaxed">Grand launch of the <strong className="text-[#fbbf24]">Kerala Psychology Students Association (KPSA)</strong> the first state-level student community dedicated to psychology in Kerala.</p>
                   </div>
                 </div>
               </motion.div>

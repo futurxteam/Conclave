@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;900&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700,800&f[]=cabinet-grotesk@400,500,700,800&f[]=general-sans@400,500,600,700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -11,6 +12,11 @@
 
   --font-display: "Space Grotesk", sans-serif;
   --font-sans: "Inter", sans-serif;
+  --font-clash: "Clash Display", sans-serif;
+  --font-sora: "Sora", sans-serif;
+  --font-cabinet: "Cabinet Grotesk", sans-serif;
+  --font-general: "General Sans", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
 body {
@@ -49,10 +55,23 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
+.psychology-gradient {
+  background: linear-gradient(90deg,
+      #F74A1D 0%,
+      #F4D313 30%,
+      #169857 65%,
+      #2451A6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -69,6 +88,7 @@ html {
     transform: scale(1);
     box-shadow: 0 8px 30px rgba(36, 81, 166, 0.35);
   }
+
   100% {
     transform: scale(1.03);
     box-shadow: 0 12px 45px rgba(36, 81, 166, 0.6), 0 0 20px rgba(224, 182, 207, 0.4);
@@ -76,9 +96,12 @@ html {
 }
 
 @keyframes bounceSlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-2px);
   }
@@ -91,10 +114,19 @@ html {
 .animate-bounce-slow {
   animation: bounceSlow 1.5s infinite ease-in-out;
 }
+
 @keyframes gradientFx {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .animate-gradient-fx {

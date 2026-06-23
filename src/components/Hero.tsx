@@ -32,7 +32,7 @@ const cardVariants = {
 const eventDetails = [
   { icon: MdOutlineCalendarMonth, label: 'July 18 & 19, 2026', sub: '2-Day Residential Conclave', color: 'text-[#2451A6]', bg: 'bg-[#2451A6]/10' },
   { icon: FaUsers, label: '250+ Participants', sub: 'Psychology Students Across Kerala', color: 'text-[#169857]', bg: 'bg-[#169857]/10' },
-  { icon: IoLocationOutline, label: 'KMM Edu Hub', sub: 'Thrikkakara, Kochi', color: 'text-[#F74A1D]', bg: 'bg-[#F74A1D]/10' },
+  { icon: IoLocationOutline, label: 'Sereniche Academy', sub: 'Kerala, India', color: 'text-[#F74A1D]', bg: 'bg-[#F74A1D]/10' },
 ];
 
 const heroStats = [
@@ -113,7 +113,7 @@ export function Hero() {
             <motion.div variants={itemVariants} className="mb-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur border border-[#2451A6]/20 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#F74A1D] animate-pulse" />
-                <span className="text-xs font-bold tracking-widest uppercase text-slate-600">
+                <span className="font-sora text-[11px] font-semibold tracking-widest uppercase text-slate-600">
                   Sereniche Academy × KMM College
                 </span>
               </div>
@@ -122,10 +122,10 @@ export function Hero() {
             {/* Main headline */}
             <motion.h1
               variants={itemVariants}
-              className="font-display font-black text-[3.6rem] sm:text-[5rem] lg:text-[5.5rem] leading-[1.02] tracking-tight text-[#0d1421] mb-4"
+              className="font-clash font-extrabold text-[3.6rem] sm:text-[5rem] lg:text-[5.5rem] leading-[1.02] tracking-tight text-[#0d1421] mb-4"
             >
               Kerala<br />
-              <span className="bg-gradient-to-r from-[#2451A6] via-[#E0B6CF] to-[#2451A6] bg-clip-text text-transparent italic pr-2">
+              <span className="psychology-gradient italic pr-2">
                 Psychology
               </span><br />
               Conclave
@@ -134,7 +134,7 @@ export function Hero() {
             {/* Theme line */}
             <motion.p
               variants={itemVariants}
-              className="font-sans text-lg sm:text-xl text-slate-600 font-medium mb-2 leading-relaxed"
+              className="font-sora text-base sm:text-lg text-slate-600 font-medium mb-2 leading-relaxed tracking-wide"
             >
               Exploring the Diverse World of Psychology
             </motion.p>
@@ -142,7 +142,7 @@ export function Hero() {
             {/* Tagline */}
             <motion.p
               variants={itemVariants}
-              className="font-display font-bold text-base tracking-[0.25em] uppercase text-[#2451A6] mb-10"
+              className="font-sora font-bold text-sm tracking-[0.25em] uppercase text-[#2451A6] mb-10"
             >
               Explore. Connect. Lead.
             </motion.p>
@@ -174,6 +174,28 @@ export function Hero() {
                   }
                 ];
                 const theme = pillThemes[idx % pillThemes.length];
+                const isLocation = label === 'Sereniche Academy';
+
+                if (isLocation) {
+                  return (
+                    <a
+                      key={label}
+                      href="https://maps.google.com/?q=Sereniche+Academy+Kerala"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-3 px-4 py-3 rounded-2xl ${theme.bg} border ${theme.border} text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-[0_12px_28px_rgba(247,74,29,0.45)] cursor-pointer group`}
+                    >
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${theme.iconBg} ${theme.iconColor}`}>
+                        <Icon size={18} />
+                      </div>
+                      <div>
+                        <p className="font-sora font-semibold text-sm text-white leading-tight">{label}</p>
+                        <p className="text-[11px] font-sora text-white/80 font-normal leading-tight">{sub}</p>
+                      </div>
+                    </a>
+                  );
+                }
+
                 return (
                   <div
                     key={label}
@@ -183,12 +205,59 @@ export function Hero() {
                       <Icon size={18} />
                     </div>
                     <div>
-                      <p className="font-display font-bold text-sm text-white leading-tight">{label}</p>
-                      <p className="text-[11px] text-white/80 font-medium leading-tight">{sub}</p>
+                      <p className="font-sora font-semibold text-sm text-white leading-tight">{label}</p>
+                      <p className="text-[11px] font-sora text-white/80 font-normal leading-tight">{sub}</p>
                     </div>
                   </div>
                 );
               })}
+            </motion.div>
+
+            {/* WhatsApp Community Join Banner */}
+            <motion.div variants={itemVariants} className="mb-10">
+              <a
+                href="https://chat.whatsapp.com/CEhWHgp6c2cBe1VPzz6MSw?mode=gi_t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 sm:gap-4 bg-white/60 backdrop-blur-md border-2 border-dashed border-[#25D366]/40 hover:border-[#25D366] rounded-2xl p-3 sm:p-3.5 px-4 sm:px-5 shadow-sm hover:shadow-[0_12px_24px_rgba(37,211,102,0.15)] transition-all duration-300 hover:scale-[1.02] cursor-pointer group"
+              >
+                {/* 3 circular avatars on the left & badge */}
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-2.5">
+                    <img
+                      src="/guest 1.png"
+                      alt="Community Member 1"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover shadow-sm"
+                    />
+                    <img
+                      src="/guest 2.png"
+                      alt="Community Member 2"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover shadow-sm"
+                    />
+                    <img
+                      src="/guest 3.png"
+                      alt="Community Member 3"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover shadow-sm"
+                    />
+                  </div>
+                  <span className="bg-[#25D366]/10 text-[#25D366] text-[10px] font-bold font-sora px-2 py-0.5 rounded-full border border-[#25D366]/20 whitespace-nowrap">
+                    +500 Members
+                  </span>
+                </div>
+
+                {/* Divider */}
+                <div className="h-8 w-px bg-slate-200" />
+
+                {/* Text & Icon */}
+                <div className="flex flex-col text-left">
+                  <span className="text-[9px] font-bold tracking-widest text-slate-500 uppercase font-sora flex items-center gap-1">
+                    JOIN OUR <IoArrowForward className="text-[#25D366] group-hover:translate-x-1 transition-transform" size={11} />
+                  </span>
+                  <span className="font-clash font-bold text-xs sm:text-sm text-[#25D366] leading-tight whitespace-nowrap">
+                    WhatsApp Community
+                  </span>
+                </div>
+              </a>
             </motion.div>
 
             {/* CTA buttons */}
@@ -239,29 +308,28 @@ export function Hero() {
 
                 {/* Card content */}
                 <div className="relative z-10 p-12 flex flex-col justify-center min-h-[340px]">
-                  {/* Top row icons + edition */}
-                  <div className="flex items-start justify-between mb-14">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center">
-                        <img src="/mano logo m'.png" alt="MANO Logo" className="w-8 h-8 object-contain" />
-                      </div>
-                      <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center rotate-45">
-                        <HiSparkles size={18} className="text-[#169857] -rotate-45" />
-                      </div>
+                  {/* Top row logo + edition */}
+                  <div className="flex items-start justify-between mb-12">
+                    <div className="flex items-center">
+                      <img
+                        src="/mano1.png"
+                        alt="MANO Logo"
+                        className="h-14 sm:h-16 w-auto object-contain"
+                      />
                     </div>
-                    <div className="text-right">
-                      <p className="text-white/50 text-[10px] font-bold tracking-widest uppercase">Edition</p>
-                      <p className="font-display font-black text-2xl text-white">2026</p>
+                    <div className="text-right mt-1.5">
+                      <p className="text-white/40 text-[9px] font-bold tracking-widest uppercase font-sora">Edition</p>
+                      <p className="font-clash font-bold text-xl text-white">2026</p>
                     </div>
                   </div>
 
                   {/* Title block */}
-                  <div className="pb-10">
-                    <p className="text-[#E0B6CF] font-bold tracking-[0.3em] text-xs uppercase mb-3">Kerala Psychology Conclave</p>
-                    <h2 className="font-display font-black text-[3.6rem] leading-[1] tracking-tight drop-shadow-md mb-4">
+                  <div className="pb-8">
+                    <p className="text-[#E0B6CF] font-sora font-semibold tracking-[0.35em] text-[9.5px] uppercase mb-2">Kerala Psychology Conclave</p>
+                    <h2 className="font-clash font-bold text-[3rem] sm:text-[3.6rem] leading-none tracking-wide drop-shadow-md mb-3">
                       MANO
                     </h2>
-                    <p className="text-white/70 font-medium text-base leading-relaxed">
+                    <p className="text-white/80 font-jakarta font-normal text-sm sm:text-base tracking-wide leading-relaxed">
                       Exploring the Diverse<br />World of Psychology
                     </p>
                   </div>
@@ -270,8 +338,8 @@ export function Hero() {
                   <div className="grid grid-cols-4 gap-3">
                     {heroStats.map((stat) => (
                       <div key={stat.label} className="text-center">
-                        <p className="font-display font-black text-lg text-white">{stat.value}</p>
-                        <p className="text-[9px] font-bold uppercase tracking-wider text-white/50">{stat.label}</p>
+                        <p className="font-sora font-bold text-lg sm:text-xl text-white tracking-tight">{stat.value}</p>
+                        <p className="text-[9px] sm:text-[10px] font-jakarta font-medium uppercase tracking-wider text-white/55 mt-1.5 leading-snug">{stat.label}</p>
                       </div>
                     ))}
                   </div>

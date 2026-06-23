@@ -93,10 +93,15 @@ export function TicketBooking() {
               <MdOutlineCalendarMonth size={16} className="text-[#F74A1D]" />
               July 18 & 19, 2026
             </div>
-            <div className="flex items-center gap-2 text-slate-700 font-bold bg-white/60 px-5 py-2.5 rounded-full shadow-sm border border-slate-200 text-sm">
+            <a
+              href="https://maps.google.com/?q=Sereniche+Academy+Kerala"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-slate-700 font-bold bg-white/60 px-5 py-2.5 rounded-full shadow-sm border border-slate-200 text-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] cursor-pointer"
+            >
               <IoLocationOutline size={16} className="text-[#169857]" />
-              KMM Edu Hub
-            </div>
+              Sereniche Academy
+            </a>
           </motion.div>
         </div>
 
