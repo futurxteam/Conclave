@@ -94,7 +94,7 @@ const schedule = {
       bg: 'bg-[#E0B6CF]/20'
     },
     {
-      badge: 'PSYCHLAUNCH 🚀',
+      badge: 'PSYCHLAUNCH ',
       title: 'PsychLaunch – Pitch Your Psychology Product Idea',
       description: 'Students pitch innovative psychology-based product and service ideas to a panel of experts. Creativity, boldness, and vision rewarded.',
       time: '5:15 – 6:30 PM',
@@ -110,7 +110,7 @@ const schedule = {
       bg: 'bg-[#E0B6CF]/20'
     },
     {
-      badge: 'CULTURAL EVENING 🎭',
+      badge: 'CULTURAL EVENING ',
       title: 'Cultural Evening – Performances & Entertainment',
       description: 'An unforgettable evening of student performances, cultural presentations, music, and entertainment to celebrate the MANO community.',
       time: '7:00 – 10:30 PM',
@@ -152,7 +152,7 @@ const schedule = {
       bg: 'bg-[#E0B6CF]/20'
     },
     {
-      badge: 'MINDQUIZ 🧠',
+      badge: 'MINDQUIZ ',
       title: 'MindQuiz – Psychology Quiz Competition',
       description: 'The ultimate psychology knowledge challenge. Teams compete across clinical, forensic, organisational, and research domains.',
       time: '11:00 AM – 12:30 PM',
