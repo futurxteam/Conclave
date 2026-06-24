@@ -8,23 +8,23 @@ import { IoCallOutline, IoArrowForward } from 'react-icons/io5';
 const contactInfo = [
   {
     title: 'Email',
-    value: 'info@manoconclave.com',
+    value: 'info@keralapsychologyconclave.com',
     desc: 'Organizing committee direct support',
     Icon: MdOutlineEmail,
     color: '#2451A6',
     bg: 'rgba(36, 81, 166, 0.05)',
     glow: 'rgba(36, 81, 166, 0.15)',
-    href: 'mailto:info@manoconclave.com'
+    href: 'mailto:info@keralapsychologyconclave.com'
   },
   {
     title: 'Phone',
-    value: '+91 XXXXX XXXXX',
+    value: '+91 95676 70993',
     desc: 'Inquiries, registration & support',
     Icon: IoCallOutline,
     color: '#169857',
     bg: 'rgba(22, 152, 87, 0.05)',
     glow: 'rgba(22, 152, 87, 0.15)',
-    href: 'tel:+919895012345' // Fallback real-world action or custom tel
+    href: 'tel:+919567670993'
   },
 ];
 

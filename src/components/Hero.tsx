@@ -114,7 +114,7 @@ export function Hero() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur border border-[#2451A6]/20 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#F74A1D] animate-pulse" />
                 <span className="font-sora text-[11px] font-semibold tracking-widest uppercase text-slate-600">
-                  Sereniche Academy × KMM College
+                  Sereniche Academy
                 </span>
               </div>
             </motion.div>

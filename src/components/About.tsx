@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'motion/react';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
 import { FaUsers, FaCompass, FaBullseye, FaUserTie, FaPeopleGroup } from 'react-icons/fa6';
@@ -69,15 +70,15 @@ export function About() {
               </h2>
 
               {/* Description paragraphs */}
-              <div className="space-y-6 text-slate-600 font-sans text-[16px] sm:text-[17px] leading-relaxed">
+              <div className="space-y-8 text-slate-500 font-sans text-[16px] sm:text-[17px] leading-[1.8]">
                 <p>
-                  <strong className="text-slate-900">MANO: Kerala Psychology Conclave</strong> is a 2-Day Residential Conclave organized by <span className="text-slate-950 font-semibold underline decoration-[#E0B6CF] decoration-2">Sereniche Academy</span> in association with the <span className="text-slate-950 font-semibold underline decoration-[#2451A6] decoration-2">PG Department of Psychology, KMM College of Arts and Science</span>.
+                  <strong className="text-slate-800 font-bold">MANO: Kerala Psychology Conclave</strong> is a 2-Day Residential Conclave organized by <span className="font-semibold text-[#2551A4] hover:text-[#149257] transition-colors duration-300 cursor-pointer">Sereniche Academy</span> in association with the <span className="font-semibold text-[#2551A4] hover:text-[#149257] transition-colors duration-300 cursor-pointer">PG Department of Psychology</span>, <span className="font-semibold text-[#2551A4] hover:text-[#149257] transition-colors duration-300 cursor-pointer">KMM College of Arts and Science</span>.
                 </p>
                 <p>
                   The conclave bridges the gap between academic learning and real-world professional psychology practice, bringing together 250+ psychology students, educators, researchers, clinicians, counsellors, and industry professionals from across Kerala.
                 </p>
                 <p>
-                  Students will engage directly with <strong className="text-slate-800">practitioners, researchers, academicians,</strong> and <strong className="text-slate-800">industry experts</strong> through expert sessions, panel discussions, networking opportunities, career-focused programs, and interactive activities.
+                  Students will engage directly with <strong className="text-slate-700 font-semibold">practitioners, researchers, academicians,</strong> and <strong className="text-slate-700 font-semibold">industry experts</strong> through expert sessions, panel discussions, networking opportunities, career-focused programs, and interactive activities.
                 </p>
               </div>
 
@@ -87,16 +88,16 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-10 w-full lg:w-[110%] lg:-ml-[10%] xl:w-[120%] xl:-ml-[20%] px-8 py-6 rounded-[1.75rem] bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] border border-[#F74A1D]/20 text-white relative overflow-hidden shadow-md z-20"
+                className="mt-10 w-full lg:w-[110%] lg:-ml-[10%] xl:w-[120%] xl:-ml-[20%] p-5 sm:p-6 rounded-[1.75rem] bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] border border-[#F74A1D]/20 text-white relative overflow-hidden shadow-md z-20"
               >
                 <div className="absolute top-0 right-0 w-36 h-36 bg-[#F74A1D]/10 rounded-full blur-[45px] pointer-events-none" />
-                <div className="relative z-10 flex items-start gap-4.5">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#f87171] shrink-0 border border-white/10 mt-0.5">
+                <div className="relative z-10 flex flex-col sm:flex-row items-center gap-5 sm:gap-6 text-center sm:text-left">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#f87171] shrink-0 border border-white/10">
                     <FaPeopleGroup size={22} />
                   </div>
-                  <div>
-                    <h4 className="font-display font-bold text-white text-base md:text-lg mb-2">🎉 Historic Milestone KPSA Launch</h4>
-                    <p className="text-xs sm:text-sm text-white/70 font-medium leading-relaxed">Grand launch of the <strong className="text-[#fbbf24]">Kerala Psychology Students Association (KPSA)</strong> the first state-level student community dedicated to psychology in Kerala.</p>
+                  <div className="flex-1">
+                    <h4 className="font-display font-semibold text-white text-[1.2rem] sm:text-[1.35rem] mb-2 leading-tight">🎉 Historic Milestone KPSA Launch</h4>
+                    <p className="text-[11px] sm:text-[13px] text-white/70 font-medium leading-[1.7]">Grand launch of the <strong className="text-[#F4D313] font-bold">Kerala Psychology Students Association (KPSA)</strong>, the first state-level student community dedicated to psychology in Kerala.</p>
                   </div>
                 </div>
               </motion.div>
@@ -114,25 +115,25 @@ export function About() {
                   {
                     bg: 'from-[#0d142a] via-[#122247] to-[#0d142a]',
                     border: 'border-white/10 group-hover:border-[#2451A6]/30',
-                    shadow: 'hover:shadow-[0_15px_35px_rgba(36,81,166,0.2)]',
+                    glow: 'rgba(36, 81, 166, 0.25)',
                     iconColor: 'text-[#3b82f6]',
                   },
                   {
                     bg: 'from-[#07130d] via-[#0f291a] to-[#07130d]',
                     border: 'border-white/10 group-hover:border-[#169857]/30',
-                    shadow: 'hover:shadow-[0_15px_35px_rgba(22,152,87,0.2)]',
+                    glow: 'rgba(22, 152, 87, 0.25)',
                     iconColor: 'text-[#10b981]',
                   },
                   {
                     bg: 'from-[#1a0c0a] via-[#351811] to-[#1a0c0a]',
                     border: 'border-white/10 group-hover:border-[#F74A1D]/30',
-                    shadow: 'hover:shadow-[0_15px_35px_rgba(247,74,29,0.2)]',
+                    glow: 'rgba(247, 74, 29, 0.25)',
                     iconColor: 'text-[#f87171]',
                   },
                   {
                     bg: 'from-[#151206] via-[#2a240c] to-[#151206]',
                     border: 'border-white/10 group-hover:border-[#F4D313]/30',
-                    shadow: 'hover:shadow-[0_15px_35px_rgba(244,211,19,0.2)]',
+                    glow: 'rgba(244, 211, 19, 0.25)',
                     iconColor: 'text-[#fbbf24]',
                   }
                 ];
@@ -143,12 +144,14 @@ export function About() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1, type: "spring", stiffness: 60 }}
+                    transition={{ duration: 0.6, delay: idx * 0.08, type: "spring", stiffness: 65, damping: 15 }}
                     whileHover={{
-                      y: -8,
-                      transition: { duration: 0.2, ease: "easeOut" }
+                      y: -10,
+                      scale: 1.015,
+                      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
                     }}
-                    className={`group bg-gradient-to-br ${theme.bg} ${theme.border} ${theme.shadow} p-8 rounded-[2.25rem] border shadow-[0_15px_35px_rgba(0,0,0,0.2)] flex flex-col justify-between min-h-[220px] transition-all duration-300`}
+                    style={{ '--glow-color': theme.glow } as React.CSSProperties}
+                    className={`group bg-gradient-to-br ${theme.bg} ${theme.border} p-8 rounded-[2.25rem] border shadow-[0_12px_40px_-12px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-8px_rgba(0,0,0,0.45),0_0_30px_var(--glow-color)] flex flex-col justify-between min-h-[220px] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]`}
                   >
                     {/* Top Section */}
                     <div className="flex justify-between items-start mb-6">
@@ -162,10 +165,10 @@ export function About() {
 
                     {/* Stat Values */}
                     <div>
-                      <div className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight mb-2">
+                      <div className="font-clash font-bold text-4xl sm:text-5xl text-white tracking-tight mb-2.5">
                         {stat.value}
                       </div>
-                      <div className="text-white/60 font-sans font-bold text-xs sm:text-sm tracking-wider uppercase leading-tight">
+                      <div className="text-white/40 font-sans font-semibold text-[11px] sm:text-xs tracking-widest uppercase leading-normal mt-1.5">
                         {stat.label}
                       </div>
                     </div>

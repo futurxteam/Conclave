@@ -1,5 +1,5 @@
 import { IoLocationOutline } from 'react-icons/io5';
-import { MdOutlineCalendarMonth } from 'react-icons/md';
+import { MdOutlineCalendarMonth, MdOutlineEmail } from 'react-icons/md';
 
 export function Footer() {
   return (
@@ -35,6 +35,12 @@ export function Footer() {
           <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors">
             <MdOutlineCalendarMonth className="text-[#F4D313]" size={16} /> July 18 &amp; 19, 2026
           </div>
+          <a
+            href="mailto:info@keralapsychologyconclave.com"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_20px_rgba(36,81,166,0.2)] cursor-pointer"
+          >
+            <MdOutlineEmail className="text-[#3b82f6]" size={16} /> info@keralapsychologyconclave.com
+          </a>
         </div>
 
         {/* Divider Line */}

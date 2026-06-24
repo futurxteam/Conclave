@@ -62,13 +62,6 @@ export function CulturalAndKPSA() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {featureCards.map((card, idx) => {
             const isPsychTalks = card.title === 'PsychTalks';
-            const isKPSA = card.title === 'KPSA Launch';
-
-            const bottomLabel = isKPSA
-              ? 'Special Ceremony'
-              : isPsychTalks
-                ? 'Open Speaker Session'
-                : 'Evening Program';
 
             const CardWrapper = isPsychTalks ? 'a' : 'div';
             const cardProps = isPsychTalks
@@ -87,10 +80,10 @@ export function CulturalAndKPSA() {
                   boxShadow: `0 24px 48px -12px ${card.glow}`,
                   transition: { duration: 0.2 }
                 }}
-                className="group glass-panel p-8 sm:p-10 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.03)] hover:bg-white/90 transition-all flex flex-col justify-between min-h-[320px]"
+                className="group glass-panel p-8 sm:p-10 rounded-[2.25rem] border border-white/70 bg-white/50 shadow-[0_15px_35px_rgba(36,81,166,0.03)] hover:bg-white/90 transition-all flex flex-col min-h-[320px]"
               >
-                <CardWrapper {...(cardProps as any)} className="flex flex-col flex-1 h-full">
-                  <div>
+                <CardWrapper {...(cardProps as any)} className="flex flex-col flex-1 h-full justify-between">
+                  <div className="flex-1">
                     {/* Icon + Index */}
                     <div className="flex justify-between items-center mb-7">
                       <div
@@ -117,14 +110,17 @@ export function CulturalAndKPSA() {
                     </p>
                   </div>
 
-                  {/* Bottom Accent */}
-                  <div className="border-t border-slate-100 mt-7 pt-4 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-slate-700 transition-colors duration-300">
-                    <span>{bottomLabel}</span>
-                    <span className="flex items-center gap-1 transition-colors" style={{ color: card.color }}>
-                      {isPsychTalks ? 'Apply to Speak' : 'Details'}
-                      <IoArrowForward size={12} className="group-hover:translate-x-0.5 transition-transform" />
-                    </span>
-                  </div>
+                  {isPsychTalks && (
+                    <div className="mt-8 flex justify-end">
+                      <span
+                        className="inline-flex items-center gap-1.5 text-sm font-bold tracking-wide transition-all duration-300 hover:scale-[1.03] active:scale-95 cursor-pointer hover:opacity-85"
+                        style={{ color: card.color }}
+                      >
+                        Apply to Speak
+                        <IoArrowForward size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  )}
                 </CardWrapper>
               </motion.div>
             );
