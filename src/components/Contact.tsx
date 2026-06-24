@@ -14,7 +14,7 @@ const contactInfo = [
     color: '#2451A6',
     bg: 'rgba(36, 81, 166, 0.05)',
     glow: 'rgba(36, 81, 166, 0.15)',
-    href: 'mailto:info@keralapsychologyconclave.com'
+    href: 'https://mail.google.com/mail/?view=cm&fs=1&to=info@keralapsychologyconclave.com'
   },
   {
     title: 'Phone',
@@ -90,6 +90,8 @@ export function Contact() {
                 onClick={() => {
                   if (card.href.startsWith('#')) {
                     document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' });
+                  } else if (card.href.startsWith('http')) {
+                    window.open(card.href, '_blank');
                   } else {
                     window.location.href = card.href;
                   }

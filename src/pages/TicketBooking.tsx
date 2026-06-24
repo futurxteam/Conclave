@@ -31,12 +31,37 @@ const TICKETS = {
 
 export function TicketBooking() {
   const [selectedTicket, setSelectedTicket] = useState<TicketType>(null);
+  const [isAfterJuly5, setIsAfterJuly5] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const checkTime = () => {
+      const targetDate = new Date('2026-07-05T00:00:00+05:30');
+      const now = new Date();
+      setIsAfterJuly5(now >= targetDate);
+    };
+
+    checkTime();
+    const interval = setInterval(checkTime, 10000);
+    return () => clearInterval(interval);
   }, []);
 
+  const isStudentLocked = isAfterJuly5;
+  const isProfessionalLocked = !isAfterJuly5;
+
+  // Auto-deselect if the pass becomes locked
+  useEffect(() => {
+    if (selectedTicket === 'student' && isStudentLocked) {
+      setSelectedTicket(null);
+    } else if (selectedTicket === 'professional' && isProfessionalLocked) {
+      setSelectedTicket(null);
+    }
+  }, [isStudentLocked, isProfessionalLocked, selectedTicket]);
+
   const handleTicketSelect = (id: TicketType) => {
+    if (id === 'student' && isStudentLocked) return;
+    if (id === 'professional' && isProfessionalLocked) return;
     setSelectedTicket(id);
   };
 
@@ -116,12 +141,24 @@ export function TicketBooking() {
             {/* Early Bird Pass */}
             <div
               onClick={() => handleTicketSelect('student')}
-              className={`bg-gradient-to-br from-[#0d142a] via-[#122247] to-[#0d142a] border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden flex flex-col justify-between ${selectedTicket === 'student' ? 'border-[#2451A6] shadow-[0_15px_40px_-15px_rgba(36,81,166,0.3)] ring-4 ring-[#2451A6]/10' : 'border-white/10 shadow-sm'}`}
+              className={`bg-gradient-to-br from-[#0d142a] via-[#122247] to-[#0d142a] border-2 rounded-[2rem] p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between transition-all duration-300 ${isStudentLocked
+                  ? 'opacity-40 border-white/5 shadow-sm cursor-not-allowed'
+                  : `cursor-pointer group hover:-translate-y-1 hover:shadow-xl ${selectedTicket === 'student'
+                    ? 'border-[#2451A6] shadow-[0_15px_40px_-15px_rgba(36,81,166,0.3)] ring-4 ring-[#2451A6]/10'
+                    : 'border-white/10 shadow-sm'
+                  }`
+                }`}
             >
               <div>
-                <div className="absolute top-0 right-0 bg-gradient-to-l from-[#F74A1D] to-[#F4D313] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
-                  Till July 5
-                </div>
+                {isStudentLocked ? (
+                  <div className="absolute top-0 right-0 bg-red-950/80 text-red-400 px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase border-l border-b border-red-800/30 shadow-sm">
+                    Closed
+                  </div>
+                ) : (
+                  <div className="absolute top-0 right-0 bg-gradient-to-l from-[#F74A1D] to-[#F4D313] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
+                    Till July 5
+                  </div>
+                )}
                 <h3 className="font-display font-black text-xl text-white mb-1 mt-2">{TICKETS.student.title}</h3>
                 <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Ideal For: Psychology Students</p>
 
@@ -162,21 +199,39 @@ export function TicketBooking() {
               </div>
               <button
                 type="button"
-                className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'student' ? 'bg-gradient-to-r from-[#2451A6] to-[#3b82f6] text-white shadow-md' : 'bg-white/5 border border-white/10 text-white group-hover:bg-gradient-to-r group-hover:from-[#2451A6] group-hover:to-[#3b82f6]'}`}
+                disabled={isStudentLocked}
+                className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${isStudentLocked
+                    ? 'bg-white/5 border border-white/5 text-white/30 cursor-not-allowed'
+                    : selectedTicket === 'student'
+                      ? 'bg-gradient-to-r from-[#2451A6] to-[#3b82f6] text-white shadow-md'
+                      : 'bg-white/5 border border-white/10 text-white group-hover:bg-gradient-to-r group-hover:from-[#2451A6] group-hover:to-[#3b82f6]'
+                  }`}
               >
-                {selectedTicket === 'student' ? 'Selected' : 'Select Pass'}
+                {isStudentLocked ? 'Closed' : selectedTicket === 'student' ? 'Selected' : 'Select Pass'}
               </button>
             </div>
 
             {/* Normal Pass */}
             <div
               onClick={() => handleTicketSelect('professional')}
-              className={`bg-gradient-to-br from-[#151206] via-[#2a240c] to-[#151206] border-2 rounded-[2rem] p-6 sm:p-8 cursor-pointer transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden flex flex-col justify-between ${selectedTicket === 'professional' ? 'border-[#F4D313] shadow-[0_15px_40px_-15px_rgba(244,211,19,0.3)] ring-4 ring-[#F4D313]/10' : 'border-white/10 shadow-sm'}`}
+              className={`bg-gradient-to-br from-[#151206] via-[#2a240c] to-[#151206] border-2 rounded-[2rem] p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between transition-all duration-300 ${isProfessionalLocked
+                  ? 'opacity-40 border-white/5 shadow-sm cursor-not-allowed'
+                  : `cursor-pointer group hover:-translate-y-1 hover:shadow-xl ${selectedTicket === 'professional'
+                    ? 'border-[#F4D313] shadow-[0_15px_40px_-15px_rgba(244,211,19,0.3)] ring-4 ring-[#F4D313]/10'
+                    : 'border-white/10 shadow-sm'
+                  }`
+                }`}
             >
               <div>
-                <div className="absolute top-0 right-0 bg-gradient-to-l from-[#2451A6] to-[#E0B6CF] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
-                  Most Popular
-                </div>
+                {isProfessionalLocked ? (
+                  <div className="absolute top-0 right-0 bg-[#2451A6]/20 text-[#3b82f6] px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase border-l border-b border-[#2451A6]/30 shadow-sm">
+                    After July 5
+                  </div>
+                ) : (
+                  <div className="absolute top-0 right-0 bg-gradient-to-l from-[#2451A6] to-[#E0B6CF] text-white px-4 py-1.5 rounded-bl-xl text-[10px] font-bold tracking-widest uppercase shadow-sm">
+                    Most Popular
+                  </div>
+                )}
                 <h3 className="font-display font-black text-xl text-white mb-1 mt-2">{TICKETS.professional.title}</h3>
                 <p className="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Ideal For: Educators & Professionals</p>
 
@@ -217,9 +272,15 @@ export function TicketBooking() {
               </div>
               <button
                 type="button"
-                className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${selectedTicket === 'professional' ? 'bg-gradient-to-r from-[#F4D313] to-[#fbbf24] text-slate-900 font-extrabold shadow-md' : 'bg-white/5 border border-white/10 text-white group-hover:bg-gradient-to-r group-hover:from-[#F4D313] group-hover:to-[#fbbf24] group-hover:text-slate-900'}`}
+                disabled={isProfessionalLocked}
+                className={`w-full py-3.5 rounded-full font-bold transition-all duration-300 ${isProfessionalLocked
+                    ? 'bg-white/5 border border-white/5 text-white/30 cursor-not-allowed'
+                    : selectedTicket === 'professional'
+                      ? 'bg-gradient-to-r from-[#F4D313] to-[#fbbf24] text-slate-900 font-extrabold shadow-md'
+                      : 'bg-white/5 border border-white/10 text-white group-hover:bg-gradient-to-r group-hover:from-[#F4D313] group-hover:to-[#fbbf24] group-hover:text-slate-900'
+                  }`}
               >
-                {selectedTicket === 'professional' ? 'Selected' : 'Select'}
+                {isProfessionalLocked ? 'After July 5' : selectedTicket === 'professional' ? 'Selected' : 'Select'}
               </button>
             </div>
 

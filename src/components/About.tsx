@@ -88,7 +88,7 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-10 w-full lg:w-[110%] lg:-ml-[10%] xl:w-[120%] xl:-ml-[20%] p-5 sm:p-6 rounded-[1.75rem] bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] border border-[#F74A1D]/20 text-white relative overflow-hidden shadow-md z-20"
+                className="mt-10 w-full p-5 sm:p-6 rounded-[1.75rem] bg-gradient-to-br from-[#1a0c0a] via-[#351811] to-[#1a0c0a] border border-[#F74A1D]/20 text-white relative overflow-hidden shadow-md z-20"
               >
                 <div className="absolute top-0 right-0 w-36 h-36 bg-[#F74A1D]/10 rounded-full blur-[45px] pointer-events-none" />
                 <div className="relative z-10 flex flex-col sm:flex-row items-center gap-5 sm:gap-6 text-center sm:text-left">
@@ -96,7 +96,7 @@ export function About() {
                     <FaPeopleGroup size={22} />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-display font-semibold text-white text-[1.2rem] sm:text-[1.35rem] mb-2 leading-tight">🎉 Historic Milestone KPSA Launch</h4>
+                    <h4 className="font-display font-semibold text-white text-[1.2rem] sm:text-[1.35rem] mb-2 leading-tight">Historic Milestone KPSA Launch</h4>
                     <p className="text-[11px] sm:text-[13px] text-white/70 font-medium leading-[1.7]">Grand launch of the <strong className="text-[#F4D313] font-bold">Kerala Psychology Students Association (KPSA)</strong>, the first state-level student community dedicated to psychology in Kerala.</p>
                   </div>
                 </div>

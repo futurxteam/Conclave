@@ -114,7 +114,13 @@ export function Navbar() {
 
           {/* Logo / Brand Name */}
           <div className="hidden lg:flex items-center gap-2 pl-4 relative z-10">
-            <img src="/mano logo m'.png" alt="MANO Logo" className="h-8 w-auto object-contain" />
+            <a
+              href={isHomePage ? '#home' : '/'}
+              onClick={(e) => handleNavClick(e, '#home', 'Home')}
+              className="cursor-pointer"
+            >
+              <img src="/mano logo m'.png" alt="MANO Logo" className="h-8 w-auto object-contain" />
+            </a>
           </div>
 
           {/* Links */}

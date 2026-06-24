@@ -9,7 +9,17 @@ const manoImages = [
   "/mano5.png"
 ];
 
-export function ArtistAnnouncement() {
+interface ArtistAnnouncementProps {
+  width?: string;
+  height?: string;
+  className?: string;
+}
+
+export function ArtistAnnouncement({
+  width = "220px",
+  height = "120px",
+  className = ""
+}: ArtistAnnouncementProps) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -25,8 +35,8 @@ export function ArtistAnnouncement() {
   }, []);
 
   return (
-    <div className="flex w-full items-start justify-start">
-      <div className="w-[220px] h-[120px] relative overflow-hidden flex items-center justify-start">
+    <div className={`flex w-full items-start justify-start ${className}`}>
+      <div className="relative overflow-hidden flex items-center justify-start" style={{ width, height }}>
         <AnimatePresence mode="popLayout">
           <motion.img
             key={manoImages[index]}
@@ -36,7 +46,8 @@ export function ArtistAnnouncement() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="absolute w-[220px] h-[120px] object-contain shrink-0"
+            className="absolute object-contain shrink-0"
+            style={{ width, height }}
             onLoad={() => console.log(`Successfully loaded image: ${manoImages[index]}`)}
             onError={() => console.error(`Failed to load image at path: ${manoImages[index]}`)}
           />

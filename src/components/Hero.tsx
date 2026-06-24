@@ -54,36 +54,103 @@ export function Hero() {
       {/* Spacer that equals navbar height so content starts below the navbar */}
       <div className="h-24 shrink-0" />
 
-      {/* ── MANO Vector Marquee Strip ── sits right below navbar, sticks on scroll */}
-      <div
-        className="sticky z-40 left-0 w-screen overflow-hidden pointer-events-none select-none flex items-center"
-        style={{
-          top: '76px', /* matches the navbar pill bottom edge */
-          backgroundColor: '#8E939C',
-          marginLeft: 'calc(-50vw + 50%)',
-        }}
-      >
-        <div className="w-full flex overflow-hidden py-1 md:py-2">
-          <div className="flex shrink-0 animate-marquee gap-2">
-            {Array.from({ length: 60 }).map((_, i) => (
+      {/* Left Vertical Marquee (scrolling up) */}
+      <div className="absolute left-0 top-0 bottom-0 w-5 bg-[#8E939C]/10 border-r border-white/10 overflow-hidden pointer-events-none select-none flex flex-col items-center justify-start z-20 backdrop-blur-[1px]">
+        <div className="flex flex-col shrink-0 animate-marquee-up gap-0 py-0">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={`v-left1-${i}`}
+              className="flex items-center justify-center shrink-0 relative overflow-visible"
+              style={{
+                width: '20px',
+                height: '264px',
+              }}
+            >
               <img
-                key={`v1-${i}`}
                 src="/mano-vector.png"
                 alt=""
-                className="h-7 md:h-9 w-auto object-contain shrink-0"
-                style={{ filter: 'contrast(1.08) saturate(1.15)' }}
+                className="absolute max-w-none shrink-0"
+                style={{
+                  width: '264px',
+                  height: '20px',
+                  transform: 'rotate(90deg)',
+                  filter: 'contrast(1.08) saturate(1.15)',
+                }}
               />
-            ))}
-            {Array.from({ length: 60 }).map((_, i) => (
+            </div>
+          ))}
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={`v-left2-${i}`}
+              className="flex items-center justify-center shrink-0 relative overflow-visible"
+              style={{
+                width: '20px',
+                height: '264px',
+              }}
+            >
               <img
-                key={`v2-${i}`}
                 src="/mano-vector.png"
                 alt=""
-                className="h-7 md:h-9 w-auto object-contain shrink-0"
-                style={{ filter: 'contrast(1.08) saturate(1.15)' }}
+                className="absolute max-w-none shrink-0"
+                style={{
+                  width: '264px',
+                  height: '20px',
+                  transform: 'rotate(90deg)',
+                  filter: 'contrast(1.08) saturate(1.15)',
+                }}
               />
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right Vertical Marquee (scrolling down) */}
+      <div className="absolute right-0 top-0 bottom-0 w-5 bg-[#8E939C]/10 border-l border-white/10 overflow-hidden pointer-events-none select-none flex flex-col items-center justify-start z-20 backdrop-blur-[1px]">
+        <div className="flex flex-col shrink-0 animate-marquee-down gap-0 py-0">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={`v-right1-${i}`}
+              className="flex items-center justify-center shrink-0 relative overflow-visible"
+              style={{
+                width: '20px',
+                height: '264px',
+              }}
+            >
+              <img
+                src="/mano-vector.png"
+                alt=""
+                className="absolute max-w-none shrink-0"
+                style={{
+                  width: '264px',
+                  height: '20px',
+                  transform: 'rotate(90deg)',
+                  filter: 'contrast(1.08) saturate(1.15)',
+                }}
+              />
+            </div>
+          ))}
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={`v-right2-${i}`}
+              className="flex items-center justify-center shrink-0 relative overflow-visible"
+              style={{
+                width: '20px',
+                height: '264px',
+              }}
+            >
+              <img
+                src="/mano-vector.png"
+                alt=""
+                className="absolute max-w-none shrink-0"
+                style={{
+                  width: '264px',
+                  height: '20px',
+                  transform: 'rotate(90deg)',
+                  filter: 'contrast(1.08) saturate(1.15)',
+                }}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -94,9 +161,9 @@ export function Hero() {
         <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-[#169857]/6 rounded-full blur-[100px]" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-12 relative z-10 flex-1 flex items-center">
+      <div className="max-w-[1400px] mx-auto w-full px-12 sm:px-16 relative z-10 flex-1 flex items-center">
         <motion.div
-          className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center"
+          className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center w-full"
           variants={containerVariants}
           initial="hidden"
           animate="show"
@@ -105,8 +172,8 @@ export function Hero() {
           <div className="pt-6 lg:pt-10">
 
             {/* Animated MANO wordmark */}
-            <motion.div variants={itemVariants} className="mb-5">
-              <ArtistAnnouncement />
+            <motion.div variants={itemVariants} className="mb-5 [--logo-w:200px] sm:[--logo-w:275px] [--logo-h:110px] sm:[--logo-h:150px]">
+              <ArtistAnnouncement width="var(--logo-w)" height="var(--logo-h)" />
             </motion.div>
 
             {/* Organiser badge */}
@@ -122,7 +189,7 @@ export function Hero() {
             {/* Main headline */}
             <motion.h1
               variants={itemVariants}
-              className="font-clash font-extrabold text-[3.6rem] sm:text-[5rem] lg:text-[5.5rem] leading-[1.02] tracking-tight text-[#0d1421] mb-4"
+              className="font-clash font-extrabold text-[2.6rem] sm:text-[5rem] lg:text-[5.5rem] leading-[1.02] tracking-tight text-[#0d1421] mb-4"
             >
               Kerala<br />
               <span className="psychology-gradient italic pr-2">
@@ -168,7 +235,7 @@ export function Hero() {
                   {
                     bg: 'bg-[#F74A1D]',
                     border: 'border-[#c23612]',
-                    shadow: 'hover:shadow-[0_8px_24px_rgba(247,74,29,0.4)]',
+                    shadow: 'hover:shadow-[0_8px_24px_rgba(247,74,29,0.455)]',
                     iconBg: 'bg-white/20',
                     iconColor: 'text-white'
                   }
@@ -291,7 +358,7 @@ export function Hero() {
               className="relative w-full max-w-[560px] mx-auto z-10"
             >
               {/* Main card */}
-              <div className="relative bg-gradient-to-br from-[#2451A6] to-[#1b3d82] rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(36,81,166,0.4)] text-white">
+              <div className="relative bg-gradient-to-br from-[#FFF8F1] via-[#FFF4F7] to-[#FDE7EF] rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(36,81,166,0.4)]">
 
                 {/* Inner pattern overlay */}
                 <div
@@ -307,39 +374,45 @@ export function Hero() {
                 <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-[#169857]/10 rounded-full blur-[50px]" />
 
                 {/* Card content */}
-                <div className="relative z-10 p-12 flex flex-col justify-center min-h-[340px]">
+                <div className="relative z-10 p-6 sm:p-12 flex flex-col justify-center min-h-[340px] [--card-logo-w:180px] sm:[--card-logo-w:220px] [--card-logo-h:98px] sm:[--card-logo-h:120px]">
                   {/* Top row logo + edition */}
                   <div className="flex items-start justify-between mb-12">
                     <div className="flex items-center">
-                      <img
-                        src="/mano1.png"
-                        alt="MANO Logo"
-                        className="h-14 sm:h-16 w-auto object-contain"
-                      />
+                      <ArtistAnnouncement width="var(--card-logo-w)" height="var(--card-logo-h)" />
                     </div>
                     <div className="text-right mt-1.5">
-                      <p className="text-white/40 text-[9px] font-bold tracking-widest uppercase font-sora">Edition</p>
-                      <p className="font-clash font-bold text-xl text-white">2026</p>
+                      <p className="text-slate-500 text-[9px] font-bold tracking-widest uppercase">
+                        Edition
+                      </p>
+                      <p className="font-clash font-bold text-xl text-[#0F172A]">
+                        2026
+                      </p>
                     </div>
                   </div>
 
                   {/* Title block */}
                   <div className="pb-8">
-                    <p className="text-[#E0B6CF] font-sora font-semibold tracking-[0.35em] text-[9.5px] uppercase mb-2">Kerala Psychology Conclave</p>
-                    <h2 className="font-clash font-bold text-[3rem] sm:text-[3.6rem] leading-none tracking-wide drop-shadow-md mb-3">
+                    <p className="text-[#C87AA5] font-sora font-semibold tracking-[0.35em] text-[9.5px] uppercase mb-2">
+                      Kerala Psychology Conclave
+                    </p>
+                    <h2 className="font-clash font-bold text-[1.8rem] sm:text-[2rem] text-[#0F172A] leading-none tracking-wide mb-3">
                       MANO
                     </h2>
-                    <p className="text-white/80 font-jakarta font-normal text-sm sm:text-base tracking-wide leading-relaxed">
+                    <p className="text-[#475569] font-jakarta font-normal text-sm sm:text-base tracking-wide leading-relaxed">
                       Exploring the Diverse<br />World of Psychology
                     </p>
                   </div>
 
                   {/* Stats row inside card */}
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-3">
                     {heroStats.map((stat) => (
                       <div key={stat.label} className="text-center">
-                        <p className="font-sora font-bold text-lg sm:text-xl text-white tracking-tight">{stat.value}</p>
-                        <p className="text-[9px] sm:text-[10px] font-jakarta font-medium uppercase tracking-wider text-white/55 mt-1.5 leading-snug">{stat.label}</p>
+                        <p className="font-sora font-bold text-lg sm:text-xl text-[#0F172A] tracking-tight">
+                          {stat.value}
+                        </p>
+                        <p className="text-[9px] sm:text-[10px] text-slate-500">
+                          {stat.label}
+                        </p>
                       </div>
                     ))}
                   </div>
