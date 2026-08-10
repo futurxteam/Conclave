@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FaHouse, FaFlask } from 'react-icons/fa6';
+import { FaHouse, FaFlask, FaFileLines } from 'react-icons/fa6';
 import { HiMiniUsers, HiSparkles } from 'react-icons/hi2';
 import { MdOutlineEventNote } from 'react-icons/md';
 import { PiTicketFill } from 'react-icons/pi';
@@ -154,6 +154,19 @@ export function Navbar() {
               );
             })}
           </div>
+
+          {/* Sessions Summary Link */}
+          <Link
+            to="/sessions-summary"
+            className={`relative flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all duration-300 group overflow-hidden ${
+              location.pathname === '/sessions-summary'
+                ? 'bg-gradient-to-r from-[#2451A6] to-[#E0B6CF] text-white shadow-sm'
+                : 'text-slate-600 hover:text-[#2451A6]'
+            }`}
+          >
+            <span className="text-sm leading-none flex items-center justify-center w-5 h-5"><FaFileLines size={18} /></span>
+            <span className="hidden sm:block">Sessions</span>
+          </Link>
 
           {/* CTA Button */}
           <div className="hidden lg:block relative z-10 pr-2">

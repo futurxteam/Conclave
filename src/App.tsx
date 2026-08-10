@@ -2,6 +2,7 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { Home } from './pages/Home';
 import { TicketBooking } from './pages/TicketBooking';
+import { SessionsSummary } from './pages/SessionsSummary';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { CursorGlow } from './components/CursorGlow';
@@ -65,6 +66,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ticket-booking" element={<TicketBooking />} />
+        <Route path="/sessions-summary" element={<SessionsSummary />} />
       </Routes>
       <Footer />
       <FloatingCTA />
